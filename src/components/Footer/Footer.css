@@ -1,0 +1,10 @@
+footer {
+  height: 7vh;
+  background-color: rgb(5, 79, 139);
+  color: white;
+}
+
+.footer-text {
+  font-size: 1em;
+  padding-top: 1vh;
+}

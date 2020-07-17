@@ -1,0 +1,141 @@
+.sidebar-wrapper {
+  color: rgb(192, 192, 192);
+  background-color: rgb(24, 24, 24);
+  width: 170px;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: 1s ease;
+}
+
+.user-info {
+  padding-top: 2vh;
+  padding-bottom: 1vh;
+  background-color: rgba(92, 92, 92, 0.336);
+}
+
+.img-rounded {
+  width: 80px;
+  height: 80px;
+  border-radius: 1em;
+}
+
+.user-status {
+  font-size: 0.8em;
+  margin-top: 1vh;
+}
+
+.user-status i {
+  font-size: 0.8em;
+  margin-right: 10px;
+  color: #49df49;
+}
+
+.sidebar-content > ul > li {
+  padding-top: 2vh;
+  padding-bottom: 3vh;
+  background-color: rgb(24, 24, 24);
+}
+
+.sidebar-content > ul > li:hover {
+  background-color: rgba(151, 151, 151, 0.5);
+  color: black !important;
+}
+
+.sidebar-content > ul > li > a {
+  color: rgb(221, 221, 221) !important;
+  display: block;
+  font-size: 1.02em;
+  height: 4vh;
+  padding-bottom: 1.5em;
+  padding-top: 1.5em;
+  text-align: center;
+  text-decoration: none;
+}
+
+.sidebar-footer {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(92, 92, 92, 0.336);
+}
+
+@media screen and (max-width: 1000px) {
+  .sidebar-wrapper {
+    width: 100px;
+  }
+  .img-rounded {
+    width: 4vh;
+    height: 4vh;
+  }
+  .user-name {
+    font-size: 1em;
+  }
+  .user-status {
+    font-size: 0.4;
+    margin-right: 5px;
+  }
+  .sidebar-content > ul > li > a {
+    font-size: 0.7em;
+  }
+  .user-status i {
+    font-size: 0.4em;
+  }
+  .logout-btn {
+    font-size: 1em;
+  }
+  .sidebar-footer {
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-height: 660px) {
+  .img-rounded {
+    width: 60px;
+    height: 60px;
+  }
+  .user-name {
+    font-size: 1em;
+  }
+  .user-status {
+    font-size: 0.4;
+    margin-right: 5px;
+  }
+  .sidebar-content > ul > li > a {
+    font-size: 1em;
+  }
+  .user-status i {
+    font-size: 0.4em;
+  }
+  .logout-btn {
+    font-size: 1em;
+  }
+  .sidebar-footer {
+    font-size: 0.9em;
+  }
+  .developer-text {
+    display: none;
+  }
+}
+
+@media screen and (max-height: 480px) {
+  .user-info {
+    display: none;
+  }
+  .sidebar-content > ul > li > a {
+    font-size: 0.7em;
+  }
+  .user-status i {
+    font-size: 0.4em;
+  }
+  .logout-btn {
+    font-size: 1em;
+  }
+  .sidebar-footer {
+    font-size: 0.8em;
+  }
+  .developer-text {
+    display: none;
+  }
+}
