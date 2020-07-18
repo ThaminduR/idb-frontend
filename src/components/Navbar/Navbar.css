@@ -1,13 +1,33 @@
 .navbar {
   color: white;
-  background-color: rgba(0, 0, 0, 1);
-  font-family: "bioRhyme", serif;
+  background-color: rgb(19, 19, 19);
+  font-family: "Karla", sans-serif;
 }
 
-.nav-link {
-  font-size: 1.5em;
-}
-
-a {
+.nav-item > a {
+  font-size: 1em;
+  text-decoration: none;
   color: white !important;
+}
+
+.user-info {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  background-color: rgba(92, 92, 92, 0.336);
+}
+
+.img-rounded {
+  width: 4vh;
+  height: 4vh;
+  border-radius: 1em;
+}
+
+.user-status {
+  font-size: 0.8em;
+}
+
+.user-status i {
+  font-size: 0.8em;
+  margin-right: 10px;
+  color: #49df49;
 }

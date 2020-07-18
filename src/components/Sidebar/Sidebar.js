@@ -26,7 +26,6 @@ function Sidebar(props) {
                             </div>
                             <div className='col-sm mt-2'>
                                 <span className="user-name">Admin</span>
-                                <br />
                                 <span className="user-status">
                                     <i className="fa fa-circle"></i>
                                     <span>Online</span>
@@ -37,7 +36,7 @@ function Sidebar(props) {
                     <ul className="list-group list-group-flush mb-4">
                         <li className="list-group-item"><a href="/">Dashboard</a></li>
                         <li className="list-group-item"><a href="/">Search Company</a></li>
-                        <li className="list-group-item"><a href="/">Add Survey Data</a></li>
+                        <li className="list-group-item"><a href="/newsurvey">Add Survey Data</a></li>
                         <li className="list-group-item"><a href="/">View Survey Data</a></li>
                     </ul>
                 </div>

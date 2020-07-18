@@ -1,0 +1,13 @@
+.background {
+  width: 100vw;
+  color: black;
+  background-color: rgb(255, 255, 255);
+}
+
+.form-card {
+  margin-top: 5vh;
+  padding: 2vh;
+  min-width: 80%;
+  border: 2px solid rgba(163, 163, 163, 0.685);
+  text-align: left;
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { useAuth } from '../../services/AuthenticationService'
-import Sidebar from '../Sidebar/Sidebar'
+import Navbar from '../Navbar/Navbar'
 
 function PrivateRoute({ component: Component, ...rest }) {
 
@@ -10,9 +10,9 @@ function PrivateRoute({ component: Component, ...rest }) {
     return (
         <Route {...rest} render={props =>
             authTokens
-                ? (<div><Sidebar></Sidebar><Component {...props} /></div>)
+                ? (<div className='background'><Navbar></Navbar><Component {...props} /></div>)
                 : (<Redirect to='/login' />)
-        } />
+        } exact />
     )
 }
 

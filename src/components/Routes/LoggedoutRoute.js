@@ -11,7 +11,7 @@ function LoggedoutRoute({ component: Component, ...rest }) {
             authTokens
                 ? (<Redirect to='/' />)
                 : (<Component {...props} />)
-        } />
+        } exact/>
     )
 }
 
