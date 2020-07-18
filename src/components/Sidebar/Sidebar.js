@@ -1,8 +1,16 @@
 import React from 'react'
+import axios from 'axios'
 import './Sidebar.css';
 import { DEV_NAME } from '../../constants/constants';
+import { Redirect } from 'react-router-dom';
 
 function Sidebar(props) {
+
+    const logout = () => {
+        axios.get('/logout')
+        localStorage.clear()
+        return <Redirect to='/login'/>
+    }
 
     return (
         <React.Fragment>
@@ -13,7 +21,7 @@ function Sidebar(props) {
                             <div className='col-sm'>
                                 <div className="user-pic">
                                     <img className="img-responsive img-rounded" src={require("../../assets/user.jpg")}
-                                        alt="User picture" />
+                                        alt="User" />
                                 </div>
                             </div>
                             <div className='col-sm mt-2'>
@@ -27,14 +35,14 @@ function Sidebar(props) {
                         </div>
                     </div>
                     <ul className="list-group list-group-flush mb-4">
-                        <li className="list-group-item"><a href="#">Dashboard</a></li>
-                        <li className="list-group-item"><a href="#">Search Company</a></li>
-                        <li className="list-group-item"><a href="#">Add Survey Data</a></li>
-                        <li className="list-group-item"><a href="#">View Survey Data</a></li>
+                        <li className="list-group-item"><a href="/">Dashboard</a></li>
+                        <li className="list-group-item"><a href="/">Search Company</a></li>
+                        <li className="list-group-item"><a href="/">Add Survey Data</a></li>
+                        <li className="list-group-item"><a href="/">View Survey Data</a></li>
                     </ul>
                 </div>
                 <div className="sidebar-footer">
-                    <div className='btn btn-outline-light logout-btn mb-4 mt-4'>Logout</div>
+                    <button className='btn btn-outline-light logout-btn mb-4 mt-4' onClick={logout}>Logout</button>
                     <p className='developer-text'>Developed By {DEV_NAME}</p>
                 </div>
             </nav>

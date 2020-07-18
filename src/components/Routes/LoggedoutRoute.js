@@ -8,7 +8,7 @@ function LoggedoutRoute({ component: Component, ...rest }) {
 
     return (
         <Route {...rest} render={props =>
-            true
+            authTokens
                 ? (<Redirect to='/' />)
                 : (<Component {...props} />)
         } />

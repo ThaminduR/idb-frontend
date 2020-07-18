@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './Login.css'
 import axios from 'axios'
-import { API_BASE_URL } from '../../constants/constants'
 import { useAuth } from '../../services/AuthenticationService'
 import { Redirect } from 'react-router-dom'
 import Footer from '../Footer/Footer'
@@ -33,11 +32,12 @@ function Login(props) {
 
     const sendDetailsToServer = () => {
         if (state.username.length && state.password.length) {
+            
             const payload = {
                 "username": state.username,
                 "password": state.password,
             }
-            axios.post(API_BASE_URL + 'login', payload)
+            axios.post('/login', payload)
                 .then(function (response) {
                     if (response.data.code === 200) {
                         setState(prevState => ({

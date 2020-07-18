@@ -3,16 +3,20 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
 } from 'react-router-dom';
+import axios from 'axios'
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import PrivateRoute from './components/Routes/PrivateRoute';
 import { AuthContext } from './services/AuthenticationService';
 import LoggedoutRoute from './components/Routes/LoggedoutRoute';
 import 'font-awesome/css/font-awesome.min.css';
+import { API_BASE_URL } from './constants/constants';
 
 function App() {
+
+  axios.defaults.withCredentials = true
+  axios.defaults.baseURL = API_BASE_URL
 
   const existingtokens = JSON.parse(localStorage.getItem("tokens"));
   const [authTokens, setAuthTokens] = useState(existingtokens);
