@@ -11,3 +11,21 @@
   border: 2px solid rgba(163, 163, 163, 0.685);
   text-align: left;
 }
+
+.topic-text {
+  font-weight: 600;
+}
+
+th {
+  font-weight: 400;
+}
+
+.alert {
+  top: 45%;
+  position: fixed;
+  z-index: 9999;
+}
+
+.radio-con {
+  align-items: center;
+}
