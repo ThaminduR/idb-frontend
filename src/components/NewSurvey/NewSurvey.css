@@ -26,6 +26,14 @@ th {
   z-index: 9999;
 }
 
-.radio-con {
-  align-items: center;
+.radio-row {
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+}
+
+.test {
+  left: 5%;
+  top: 50%;
+  position: fixed;
+  z-index: 9999;
 }

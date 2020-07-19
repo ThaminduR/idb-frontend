@@ -3,8 +3,8 @@ import './NewSurvey.css'
 function NewSurvey(props) {
 
     const [state, setState] = useState({
-        statechange: '',
-        errorMessage: null,
+        statechange: '', //Temperary variables
+        errorMessage: null,  //Temperary variables
         companyName: '',
         province: '',
         district: '',
@@ -17,9 +17,14 @@ function NewSurvey(props) {
         email: '',
         fax: '',
         website: '',
-        proprietor: [{ name: "Test1", designation: "Lol", tele: "09", mobile: "07", email: "sd" }],
-        pname: '', pdesignation: '', ptele: '', pmobile: '', pemail: '',
+        proprietor: [],
+        pname: '', pdesignation: '', ptele: '', pmobile: '', pemail: '', //Temperary variables
+        turnover: '',
+        employees: '',
         yoe: '',
+        business_type: '', reg_no: '',
+        industry_reg: false, industry_reg_no: '',
+
 
     })
 
@@ -64,7 +69,30 @@ function NewSurvey(props) {
         }))
     }
 
+    const handleRadioChange = (e, id) => {
+        const { value } = e.target
+        setState(prevState => ({
+            ...prevState,
+            [id]: value
+        }))
+    }
+
+    const handleCheckboxChange = (e) => {
+        const {id} = e.target
+        const value = state[id]
+        setState(prevState => ({
+            ...prevState,
+            [id]: !value
+        }))
+    }
+
+    const test = (e) => {
+        e.preventDefault()
+        console.log(state.industry_reg_no)
+    }
+
     const closeError = (e) => {
+        e.preventDefault()
         setState(prevState => ({
             ...prevState,
             errorMessage: '',
@@ -77,6 +105,7 @@ function NewSurvey(props) {
                 {state.errorMessage}
                 <button type="button" className="close ml-1" aria-label="Close" onClick={(e) => closeError(e)} ><span aria-hidden="true">&times;</span></button>
             </div>
+            <button className='test' onClick={test}>Test</button>
             <div className='container form-card'>
                 <form>
                     <div className="form-group">
@@ -139,7 +168,7 @@ function NewSurvey(props) {
 
                     <label className='topic-text'>5. Proprietor & Contact Person</label>
 
-                    <table className="table table-striped table-bordered">
+                    <table className="table table-bordered">
                         <thead className='thead-light'>
                             <tr>
                                 <th scope="col">Name</th>
@@ -176,44 +205,47 @@ function NewSurvey(props) {
 
                     <label className='topic-text'>6. What is the category that the organization belongs to?</label>
 
-                    <table className="table table-striped table-bordered">
-                        <thead className='thead-light'>
-                            <tr>
-                                <th scope="col"></th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Annual Turnover <br /> in last 1-2 years</th>
-                                <th scope="col">Response</th>
-                                <th scope="col">Number of Employees</th>
-                                <th scope="col">Response</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>A</td>
-                                <td>Micro</td>
-                                <td>0-15</td>
-                                <td><div class="form-check"><input class="form-check-input" type="radio" id="macro_turn" name='turnover' value="option1" /></div></td>
-                                <td>0-10</td>
-                                <td><div class="form-check"><input class="form-check-input" type="radio" id="macro_emp" name='employess' value="option1" /></div></td>
-                            </tr>
-                            <tr>
-                                <td>B</td>
-                                <td>Small</td>
-                                <td>16-250</td>
-                                <td><div class="form-check"><input class="form-check-input" type="radio" id="small_turn" name='turnover' value="option2" /></div></td>
-                                <td>11-50</td>
-                                <td><div class="form-check"><input class="form-check-input" type="radio" id="small_emp" name='employess' value="option2" /></div></td>
-                            </tr>
-                            <tr>
-                                <td>C</td>
-                                <td>Medium</td>
-                                <td>251-750</td>
-                                <td><div class="form-check"><input class="form-check-input" type="radio" id="medium_turn" name='turnover' value="option3" /></div></td>
-                                <td>51-300</td>
-                                <td><div class="form-check"><input class="form-check-input" type="radio" id="medium_emp" name='employess' value="option3" /></div></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div className='row radio-row'>
+                        <div className='col-md mt-2 mb-2' onChange={(e) => handleRadioChange(e, 'turnover')}>
+                            <label>Annual Turnover in last 1-2 years</label>
+                            <table className='table table-striped table-bordered'>
+                                <tbody>
+                                    <tr>
+                                        <td>Macro</td>
+                                        <td><div className="form-check"><input className="form-check-input" type="radio" id="macro_turn" name='turnover' value="macro" /></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Small</td>
+                                        <td><div className="form-check"><input className="form-check-input" type="radio" id="small_turn" name='turnover' value="small" /></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Medium</td>
+                                        <td><div className="form-check"><input className="form-check-input" type="radio" id="medium_turn" name='turnover' value="medium" /></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div className='col-md mt-2 mb-2' onChange={(e) => handleRadioChange(e, 'employees')}>
+                            <label>Number of Employees</label>
+                            <table className='table table-striped table-bordered'>
+                                <tbody>
+                                    <tr>
+                                        <td>Macro</td>
+                                        <td><div className="form-check"><input className="form-check-input" type="radio" id="macro_emp" name='employees' value="macro" /></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Small</td>
+                                        <td><div className="form-check"><input className="form-check-input" type="radio" id="small_emp" name='employees' value="small" /></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Medium</td>
+                                        <td><div className="form-check"><input className="form-check-input" type="radio" id="medium_emp" name='employees' value="medium" /></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
                     <div className="form-group">
                         <label className='topic-text'>7. Year of Establishment</label>
@@ -223,42 +255,46 @@ function NewSurvey(props) {
                     <label className='topic-text'>8. Ownership and Registration of the Business</label>
                     <br />
                     <label className='mt-2 mb-2'>Type of Business Registration</label>
-                    <table className="table table-striped table-bordered">
-                        <tbody>
-                            <tr>
-                                <td>Sole Proprietor</td>
-                                <td><div class="form-check"><input class="form-check-input" type="radio" id="sole_business" name='business_type' value="option1" /></div></td>
-                            </tr>
-                            <tr>
-                                <td>Partnership</td>
-                                <td><div class="form-check"><input class="form-check-input" type="radio" id="part_business" name='business_type' value="option2" /></div></td>
-                            </tr>
-                            <tr>
-                                <td>Limited Liability</td>
-                                <td><div class="form-check"><input class="form-check-input" type="radio" id="limited_business" name='business_type' value="option3" /></div></td>
+                    <div onChange={(e) => handleRadioChange(e, 'business_type')}>
+                        <table className="table table-striped table-bordered">
+                            <tbody>
 
-                            </tr>
-                            <tr>
-                                <td>Cooperative</td>
-                                <td><div class="form-check"><input class="form-check-input" type="radio" id="coop_business" name='business_type' value="option4" /></div></td>
-                            </tr>
-                            <tr>
-                                <td>Registration No.</td>
-                                <td><input type="text" className="form-control" id="reg_no" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                <tr>
+                                    <td>Sole Proprietor</td>
+                                    <td><div className="form-check"><input className="form-check-input" type="radio" id="sole_business" name='business_type' value="sole" /></div></td>
+                                </tr>
+                                <tr>
+                                    <td>Partnership</td>
+                                    <td><div className="form-check"><input className="form-check-input" type="radio" id="part_business" name='business_type' value="partnership" /></div></td>
+                                </tr>
+                                <tr>
+                                    <td>Limited Liability</td>
+                                    <td><div className="form-check"><input className="form-check-input" type="radio" id="limited_business" name='business_type' value="limited" /></div></td>
+
+                                </tr>
+                                <tr>
+                                    <td>Cooperative</td>
+                                    <td><div className="form-check"><input className="form-check-input" type="radio" id="coop_business" name='business_type' value="cooperative" /></div></td>
+                                </tr>
+                                <tr>
+                                    <td>Registration No.</td>
+                                    <td><input type="text" className="form-control" id="reg_no" value={state.reg_no} onChange={handleChange} /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
                     <label className='mt-2 mb-2'>Industry Registration</label>
                     <table className="table table-striped table-bordered">
                         <tbody>
                             <tr>
+
                                 <td>Whether obatain Registration <br />under Ministry of Industries</td>
-                                <td><div class="form-check form-check-inline"><input class="form-check-input" type="checkbox" id="industry_reg" value="option1" /></div></td>
+                                <td><div className="form-check form-check-inline"><input className="form-check-input" type="checkbox" checked={state.industry_reg} id="industry_reg" onChange={handleCheckboxChange} /></div></td>
                             </tr>
                             <tr>
                                 <td>Registration No.</td>
-                                <td><input type="text" className="form-control" id="reg_no" /></td>
+                                <td><input type="text" className="form-control" id="industry_reg_no" value={state.industry_reg_no} onChange={handleChange} /></td>
                             </tr>
                         </tbody>
                     </table>
