@@ -5,9 +5,10 @@ import { Redirect } from 'react-router-dom'
 function NewSurvey(props) {
 
     const [state, setState] = useState({
-        statechange: '', //Temperary variables
+        //t infront of variable names indicate temporary varaibles
+        statechange: '',
         successMessage: null,
-        errorMessage: null,  //Temperary variables
+        errorMessage: null,
         companyName: '',
         province: '',
         district: '',
@@ -20,8 +21,7 @@ function NewSurvey(props) {
         email: '',
         fax: '',
         website: '',
-        proprietor: [],
-        pname: '', pdesignation: '', ptele: '', pmobile: '', pemail: '', //Temperary variables
+        proprietor: [], tpropr: { name: '', designation: '', tele: '', mobile: '', email: '' },
         turnover: '',
         employees: '',
         yoe: '',
@@ -31,6 +31,20 @@ function NewSurvey(props) {
         building_area: '', building_value: '',
         machine_value: '', utilities_value: '', total_capital_investment: '',
         raw_mat_value: '', semi_goods_value: '', goods_value: '', total_working_capital: '',
+        // owned_site: false, rented_site: false, 
+        site_type: '',
+        furnace_capacity: [], tfurnance_capacity: { metal: '', melting: '', heating: '' },
+        furnances: [], tfurnance: { name: '', fuel: '' },
+        machinery: [], tmachinery: { type: '', capacity: '', value: '' },
+        metal_processing: [], tmetal_processing: { metal: '', melting: '', heating: '', temp: '' },
+        raw_materials: [], raw_material: { metal: '', origin: '', state: '', amount: '' },
+        emp_details: [], temp_details: { type: '', local: '', foreign: '' },
+        products: [],
+        product: { name: '', state: '', units: '', weight: '' },
+        markets: { local_retail: '', local_companies: '', export: '' },
+        other_markets: { name: '', percentage: '' },
+        annual_turnover: { y2016_2017: '', y2017_2018: '', y2018_2019: '' }
+
     })
 
     const handleChange = (e) => {
@@ -41,32 +55,49 @@ function NewSurvey(props) {
         }))
     }
 
-    const handlePropRowSubmit = (e) => {
-        e.preventDefault()
-        if (state.pname.length && state.pdesignation && state.ptele && state.pmobile && state.pemail) {
-            const propr = {
-                name: state.pname,
-                designation: state.pdesignation,
-                tele: state.ptele,
-                mobile: state.pmobile,
-                email: state.pemail
+    const handleROInput = (e, ro_id, ro_value, arr) => {
+        const { id, value } = e.target
+        setState(prevState => ({
+            ...prevState,
+            [arr]: {
+                ...prevState[arr],
+                [id]: value,
+                [ro_id]: ro_value,
             }
-            state.proprietor.push(propr)
-            setState(prevState => ({
-                ...prevState,
-                errorMessage: '',
-            }))
-        } else {
-            setState(prevState => ({
-                ...prevState,
-                errorMessage: 'Incomplete Data Row'
-            }))
-        }
+
+        }))
     }
 
-    const handlePropRowDelete = (key, e) => {
+    const handleRowChange = (e, t_arr) => {
+        const { id, value } = e.target
+        setState(prevState => ({
+            ...prevState,
+            [t_arr]: {
+                ...prevState[t_arr],
+                [id]: value
+            }
+        }))
+    }
+
+    const handleRowSubmit = (e, t_arr, arr) => {
         e.preventDefault()
-        state.proprietor.splice(key, 1)
+        const newarr = { ...t_arr }
+        arr.push(newarr)
+
+        setState(prevState => ({
+            ...prevState,
+            stateChange: '',
+        }))
+
+        for (var key in t_arr) {
+            t_arr[key] = ''
+        }
+
+    }
+
+    const handleRowDelete = (e, key, arr) => {
+        e.preventDefault()
+        arr.splice(key, 1)
 
         setState(prevState => ({
             ...prevState,
@@ -82,6 +113,19 @@ function NewSurvey(props) {
         }))
     }
 
+    const handleRowRadioChange = (e, t_arr, id) => {
+        const { value } = e.target
+        setState(prevState => ({
+            ...prevState,
+            [t_arr]: {
+                ...prevState[t_arr],
+                [id]: value
+            }
+        }))
+    }
+
+
+
     const handleCheckboxChange = (e) => {
         const { id } = e.target
         const value = state[id]
@@ -93,7 +137,7 @@ function NewSurvey(props) {
 
     const test = (e) => {
         e.preventDefault()
-        console.log(state.building_area)
+        console.log(state.annual_turnover)
     }
 
     const closeError = (e) => {
@@ -163,6 +207,9 @@ function NewSurvey(props) {
             <div className='container form-card'>
                 <form>
                     <div className="form-group">
+                        <hr className='page-break' />
+                        <div className='main-con'><label className='main-text'>A. Basic Industry Data</label></div>
+                        <hr className='page-break' />
                         <label className='topic-text'>1. Name of the Company/Industry</label>
                         <input type="text" className="form-control" id="companyName" value={state.companyName} onChange={handleChange} />
                     </div>
@@ -234,25 +281,25 @@ function NewSurvey(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {state.proprietor.map((item, i) => {
+                            {state.proprietor.map((item, key) => {
                                 return (
-                                    <tr key={i}>
+                                    <tr key={key}>
                                         <td>{item.name}</td>
                                         <td>{item.designation}</td>
                                         <td>{item.tele}</td>
                                         <td>{item.mobile}</td>
                                         <td>{item.email}</td>
 
-                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handlePropRowDelete(i, e)} ><span aria-hidden="true">&times;</span></button></td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.proprietor)} ><span aria-hidden="true">&times;</span></button></td>
                                     </tr>)
                             })}
                             <tr>
-                                <td><input type="text" className="form-control" id="pname" value={state.pname} onChange={handleChange} /></td>
-                                <td><input type="text" className="form-control" id="pdesignation" value={state.pdesignation} onChange={handleChange} /></td>
-                                <td><input type="text" className="form-control" id="ptele" value={state.ptele} onChange={handleChange} /></td>
-                                <td><input type="text" className="form-control" id="pmobile" value={state.pmobile} onChange={handleChange} /></td>
-                                <td><input type="text" className="form-control" id="pemail" value={state.pemail} onChange={handleChange} /></td>
-                                <td><button className='btn btn-outline-dark' onClick={(e) => handlePropRowSubmit(e)}>Add</button></td>
+                                <td><input type="text" className="form-control" id="name" value={state.tpropr.name} onChange={(e) => handleRowChange(e, 'tpropr')} /></td>
+                                <td><input type="text" className="form-control" id="designation" value={state.tpropr.designation} onChange={(e) => handleRowChange(e, 'tpropr')} /></td>
+                                <td><input type="text" className="form-control" id="tele" value={state.tpropr.tele} onChange={(e) => handleRowChange(e, 'tpropr')} /></td>
+                                <td><input type="text" className="form-control" id="mobile" value={state.tpropr.mobile} onChange={(e) => handleRowChange(e, 'tpropr')} /></td>
+                                <td><input type="text" className="form-control" id="email" value={state.tpropr.email} onChange={(e) => handleRowChange(e, 'tpropr')} /></td>
+                                <td><button className='btn btn-outline-dark' onClick={(e) => handleRowSubmit(e, state.tpropr, state.proprietor)}>Add</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -353,12 +400,9 @@ function NewSurvey(props) {
                         </tbody>
                     </table>
 
-                    <hr className='page-break' />
-                    <p className='page-break-text'>End of Page 1</p>
-                    <hr className='page-break' />
-
-                    <label className='topic-text'>9. Capital Investment of the Business</label>
+                    <label className='topic-text'>9. Total Investment of the Business</label>
                     <br />
+                    <label>9.1 Capital Investment of the Business</label>
                     <table className='table mt-4 table-bordered'>
                         <thead className='thead-light'>
                             <tr>
@@ -403,7 +447,7 @@ function NewSurvey(props) {
                         </tbody>
                     </table>
 
-                    <label className='topic-text'>10. Working Capital</label>
+                    <label>9.2 Working Capital</label>
 
                     <table className='table mt-4 table-bordered'>
                         <thead className='thead-light'>
@@ -431,9 +475,357 @@ function NewSurvey(props) {
                             </tr>
                         </tbody>
                     </table>
+
+                    <label>9.3 Ownership of the Business</label>
+                    <div onChange={(e) => handleRadioChange(e, 'site_type')}>
+                        <table className='table mt-4 table-bordered'>
+                            <thead className='thead-light'>
+                                <tr>
+                                    <th>Factory Premises</th>
+                                    <th>Present Site</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Owned by Industrialist</td>
+                                    {/* <td><div className="form-check form-check-inline"><input className="form-check-input" type="checkbox" checked={state.owned_site} id="owned_site" onChange={handleCheckboxChange} /></div></td> */}
+                                    <td><div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="owned_site" name='site_type' value='owned' /></div></td>
+                                </tr>
+                                <tr>
+                                    <td>Rented/ Leased Premises</td>
+                                    {/* <td><div className="form-check form-check-inline"><input className="form-check-input" type="checkbox" checked={state.rented_site} id="rented_site" onChange={handleCheckboxChange} /></div></td> */}
+                                    <td><div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="rented_site" name='site_type' value='rented' /></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr className='page-break' />
+                    <div className='main-con'><label className='main-text'>B. Operational and Technical Details of Business</label></div>
+                    <hr className='page-break' />
+
+                    <label className='topic-text'>1. What Metals Does the Industry Use and What is the Total Capacity (Kg) of the Furnance?</label>
+
+                    <table className='table mt-4 table-bordered'>
+                        <thead className='thead-light'>
+                            <tr>
+                                <th>Metal</th>
+                                <th>Melting</th>
+                                <th>Heating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {state.furnace_capacity.map((item, key) => {
+                                return (
+                                    <tr key={key}>
+                                        <td>{item.metal}</td>
+                                        <td>{item.melting}</td>
+                                        <td>{item.heating}</td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.furnace_capacity)} ><span aria-hidden="true">&times;</span></button></td>
+                                    </tr>)
+                            })}
+                            <tr>
+                                <td><select className="form-control" id='metal' defaultValue={state.tfurnance_capacity.metal} onChange={(e) => handleRowChange(e, 'tfurnance_capacity')} >
+                                    <option value=''>Select Metal</option>
+                                    <option value='Stainless Steel'>Stainless Steel</option>
+                                    <option value='Magnesium'>Magnesium</option>
+                                    <option value='Iron'>Iron</option>
+                                    <option value='Cast Iron'>Cast Iron</option>
+                                    <option value='Copper'>Copper</option>
+                                    <option value='Aluminum'>Aluminium</option>
+                                    <option value='Brass'>Brass</option>
+                                    <option value='Zinc'>Zinc</option>
+                                    <option value='LMS'>LMS</option>
+                                    <option value='High Carbon Steel'>High Carbon Steel</option>
+                                    <option value='Manganese Steel'>Manganese Steel</option>
+                                    <option value='Other'>Other</option>
+                                </select></td>
+                                {/* <td><input type="text" className="form-control" id="metal" value={state.tfurnance_capacity.metal} onChange={(e) => handleRowChange(e, 'tfurnance_capacity')} /></td> */}
+                                <td><input type="text" className="form-control" id="melting" value={state.tfurnance_capacity.melting} onChange={(e) => handleRowChange(e, 'tfurnance_capacity')} /></td>
+                                <td><input type="text" className="form-control" id="heating" value={state.tfurnance_capacity.heating} onChange={(e) => handleRowChange(e, 'tfurnance_capacity')} /></td>
+                                <td><button className='btn btn-outline-dark' onClick={(e) => handleRowSubmit(e, state.tfurnance_capacity, state.furnace_capacity)}>Add</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <label className='topic-text'>2. Type of Furnances and Fuel Being Used</label>
+
+                    <table className='table mt-4 table-bordered'>
+                        <thead className='thead-light'>
+                            <tr>
+                                <th>Furnance</th>
+                                <th>Fuel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {state.furnances.map((item, key) => {
+                                return (
+                                    <tr key={key}>
+                                        <td>{item.name}</td>
+                                        <td>{item.fuel}</td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.furnances)} ><span aria-hidden="true">&times;</span></button></td>
+                                    </tr>)
+                            })}
+                            <tr>
+                                <td><select className="form-control" id='name' defaultValue={state.tfurnance.name} onChange={(e) => handleRowChange(e, 'tfurnance')} >
+                                    <option value=''>Select Furnance</option>
+                                    <option value='Cupola Furnance'>Cupola Furnance</option>
+                                    <option value='Pit Furnance'>Pit Furnance</option>
+                                    <option value='Induction Furnance'>Induction Furnance</option>
+                                    <option value='Tilt Furnance'>Tilt Furnance</option>
+                                    <option value='Other'>Other</option>
+                                </select></td>
+                                <td><select className="form-control" id='fuel' defaultValue={state.tfurnance.fuel} onChange={(e) => handleRowChange(e, 'tfurnance')} >
+                                    <option value=''>Select Fuel</option>
+                                    <option value='Furnance Oil'>Furnance Oil</option>
+                                    <option value='Coal'>Coal</option>
+                                    <option value='LP Gas'>LP Gas</option>
+                                    <option value='Electricity'>Electricity</option>
+                                    <option value='Other'>Other</option>
+                                </select></td>
+                                <td><button className='btn btn-outline-dark' onClick={(e) => handleRowSubmit(e, state.tfurnance, state.furnances)}>Add</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <label className='topic-text'>3. Machinery</label>
+
+                    <table className='table mt-4 table-bordered'>
+                        <thead className='thead-light'>
+                            <tr>
+                                <th>Type of Machinery</th>
+                                <th>Capacity (kW)</th>
+                                <th>Value (Rs)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {state.machinery.map((item, key) => {
+                                return (
+                                    <tr key={key}>
+                                        <td>{item.type}</td>
+                                        <td>{item.capacity}</td>
+                                        <td>{item.value}</td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.machinery)} ><span aria-hidden="true">&times;</span></button></td>
+                                    </tr>)
+                            })}
+                            <tr>
+                                <td><input type="text" className="form-control" id="type" value={state.tmachinery.type} onChange={(e) => handleRowChange(e, 'tmachinery')} /></td>
+                                <td><input type="text" className="form-control" id="capacity" value={state.tmachinery.capacity} onChange={(e) => handleRowChange(e, 'tmachinery')} /></td>
+                                <td><input type="text" className="form-control" id="value" value={state.tmachinery.value} onChange={(e) => handleRowChange(e, 'tmachinery')} /></td>
+                                <td><button className='btn btn-outline-dark' onClick={(e) => handleRowSubmit(e, state.tmachinery, state.machinery)}>Add</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <label className='topic-text'>4. Average Monthy Metal Processing (Kg)</label>
+
+                    <table className='table mt-4 table-bordered'>
+                        <thead className='thead-light'>
+                            <tr>
+                                <th>Metal</th>
+                                <th>Melting</th>
+                                <th>Heating</th>
+                                <th>Temperature</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {state.metal_processing.map((item, key) => {
+                                return (
+                                    <tr key={key}>
+                                        <td>{item.metal}</td>
+                                        <td>{item.melting}</td>
+                                        <td>{item.heating}</td>
+                                        <td>{item.temp}</td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.metal_processing)} ><span aria-hidden="true">&times;</span></button></td>
+                                    </tr>)
+                            })}
+                            <tr>
+                                <td><select className="form-control" id='metal' defaultValue={state.tmetal_processing.metal} onChange={(e) => handleRowChange(e, 'tmetal_processing')} >
+                                    <option value=''>Select Metal</option>
+                                    <option value='Stainless Steel'>Stainless Steel</option>
+                                    <option value='Magnesium'>Magnesium</option>
+                                    <option value='Iron'>Iron</option>
+                                    <option value='Cast Iron'>Cast Iron</option>
+                                    <option value='Copper'>Copper</option>
+                                    <option value='Aluminum'>Aluminium</option>
+                                    <option value='Brass'>Brass</option>
+                                    <option value='Zinc'>Zinc</option>
+                                    <option value='LMS'>LMS</option>
+                                    <option value='High Carbon Steel'>High Carbon Steel</option>
+                                    <option value='Manganese Steel'>Manganese Steel</option>
+                                    <option value='Other'>Other</option>
+                                </select></td>
+                                <td><input type="text" className="form-control" id="melting" value={state.tmetal_processing.melting} onChange={(e) => handleRowChange(e, 'tmetal_processing')} /></td>
+                                <td><input type="text" className="form-control" id="heating" value={state.tmetal_processing.heating} onChange={(e) => handleRowChange(e, 'tmetal_processing')} /></td>
+                                <td><input type="text" className="form-control" id="temp" value={state.tmetal_processing.temp} onChange={(e) => handleRowChange(e, 'tmetal_processing')} /></td>
+                                <td><button className='btn btn-outline-dark' onClick={(e) => handleRowSubmit(e, state.tmetal_processing, state.metal_processing)}>Add</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <label className='topic-text'>5. How to Source Raw Materials for Production?</label>
+
+                    <table className='table mt-4 table-bordered'>
+                        <thead className='thead-light'>
+                            <tr>
+                                <th>Type of Metal</th>
+                                <th>Origin (Local/Imported) (kW)</th>
+                                <th>State (Scrap/Virgin) (kW)</th>
+                                <th>Amount (Kg)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {state.raw_materials.map((item, key) => {
+                                return (
+                                    <tr key={key}>
+                                        <td>{item.metal}</td>
+                                        <td>{item.origin}</td>
+                                        <td>{item.state}</td>
+                                        <td>{item.amount}</td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.raw_materials)} ><span aria-hidden="true">&times;</span></button></td>
+                                    </tr>)
+                            })}
+                            <tr>
+                                <td><input type="text" className="form-control" id="metal" value={state.raw_material.metal} onChange={(e) => handleRowChange(e, 'raw_material')} /></td>
+                                <td><div onChange={(e) => handleRowRadioChange(e, 'raw_material', 'origin')} >
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="local" name='origin' value='local' /><label className='form-check-label'>Local</label></div>
+                                    <br />
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="imported" name='origin' value='imported' /><label className='form-check-label'>Imported</label></div>
+                                </div></td>
+                                <td><div onChange={(e) => handleRowRadioChange(e, 'raw_material', 'state')} >
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="scrap" name='state' value='scrap' /><label className='form-check-label'>Scrap</label></div>
+                                    <br />
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="virgin" name='state' value='virgin' /><label className='form-check-label'>Virgin</label></div>
+                                </div></td>
+                                <td><input type="text" className="form-control" id="amount" value={state.raw_material.value} onChange={(e) => handleRowChange(e, 'raw_material')} /></td>
+                                <td><button className='btn btn-outline-dark' onClick={(e) => handleRowSubmit(e, state.raw_material, state.raw_materials)}>Add</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <label className='topic-text'>6. Details of Employees</label>
+
+                    <table className='table mt-4 table-bordered'>
+                        <thead className='thead-light'>
+                            <tr>
+                                <th>Category</th>
+                                <th>Local</th>
+                                <th>Foreign</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {state.emp_details.map((item, key) => {
+                                return (
+                                    <tr key={key}>
+                                        <td>{item.type}</td>
+                                        <td>{item.local}</td>
+                                        <td>{item.foreign}</td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.emp_details)} ><span aria-hidden="true">&times;</span></button></td>
+                                    </tr>)
+                            })}
+                            <tr>
+                                <td><select className="form-control" id='type' defaultValue={state.temp_details.type} onChange={(e) => handleRowChange(e, 'temp_details')} >
+                                    <option value=''>Select Type</option>
+                                    <option value='Managerial'>Managerial</option>
+                                    <option value='Skilled Workers'>Skilled Workers</option>
+                                    <option value='Semi-skilled Workers'>Semi-skilled Workers</option>
+                                    <option value='Unskilled Workers'>Unskilled Workers</option>
+                                    <option value='Contract Basis'>Contract Basis</option>
+                                    <option value='Other'>Other</option>
+                                </select></td>
+                                <td><input type="text" className="form-control" id="local" value={state.temp_details.melting} onChange={(e) => handleRowChange(e, 'temp_details')} /></td>
+                                <td><input type="text" className="form-control" id="foreign" value={state.temp_details.heating} onChange={(e) => handleRowChange(e, 'temp_details')} /></td>
+                                <td><button className='btn btn-outline-dark' onClick={(e) => handleRowSubmit(e, state.temp_details, state.emp_details)}>Add</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <hr className='page-break' />
+                    <div className='main-con'><label className='main-text'>C. Products and Markets</label></div>
+                    <hr className='page-break' />
+
+                    <label className='topic-text'>1. What Type of Products Being Produced?</label>
+
+                    <table className='table mt-4 table-bordered'>
+                        <thead className='thead-light'>
+                            <tr>
+                                <th>Name</th>
+                                <th>State <br /> (Finished/Intermediate/Raw Materials)</th>
+                                <th>Units</th>
+                                <th>Weight (Kg)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {state.products.map((item, key) => {
+                                return (
+                                    <tr key={key}>
+                                        <td>{item.name}</td>
+                                        <td>{item.state}</td>
+                                        <td>{item.units}</td>
+                                        <td>{item.weight}</td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.products)} ><span aria-hidden="true">&times;</span></button></td>
+                                    </tr>)
+                            })}
+                            <tr>
+                                <td><input type="text" className="form-control" id="name" value={state.product.name} onChange={(e) => handleRowChange(e, 'product')} /></td>
+                                <td><div onChange={(e) => handleRowRadioChange(e, 'product', 'state')} >
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="finished" name='state' value='finished' /><label className='form-check-label'>Finished</label></div>
+                                    <br />
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="intermediate" name='state' value='intermediate' /><label className='form-check-label'>Intermdiate</label></div>
+                                    <br />
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="raw_material" name='state' value='raw_material' /><label className='form-check-label'>Raw Material</label></div>
+                                </div></td>
+                                <td><input type="text" className="form-control" id="units" value={state.product.units} onChange={(e) => handleRowChange(e, 'product')} /></td>
+                                <td><input type="text" className="form-control" id="weight" value={state.product.weight} onChange={(e) => handleRowChange(e, 'product')} /></td>
+                                <td><button className='btn btn-outline-dark' onClick={(e) => handleRowSubmit(e, state.product, state.products)}>Add</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <label className='topic-text mb-4 mt-2'>2. Market of the Products Being Sold (Local or Export)</label>
+
+                    <div className='row mt-2 mb-1'>
+                        <div className='col-md'>Local Retail, Customers Directly</div>
+                        <div className='col-md'><input type="text" className="form-control" id="local_retail" value={state.markets.local_retail} onChange={(e) => handleRowChange(e, 'markets')} /></div>
+                    </div>
+                    <div className='row mt-1 mb-1'>
+                        <div className='col-md'>Local Companies</div>
+                        <div className='col-md'><input type="text" className="form-control" id="local_companies" value={state.markets.local_companies} onChange={(e) => handleRowChange(e, 'markets')} /></div>
+                    </div>
+                    <div className='row mt-1 mb-2'>
+                        <div className='col-md'>Export/ Foreign Market</div>
+                        <div className='col-md'><input type="text" className="form-control" id="export" value={state.markets.export} onChange={(e) => handleRowChange(e, 'markets')} /></div>
+                    </div>
+
+                    <div className='row mt-1 mb-2'>
+                        <div className='col-md'>Other (Please Specify)</div>
+                        <div className='col-md'><input type="text" className="form-control" id="name" value={state.other_markets.name} onChange={(e) => handleRowChange(e, 'other_markets')} placeholder='Market Name' /></div>
+                        <div className='col-md'><input type="text" className="form-control" id="percentage" value={state.other_markets.percentage} onChange={(e) => handleRowChange(e, 'other_markets')} placeholder='Percentage' /></div>
+                    </div>
+
+                    <label className='topic-text mb-2 mt-2'>3. Annual Turnover of the Industry</label>
+
+                    <div className="form-row">
+                        <div className="form-group col-md">
+                            <label>2016/2017 (Rs. Mn)</label>
+                            <input type="text" className="form-control" id="y2016_2017" value={state.annual_turnover.y2016_2017} onChange={(e) => handleRowChange(e, 'annual_turnover')} />
+                        </div>
+                        <div className="form-group col-md">
+                            <label>2017/2018 (Rs. Mn)</label>
+                            <input type="text" className="form-control" id="y2017_2018" value={state.annual_turnover.y2017_2018} onChange={(e) => handleRowChange(e, 'annual_turnover')} />
+                        </div>
+                        <div className="form-group col-md">
+                            <label>2018/2019 (Rs. Mn)</label>
+                            <input type="text" className="form-control" id="y2018_2019" value={state.annual_turnover.y2018_2019} onChange={(e) => handleRowChange(e, 'annual_turnover')} />
+                        </div>
+                    </div>
+
+
+
                     <div className='row justify-content-center'>
                         <div className='btn btn-outline-dark' onClick={submitForm}>Submit</div>
                     </div>
+
 
                 </form>
             </div>

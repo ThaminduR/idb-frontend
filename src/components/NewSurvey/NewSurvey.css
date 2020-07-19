@@ -11,6 +11,14 @@
   border: 2px solid rgba(163, 163, 163, 0.685);
   text-align: left;
 }
+.main-text {
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+.main-con {
+  text-align: center;
+}
 
 .topic-text {
   font-weight: 600;

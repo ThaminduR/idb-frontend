@@ -1,11 +1,12 @@
 import React from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import './Navbar.css';
 
 function NavigationBar(props) {
 
-    const logout = () => {
+    const logout = (e) => {
+        e.preventDefault()
         axios.get('/logout')
         localStorage.clear()
         return <Redirect to='/login' />
@@ -59,4 +60,4 @@ function NavigationBar(props) {
     )
 }
 
-export default NavigationBar
+export default withRouter(NavigationBar)
