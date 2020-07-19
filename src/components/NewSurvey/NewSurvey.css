@@ -7,7 +7,7 @@
 .form-card {
   margin-top: 5vh;
   padding: 2vh;
-  min-width: 80%;
+  min-width: 60%;
   border: 2px solid rgba(163, 163, 163, 0.685);
   text-align: left;
 }
@@ -29,6 +29,14 @@ th {
 .radio-row {
   padding-top: 2vh;
   padding-bottom: 2vh;
+}
+
+.page-break {
+  border: 1px solid black;
+}
+
+.page-break-text {
+  text-align: center;
 }
 
 .test {

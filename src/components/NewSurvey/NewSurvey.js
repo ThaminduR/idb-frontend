@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import './NewSurvey.css'
+import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 function NewSurvey(props) {
 
     const [state, setState] = useState({
         statechange: '', //Temperary variables
+        successMessage: null,
         errorMessage: null,  //Temperary variables
         companyName: '',
         province: '',
@@ -24,8 +27,10 @@ function NewSurvey(props) {
         yoe: '',
         business_type: '', reg_no: '',
         industry_reg: false, industry_reg_no: '',
-
-
+        land_area: '', land_value: '',
+        building_area: '', building_value: '',
+        machine_value: '', utilities_value: '', total_capital_investment: '',
+        raw_mat_value: '', semi_goods_value: '', goods_value: '', total_working_capital: '',
     })
 
     const handleChange = (e) => {
@@ -78,7 +83,7 @@ function NewSurvey(props) {
     }
 
     const handleCheckboxChange = (e) => {
-        const {id} = e.target
+        const { id } = e.target
         const value = state[id]
         setState(prevState => ({
             ...prevState,
@@ -88,7 +93,7 @@ function NewSurvey(props) {
 
     const test = (e) => {
         e.preventDefault()
-        console.log(state.industry_reg_no)
+        console.log(state.building_area)
     }
 
     const closeError = (e) => {
@@ -97,6 +102,55 @@ function NewSurvey(props) {
             ...prevState,
             errorMessage: '',
         }))
+    }
+
+    const submitForm = (e) => {
+        e.preventDefault();
+        const payload = {
+
+            'companyName': state.companyName,
+            'province': state.province,
+            'district': state.district,
+            'dsDivision': state.dsDivision,
+            'gnDivision': state.gnDivision,
+            'latitude': state.latitude,
+            'longitude': state.longitude,
+            'address': state.address,
+            'telenumber': state.telenumber,
+            'email': state.email,
+            'fax': state.fax,
+            'website': state.website,
+            'proprietor': state.proprietor,
+            'turnover': state.turnover,
+            'employees': state.employees,
+            'yoe': state.yoe,
+            'business_type': state.business_type, 'reg_no': state.reg_no,
+            'industry_reg': state.industry_reg, 'industry_reg_no': state.industry_reg_no,
+            'land_area': state.land_area, 'land_value': state.land_value,
+            'building_area': state.building_area, 'building_value': state.building_value,
+            'machine_value': state.machine_value, 'utilities_value': state.utilities_value, 'total_capital_investment': state.total_capital_investment,
+            'raw_mat_value': state.raw_mat_value, 'semi_goods_value': state.semi_goods_value, 'goods_value': state.goods_value, 'total_working_capital': state.total_working_capital,
+        }
+        axios.post('/lol', payload)
+            .then(function (response) {
+                if (response.data.code === 200) {
+                    setState(prevState => ({
+                        ...prevState,
+                        'successMessage': 'Submit successful.',
+                        'errorMessage': ''
+                    }))
+                    return <Redirect to='/newsurvey' />
+                } else {
+                    setState(prevState => ({
+                        ...prevState,
+                        'errorMessage': response.data.failure,
+                        'successMessage': ''
+                    }))
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     return (
@@ -299,12 +353,91 @@ function NewSurvey(props) {
                         </tbody>
                     </table>
 
+                    <hr className='page-break' />
+                    <p className='page-break-text'>End of Page 1</p>
+                    <hr className='page-break' />
 
+                    <label className='topic-text'>9. Capital Investment of the Business</label>
+                    <br />
+                    <table className='table mt-4 table-bordered'>
+                        <thead className='thead-light'>
+                            <tr>
+                                <th>Category</th>
+                                <th>Area</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Land</td>
+                                <td><div className="form-group"><input type="text" className="form-control" id="land_area" value={state.land_area} onChange={handleChange} /></div></td>
+                                <td><div className="form-group col"><input type="text" className="form-control" id="land_value" value={state.land_value} onChange={handleChange} /></div></td>
+                            </tr>
+                            <tr>
+                                <td>Building</td>
+                                <td><div className="form-group"><input type="text" className="form-control" id="building_area" value={state.building_area} onChange={handleChange} /></div></td>
+                                <td><div className="form-group col"><input type="text" className="form-control" id="building_value" value={state.building_value} onChange={handleChange} /></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table className='table table-bordered'>
+                        <thead className='thead-light'>
+                            <tr>
+                                <th>Category</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Plant & Machinery</td>
+                                <td><input type="text" className="form-control" id="machine_value" value={state.machine_value} onChange={handleChange} /></td>
+                            </tr>
+                            <tr>
+                                <td>Utilities</td>
+                                <td><input type="text" className="form-control" id="utilities_value" value={state.utilities_value} onChange={handleChange} /></td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td><input type="text" className="form-control" id="total_capital_investment" value={state.total_capital_investment} onChange={handleChange} /></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
+                    <label className='topic-text'>10. Working Capital</label>
+
+                    <table className='table mt-4 table-bordered'>
+                        <thead className='thead-light'>
+                            <tr>
+                                <th>Category</th>
+                                <th>Present Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Raw Material</td>
+                                <td><input type="text" className="form-control" id="raw_mat_value" value={state.raw_mat_value} onChange={handleChange} /></td>
+                            </tr>
+                            <tr>
+                                <td>Semi Finished Goods</td>
+                                <td><input type="text" className="form-control" id="semi_goods_value" value={state.semi_goods_value} onChange={handleChange} /></td>
+                            </tr>
+                            <tr>
+                                <td>Finished Goods</td>
+                                <td><input type="text" className="form-control" id="goods_value" value={state.goods_value} onChange={handleChange} /></td>
+                            </tr>
+                            <tr>
+                                <td ><p className='bold'>Total</p></td>
+                                <td><input type="text" className="form-control" id="total_working_capital" value={state.total_working_capital} onChange={handleChange} /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div className='row justify-content-center'>
+                        <div className='btn btn-outline-dark' onClick={submitForm}>Submit</div>
+                    </div>
 
                 </form>
             </div>
-        </div >
+        </div>
     )
 }
 
