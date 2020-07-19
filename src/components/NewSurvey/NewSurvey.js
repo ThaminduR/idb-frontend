@@ -332,15 +332,15 @@ function NewSurvey(props) {
                             <table className='table table-striped table-bordered'>
                                 <tbody>
                                     <tr>
-                                        <td>Macro</td>
+                                        <td>0-10</td>
                                         <td><div className="form-check"><input className="form-check-input" type="radio" id="macro_emp" name='employees' value="macro" /></div></td>
                                     </tr>
                                     <tr>
-                                        <td>Small</td>
+                                        <td>11-50</td>
                                         <td><div className="form-check"><input className="form-check-input" type="radio" id="small_emp" name='employees' value="small" /></div></td>
                                     </tr>
                                     <tr>
-                                        <td>Medium</td>
+                                        <td>51-300</td>
                                         <td><div className="form-check"><input className="form-check-input" type="radio" id="medium_emp" name='employees' value="medium" /></div></td>
                                     </tr>
                                 </tbody>
