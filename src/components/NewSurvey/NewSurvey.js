@@ -23,27 +23,30 @@ function NewSurvey(props) {
         website: '',
         proprietor: [], tpropr: { name: '', designation: '', tele: '', mobile: '', email: '' },
         turnover: '',
-        employees: '',
-        yoe: '',
-        business_type: '', reg_no: '',
-        industry_reg: false, industry_reg_no: '',
+        employees: '', //macro / small / medium
+        yoe: '', //year of establishment
+        business_type: '', reg_no: '', //busines type - sole proprietor /... 
+        industry_reg: false, industry_reg_no: '', //industry_reg - whether company is register with the ministry
         land_area: '', land_value: '',
         building_area: '', building_value: '',
         machine_value: '', utilities_value: '', total_capital_investment: '',
         raw_mat_value: '', semi_goods_value: '', goods_value: '', total_working_capital: '',
-        // owned_site: false, rented_site: false, 
-        site_type: '',
+        //---- neglect this ----  owned_site: false, rented_site: false,  
+        site_type: '', //owned or rented
         furnace_capacity: [], tfurnance_capacity: { metal: '', melting: '', heating: '' },
         furnances: [], tfurnance: { name: '', fuel: '' },
         machinery: [], tmachinery: { type: '', capacity: '', value: '' },
         metal_processing: [], tmetal_processing: { metal: '', melting: '', heating: '', temp: '' },
         raw_materials: [], raw_material: { metal: '', origin: '', state: '', amount: '' },
         emp_details: [], temp_details: { type: '', local: '', foreign: '' },
-        products: [],
-        product: { name: '', state: '', units: '', weight: '' },
+        products: [], product: { name: '', state: '', units: '', weight: '' },
         markets: { local_retail: '', local_companies: '', export: '' },
         other_markets: { name: '', percentage: '' },
-        annual_turnover: { y2016_2017: '', y2017_2018: '', y2018_2019: '' }
+        annual_turnover: { y2016_2017: '', y2017_2018: '', y2018_2019: '' },
+        business_progression: { year1_dir: null, year1: '', year2_dir: null, year2: '' },
+        waste_generated: [], waste: { type: '', amount: '', disposal: '' },
+        interviewer: '',
+        yoi: ''
 
     })
 
@@ -52,19 +55,6 @@ function NewSurvey(props) {
         setState(prevState => ({
             ...prevState,
             [id]: value
-        }))
-    }
-
-    const handleROInput = (e, ro_id, ro_value, arr) => {
-        const { id, value } = e.target
-        setState(prevState => ({
-            ...prevState,
-            [arr]: {
-                ...prevState[arr],
-                [id]: value,
-                [ro_id]: ro_value,
-            }
-
         }))
     }
 
@@ -137,7 +127,7 @@ function NewSurvey(props) {
 
     const test = (e) => {
         e.preventDefault()
-        console.log(state.annual_turnover)
+        console.log(state.yoi)
     }
 
     const closeError = (e) => {
@@ -152,28 +142,43 @@ function NewSurvey(props) {
         e.preventDefault();
         const payload = {
 
-            'companyName': state.companyName,
-            'province': state.province,
-            'district': state.district,
-            'dsDivision': state.dsDivision,
-            'gnDivision': state.gnDivision,
-            'latitude': state.latitude,
-            'longitude': state.longitude,
-            'address': state.address,
-            'telenumber': state.telenumber,
-            'email': state.email,
-            'fax': state.fax,
-            'website': state.website,
-            'proprietor': state.proprietor,
-            'turnover': state.turnover,
-            'employees': state.employees,
-            'yoe': state.yoe,
+            'companyName': state.companyName, //string
+            'province': state.province, //string
+            'district': state.district, //string
+            'dsDivision': state.dsDivision, //string
+            'gnDivision': state.gnDivision, //string
+            'latitude': state.latitude, //string
+            'longitude': state.longitude, //string
+            'address': state.address, //string
+            'telenumber': state.telenumber, //string
+            'email': state.email, //string
+            'fax': state.fax, //string
+            'website': state.website, //string
+            'proprietor': state.proprietor, //array 
+            'turnover': state.turnover, //macro / small / medium
+            'employees': state.employees, //macro / small / medium
+            'yoe': state.yoe, //string
             'business_type': state.business_type, 'reg_no': state.reg_no,
             'industry_reg': state.industry_reg, 'industry_reg_no': state.industry_reg_no,
             'land_area': state.land_area, 'land_value': state.land_value,
             'building_area': state.building_area, 'building_value': state.building_value,
             'machine_value': state.machine_value, 'utilities_value': state.utilities_value, 'total_capital_investment': state.total_capital_investment,
             'raw_mat_value': state.raw_mat_value, 'semi_goods_value': state.semi_goods_value, 'goods_value': state.goods_value, 'total_working_capital': state.total_working_capital,
+            'site_type': state.site_type, //owned or rented
+            'furnace_capacity': state.furnace_capacity, //array
+            'furnances': state.furnances, //array
+            'machinery': state.machinery, //array
+            'metal_processing': state.metal_processing, //array
+            'raw_materials': state.raw_materials, //array
+            'emp_details': state.emp_details, //array
+            'products': state.products, //array
+            'markets': state.markets, //dictionary
+            'other_markets': state.other_markets, //dictionary
+            'annual_turnover': state.annual_turnover, //dictionary
+            'business_progression': state.business_progression, //dictionary
+            'waste_generated': state.waste_generated, //array
+            'interviewer': state.interviewer, //string
+            'yoi': state.yoi //string
         }
         axios.post('/lol', payload)
             .then(function (response) {
@@ -206,10 +211,10 @@ function NewSurvey(props) {
             <button className='test' onClick={test}>Test</button>
             <div className='container form-card'>
                 <form>
+                    <hr className='page-break' />
+                    <div className='main-con'><label className='main-text'>A. Basic Industry Data</label></div>
+                    <hr className='page-break' />
                     <div className="form-group">
-                        <hr className='page-break' />
-                        <div className='main-con'><label className='main-text'>A. Basic Industry Data</label></div>
-                        <hr className='page-break' />
                         <label className='topic-text'>1. Name of the Company/Industry</label>
                         <input type="text" className="form-control" id="companyName" value={state.companyName} onChange={handleChange} />
                     </div>
@@ -820,11 +825,125 @@ function NewSurvey(props) {
                         </div>
                     </div>
 
+                    <label className='topic-text'>1. What Type of Products Being Produced?</label>
 
+                    <table className='table mt-4 table-bordered'>
+                        <thead className='thead-light'>
+                            <tr>
+                                <th>Name</th>
+                                <th>State <br /> (Finished/Intermediate/Raw Materials)</th>
+                                <th>Units</th>
+                                <th>Weight (Kg)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {state.products.map((item, key) => {
+                                return (
+                                    <tr key={key}>
+                                        <td>{item.name}</td>
+                                        <td>{item.state}</td>
+                                        <td>{item.units}</td>
+                                        <td>{item.weight}</td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.products)} ><span aria-hidden="true">&times;</span></button></td>
+                                    </tr>)
+                            })}
+                            <tr>
+                                <td><input type="text" className="form-control" id="name" value={state.product.name} onChange={(e) => handleRowChange(e, 'product')} /></td>
+                                <td><div onChange={(e) => handleRowRadioChange(e, 'product', 'state')} >
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="finished" name='state' value='finished' /><label className='form-check-label'>Finished</label></div>
+                                    <br />
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="intermediate" name='state' value='intermediate' /><label className='form-check-label'>Intermdiate</label></div>
+                                    <br />
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="raw_material" name='state' value='raw_material' /><label className='form-check-label'>Raw Material</label></div>
+                                </div></td>
+                                <td><input type="text" className="form-control" id="units" value={state.product.units} onChange={(e) => handleRowChange(e, 'product')} /></td>
+                                <td><input type="text" className="form-control" id="weight" value={state.product.weight} onChange={(e) => handleRowChange(e, 'product')} /></td>
+                                <td><button className='btn btn-outline-dark' onClick={(e) => handleRowSubmit(e, state.product, state.products)}>Add</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <label className='topic-text'>4. Business Progression During Last Two Years</label>
+
+                    <table className='table mt-4 table-bordered'>
+                        <thead className='thead-light'>
+                            <tr>
+                                <th>Year</th>
+                                <th>Direction (Increased/Decreased)</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Year 1</td>
+                                <td><div onChange={(e) => handleRowRadioChange(e, 'business_progression', 'year1_dir')} >
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="increase" name='dir1' value={true} /><label className='form-check-label'>Increase</label></div>
+                                    <br />
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="decrease" name='dir1' value={false} /><label className='form-check-label'>Decrease</label></div>
+                                </div></td>
+                                <td><input type="text" className="form-control" id="year1" value={state.business_progression.year1} onChange={(e) => handleRowChange(e, 'business_progression')} /></td>
+                            </tr>
+                            <tr>
+                                <td>Year 2</td>
+                                <td><div onChange={(e) => handleRowRadioChange(e, 'business_progression', 'year2_dir')} >
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="increase" name='dir2' value={true} /><label className='form-check-label'>Increase</label></div>
+                                    <br />
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="decrease" name='dir2' value={false} /><label className='form-check-label'>Decrease</label></div>
+                                </div></td>
+                                <td><input type="text" className="form-control" id="year2" value={state.business_progression.year2} onChange={(e) => handleRowChange(e, 'business_progression')} /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <label className='topic-text'>5. Waste Generated (Metal and Other Realted Materials)</label>
+
+                    <table className='table mt-4 table-bordered'>
+                        <thead className='thead-light'>
+                            <tr>
+                                <th>Type of Waste</th>
+                                <th>Amount Generated per Month (Kg)</th>
+                                <th>Method of Disposal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {state.waste_generated.map((item, key) => {
+                                return (
+                                    <tr key={key}>
+                                        <td>{item.type}</td>
+                                        <td>{item.amount}</td>
+                                        <td>{item.disposal}</td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.waste_generated)} ><span aria-hidden="true">&times;</span></button></td>
+                                    </tr>)
+                            })}
+                            <tr>
+                                <td><input type="text" className="form-control" id="type" value={state.waste.type} onChange={(e) => handleRowChange(e, 'waste')} /></td>
+                                <td><input type="text" className="form-control" id="amount" value={state.waste.amount} onChange={(e) => handleRowChange(e, 'waste')} /></td>
+                                <td><input type="text" className="form-control" id="disposal" value={state.waste.disposal} onChange={(e) => handleRowChange(e, 'waste')} /></td>
+                                <td><button className='btn btn-outline-dark' onClick={(e) => handleRowSubmit(e, state.waste, state.waste_generated)}>Add</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <hr className='page-break' />
+                    <div className='main-con'><label className='main-text'>End of the Form</label></div>
+                    <hr className='page-break' />
+
+                    <div className='form-row'>
+                        <div className="form-group col-md">
+                            <label className='topic-text'>Name of the Interviewer</label>
+                            <input type="text" className="form-control" id="interviewer" value={state.interviewer} onChange={handleChange} />
+                        </div>
+
+                        <div className="form-group col-md">
+                            <label className='topic-text'>Year of the Interview</label>
+                            <input type="text" className="form-control" id="yoi" value={state.yoi} onChange={handleChange} />
+                        </div>
+                    </div>
 
                     <div className='row justify-content-center'>
                         <div className='btn btn-outline-dark' onClick={submitForm}>Submit</div>
                     </div>
+                    <hr className='page-break' />
 
 
                 </form>
