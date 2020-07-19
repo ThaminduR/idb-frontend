@@ -1,16 +1,18 @@
 .newsurvey-background {
-  width: 100vw;
+  width: auto;
   color: black;
-  background-color: rgb(255, 255, 255);
+  padding-top: 5vh;
+  background-color: #f0f0f0;
+  /* max-width: 10vw; */
 }
 
 .form-card {
   background-color: rgb(255, 255, 255);
-  margin-top: 5vh;
   padding: 2vh;
-  min-width: 60%;
+  min-width: 50%;
   border: 2px solid rgba(223, 221, 221, 0.685);
   text-align: left;
+  box-shadow: 0px 21px 39px -10px rgba(0, 0, 0, 0.75);
 }
 .main-text {
   font-weight: 600;
@@ -48,9 +50,10 @@ th {
   text-align: center;
 }
 
-.test {
+/* .test {
+  display: none;
   left: 5%;
   top: 50%;
   position: fixed;
   z-index: 9999;
-}
+} */

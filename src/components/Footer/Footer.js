@@ -4,8 +4,8 @@ import { DEV_NAME } from '../../constants/constants';
 
 function Footer(props) {
     return (
-        <footer className='fixed-bottom'>
-            <p className='footer-text'>IDB DBMS - {new Date().getFullYear()} <br></br> Developed By {DEV_NAME}</p>
+        <footer className='float-bottom'>
+            <p className='footer-text'>Industrial Development Board &copy; {new Date().getFullYear()} | Developed By {DEV_NAME}</p>
         </footer>
     )
 }
