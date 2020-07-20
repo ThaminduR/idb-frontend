@@ -180,7 +180,7 @@ function NewSurvey(props) {
             'interviewer': state.interviewer, //string
             'yoi': state.yoi //string
         }
-        axios.post('/addSurvey', payload)
+        axios.post('/user/addSurvey', payload)
             .then(function (response) {
                 if (response.data.code === 200) {
                     setState(prevState => ({
