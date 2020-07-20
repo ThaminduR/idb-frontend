@@ -10,7 +10,7 @@ function PrivateRoute({ component: Component, ...rest }) {
     return (
         <Route {...rest} render={props =>
             authTokens
-                ? (<div className='background'><Navbar></Navbar><Component {...props} /></div>)
+                ? (<div className='background w-100' ><Navbar></Navbar><Component {...props} /></div>)
                 : (<Redirect to='/login' />)
         } exact />
     )

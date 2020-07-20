@@ -80,7 +80,7 @@ function Login(props) {
                     <div className=' container login-column'>
                         <div className='card login-card'>
                             <div className='col-12'>
-                                <p className='welcome-txt'>Welcome</p>
+                                <p className='welcome-txt'>Admin Login</p>
                                 <form>
                                     <div className="form-group text-center">
                                         <input type="text"

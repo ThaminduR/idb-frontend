@@ -208,7 +208,7 @@ function NewSurvey(props) {
                 {state.errorMessage}
                 <button type="button" className="close ml-1" aria-label="Close" onClick={(e) => closeError(e)} ><span aria-hidden="true">&times;</span></button>
             </div>
-            <button className='test' onClick={test}>Test</button>
+            {/* <button className='test' onClick={test}>Test</button> */}
             <div className='container form-card'>
                 <form>
                     <hr className='page-break' />
@@ -318,14 +318,17 @@ function NewSurvey(props) {
                                 <tbody>
                                     <tr>
                                         <td>Macro</td>
+                                        <td>0-15</td>
                                         <td><div className="form-check"><input className="form-check-input" type="radio" id="macro_turn" name='turnover' value="macro" /></div></td>
                                     </tr>
                                     <tr>
                                         <td>Small</td>
+                                        <td>16-250</td>
                                         <td><div className="form-check"><input className="form-check-input" type="radio" id="small_turn" name='turnover' value="small" /></div></td>
                                     </tr>
                                     <tr>
                                         <td>Medium</td>
+                                        <td>251-750</td>
                                         <td><div className="form-check"><input className="form-check-input" type="radio" id="medium_turn" name='turnover' value="medium" /></div></td>
                                     </tr>
                                 </tbody>
