@@ -9,7 +9,8 @@ function NavigationBar(props) {
         e.preventDefault()
         axios.get('/logout')
         localStorage.clear()
-        return <Redirect to='/login' />
+        window.location.reload(); //Temporary solution as the line below doesn't redirect the page to login
+        // return <Redirect to='/login' />
     }
 
     return (
