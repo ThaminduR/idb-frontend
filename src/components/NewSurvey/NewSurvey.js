@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './NewSurvey.css'
 import axios from 'axios'
+import Footer from '../Footer/Footer'
 // import { Redirect } from 'react-router-dom'
 function NewSurvey(props) {
 
@@ -62,10 +63,10 @@ function NewSurvey(props) {
         'Eastern': [{ value: 'Select District' }, { value: 'Ampara' }, { value: 'Batticaloa' }, { value: 'Trincomalee' }],
         'North Central': [{ value: 'Select District' }, { value: 'Anuradhapura' }, { value: 'Polonnaruwa' }],
         'North Western': [{ value: 'Select District' }, { value: 'Kurunegala' }, { value: 'Puttalam' }],
-        'Northern': [{ value: 'Select District' }, { value: 'Jaffna' }, { value: 'Kilinochchi' }, { value: 'Mannar' }, { value: 'Mullativu' }, { value: 'Vavuniya' }],
+        'Northern': [{ value: 'Select District' }, { value: 'Jaffna' }, { value: 'Kilinochchi' }, { value: 'Mannar' }, { value: 'Mullaitivu' }, { value: 'Vavuniya' }],
         'Sabaragamuwa': [{ value: 'Select District' }, { value: 'Kegalle' }, { value: 'Ratnapura' }],
-        'Southern': [{ value: 'Select District' }, { value: 'Galle' }, { value: 'Hambanthota' }, { value: 'Matara' }],
-        'Uva': [{ value: 'Select District' }, { value: 'Badulla' }, { value: 'Monaragala' }],
+        'Southern': [{ value: 'Select District' }, { value: 'Galle' }, { value: 'Hambantota' }, { value: 'Matara' }],
+        'Uva': [{ value: 'Select District' }, { value: 'Badulla' }, { value: 'Moneragala' }],
         'Western': [{ value: 'Select District' }, { value: 'Colombo' }, { value: 'Gampaha' }, { value: 'Kalutara' }]
     }
 
@@ -155,14 +156,14 @@ function NewSurvey(props) {
 
     //This function is binded to onCLick of the test button
 
-    const test = (e) => {
-        e.preventDefault()
-        console.log(state.companyName)
-        console.log(state.province)
-        console.log(state.district)
-        console.log(state.yoi)
-        console.log('End')
-    }
+    // const test = (e) => {
+    //     e.preventDefault()
+    //     console.log(state.companyName)
+    //     console.log(state.province)
+    //     console.log(state.district)
+    //     console.log(state.yoi)
+    //     console.log('End')
+    // }
 
     const closeError = (e) => {
         e.preventDefault()
@@ -177,7 +178,7 @@ function NewSurvey(props) {
             name: state.companyName.length === 0,
             province: state.province.length === 0,
             district: ((state.district.length === 0) || (state.district === 'Select District')),
-            yoi: state.yoi.length != 4
+            yoi: state.yoi.length !== 4
         }
     }
 
@@ -262,7 +263,7 @@ function NewSurvey(props) {
                 {state.errorMessage}
                 <button type="button" className="close ml-1" aria-label="Close" onClick={(e) => closeError(e)} ><span aria-hidden="true">&times;</span></button>
             </div>
-            <button className='test' onClick={test}>Test</button>
+            {/* <button className='test' onClick={test}>Test</button> */}
             <div className='container form-card'>
                 <form>
                     <hr className='page-break' />
@@ -1015,6 +1016,7 @@ function NewSurvey(props) {
 
                 </form>
             </div>
+            <Footer></Footer>
         </div>
     )
 }
