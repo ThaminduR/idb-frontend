@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './NewSurvey.css'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 function NewSurvey(props) {
 
     const [state, setState] = useState({
@@ -9,6 +9,12 @@ function NewSurvey(props) {
         statechange: '',
         successMessage: null,
         errorMessage: null,
+        errors: {
+            name: false,
+            province: false,
+            district: false,
+            yoi: false
+        },
         companyName: '',
         province: '',
         district: '',
@@ -49,6 +55,28 @@ function NewSurvey(props) {
         yoi: ''
 
     })
+
+    const districts = {
+        '': [{ value: '' }],
+        'Central': [{ value: 'Select District' }, { value: 'Kandy' }, { value: 'Matale' }, { value: 'Nuwara Eliya' }],
+        'Eastern': [{ value: 'Select District' }, { value: 'Ampara' }, { value: 'Batticaloa' }, { value: 'Trincomalee' }],
+        'North Central': [{ value: 'Select District' }, { value: 'Anuradhapura' }, { value: 'Polonnaruwa' }],
+        'North Western': [{ value: 'Select District' }, { value: 'Kurunegala' }, { value: 'Puttalam' }],
+        'Northern': [{ value: 'Select District' }, { value: 'Jaffna' }, { value: 'Kilinochchi' }, { value: 'Mannar' }, { value: 'Mullativu' }, { value: 'Vavuniya' }],
+        'Sabaragamuwa': [{ value: 'Select District' }, { value: 'Kegalle' }, { value: 'Ratnapura' }],
+        'Southern': [{ value: 'Select District' }, { value: 'Galle' }, { value: 'Hambanthota' }, { value: 'Matara' }],
+        'Uva': [{ value: 'Select District' }, { value: 'Badulla' }, { value: 'Monaragala' }],
+        'Western': [{ value: 'Select District' }, { value: 'Colombo' }, { value: 'Gampaha' }, { value: 'Kalutara' }]
+    }
+
+    const handleProvinceChange = (e) => {
+        const { id, value } = e.target
+        setState(prevState => ({
+            ...prevState,
+            [id]: value,
+            district: 'Select District'
+        }))
+    }
 
     const handleChange = (e) => {
         const { id, value } = e.target
@@ -125,9 +153,15 @@ function NewSurvey(props) {
         }))
     }
 
+    //This function is binded to onCLick of the test button
+
     const test = (e) => {
         e.preventDefault()
+        console.log(state.companyName)
+        console.log(state.province)
+        console.log(state.district)
         console.log(state.yoi)
+        console.log('End')
     }
 
     const closeError = (e) => {
@@ -138,77 +172,97 @@ function NewSurvey(props) {
         }))
     }
 
+    const validate = () => {
+        return {
+            name: state.companyName.length === 0,
+            province: state.province.length === 0,
+            district: ((state.district.length === 0) || (state.district === 'Select District')),
+            yoi: state.yoi.length != 4
+        }
+    }
+
     const submitForm = (e) => {
         e.preventDefault();
-        const payload = {
-
-            'companyName': state.companyName, //string
-            'province': state.province, //string
-            'district': state.district, //string
-            'dsDivision': state.dsDivision, //string
-            'gnDivision': state.gnDivision, //string
-            'latitude': state.latitude, //string
-            'longitude': state.longitude, //string
-            'address': state.address, //string
-            'telenumber': state.telenumber, //string
-            'email': state.email, //string
-            'fax': state.fax, //string
-            'website': state.website, //string
-            'proprietor': state.proprietor, //array 
-            'turnover': state.turnover, //macro / small / medium
-            'employees': state.employees, //macro / small / medium
-            'yoe': state.yoe, //string
-            'business_type': state.business_type, 'reg_no': state.reg_no,
-            'industry_reg': state.industry_reg, 'industry_reg_no': state.industry_reg_no,
-            'land_area': state.land_area, 'land_value': state.land_value,
-            'building_area': state.building_area, 'building_value': state.building_value,
-            'machine_value': state.machine_value, 'utilities_value': state.utilities_value, 'total_capital_investment': state.total_capital_investment,
-            'raw_mat_value': state.raw_mat_value, 'semi_goods_value': state.semi_goods_value, 'goods_value': state.goods_value, 'total_working_capital': state.total_working_capital,
-            'site_type': state.site_type, //owned or rented
-            'furnace_capacity': state.furnace_capacity, //array
-            'furnances': state.furnances, //array
-            'machinery': state.machinery, //array
-            'metal_processing': state.metal_processing, //array
-            'raw_materials': state.raw_materials, //array
-            'emp_details': state.emp_details, //array
-            'products': state.products, //array
-            'markets': state.markets, //dictionary
-            'other_markets': state.other_markets, //dictionary
-            'annual_turnover': state.annual_turnover, //dictionary
-            'business_progression': state.business_progression, //dictionary
-            'waste_generated': state.waste_generated, //array
-            'interviewer': state.interviewer, //string
-            'yoi': state.yoi //string
+        state.errors = validate();
+        const isValid = !Object.keys(state.errors).some(x => state.errors[x]);
+        if (isValid) {
+            const payload = {
+                'companyName': state.companyName, //string
+                'province': state.province, //string
+                'district': state.district, //string
+                'dsDivision': state.dsDivision, //string
+                'gnDivision': state.gnDivision, //string
+                'latitude': state.latitude, //string
+                'longitude': state.longitude, //string
+                'address': state.address, //string
+                'telenumber': state.telenumber, //string
+                'email': state.email, //string
+                'fax': state.fax, //string
+                'website': state.website, //string
+                'proprietor': state.proprietor, //array 
+                'turnover': state.turnover, //macro / small / medium
+                'employees': state.employees, //macro / small / medium
+                'yoe': state.yoe, //string
+                'business_type': state.business_type, 'reg_no': state.reg_no,
+                'industry_reg': state.industry_reg, 'industry_reg_no': state.industry_reg_no,
+                'land_area': state.land_area, 'land_value': state.land_value,
+                'building_area': state.building_area, 'building_value': state.building_value,
+                'machine_value': state.machine_value, 'utilities_value': state.utilities_value, 'total_capital_investment': state.total_capital_investment,
+                'raw_mat_value': state.raw_mat_value, 'semi_goods_value': state.semi_goods_value, 'goods_value': state.goods_value, 'total_working_capital': state.total_working_capital,
+                'site_type': state.site_type, //owned or rented
+                'furnace_capacity': state.furnace_capacity, //array
+                'furnances': state.furnances, //array
+                'machinery': state.machinery, //array
+                'metal_processing': state.metal_processing, //array
+                'raw_materials': state.raw_materials, //array
+                'emp_details': state.emp_details, //array
+                'products': state.products, //array
+                'markets': state.markets, //dictionary
+                'other_markets': state.other_markets, //dictionary
+                'annual_turnover': state.annual_turnover, //dictionary
+                'business_progression': state.business_progression, //dictionary
+                'waste_generated': state.waste_generated, //array
+                'interviewer': state.interviewer, //string
+                'yoi': state.yoi //string
+            }
+            axios.post('/admin/addSurvey', payload)
+                .then(function (response) {
+                    if (response.data.code === 200) {
+                        setState(prevState => ({
+                            ...prevState,
+                            'successMessage': 'Submit successful.',
+                            'errorMessage': ''
+                        }))
+                        // window.location.reload()
+                        // return <Redirect to='/newsurvey' />
+                    } else {
+                        setState(prevState => ({
+                            ...prevState,
+                            'errorMessage': response.data.failure,
+                            'successMessage': ''
+                        }))
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
-        axios.post('/admin/addSurvey', payload)
-            .then(function (response) {
-                if (response.data.code === 200) {
-                    setState(prevState => ({
-                        ...prevState,
-                        'successMessage': 'Submit successful.',
-                        'errorMessage': ''
-                    }))
-                    return <Redirect to='/newsurvey' />
-                } else {
-                    setState(prevState => ({
-                        ...prevState,
-                        'errorMessage': response.data.failure,
-                        'successMessage': ''
-                    }))
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        else {
+            setState(prevState => ({
+                ...prevState,
+                'errorMessage': 'Please enter a valid Company Name, Province, District and Interviewed Year',
+                'successMessage': ''
+            }))
+        }
     }
 
     return (
         <div className='newsurvey-background'>
-            <div className="alert alert-danger" style={{ display: state.errorMessage ? 'block' : 'none' }} role="alert">
+            <div className={"alert alert-danger" + (state.errorMessage ? ' errorMessage1' : ' errorMessage2')} role="alert">
                 {state.errorMessage}
                 <button type="button" className="close ml-1" aria-label="Close" onClick={(e) => closeError(e)} ><span aria-hidden="true">&times;</span></button>
             </div>
-            {/* <button className='test' onClick={test}>Test</button> */}
+            <button className='test' onClick={test}>Test</button>
             <div className='container form-card'>
                 <form>
                     <hr className='page-break' />
@@ -216,17 +270,27 @@ function NewSurvey(props) {
                     <hr className='page-break' />
                     <div className="form-group">
                         <label className='topic-text'>1. Name of the Company/Industry</label>
-                        <input type="text" className="form-control" id="companyName" value={state.companyName} onChange={handleChange} />
+                        <input type="text" className={"form-control" + (state.errors.name ? " error" : "")} id="companyName" value={state.companyName} onChange={handleChange} />
                     </div>
                     <label className='topic-text'>2. Location</label>
                     <div className="form-row">
                         <div className="form-group col-md">
                             <label >Province</label>
-                            <input type="text" className="form-control" id="province" value={state.province} onChange={handleChange} />
+                            <select className={"form-control" + (state.errors.province ? " error" : "")} id='province' defaultValue={state.province} placeholder='Select Province' onChange={handleProvinceChange} >
+                                {Object.keys(districts).map(key => {
+                                    return <option key={key} value={key}>{key}</option>
+                                })}
+                            </select>
+                            {/* <input type="text" className="form-control" id="province" value={state.province} onChange={handleChange} /> */}
                         </div>
                         <div className="form-group col-md">
                             <label>District</label>
-                            <input type="text" className="form-control" id="district" value={state.district} onChange={handleChange} />
+                            <select className={"form-control" + (state.errors.district ? " error" : "")} id='district' defaultValue={state.district} onChange={handleChange} >
+                                {districts[state.province].map(function (item) {
+                                    return <option key={item.value} value={item.value}>{item.value}</option>
+                                })}
+                            </select>
+                            {/* <input type="text" className="form-control" id="district" value={state.district} onChange={handleChange} /> */}
                         </div>
                         <div className="form-group col-md">
                             <label >DS Division</label>
@@ -939,7 +1003,7 @@ function NewSurvey(props) {
 
                         <div className="form-group col-md">
                             <label className='topic-text'>Year of the Interview</label>
-                            <input type="text" className="form-control" id="yoi" value={state.yoi} onChange={handleChange} />
+                            <input type="text" className={"form-control" + (state.errors.yoi ? " error" : "")} id="yoi" value={state.yoi} onChange={handleChange} />
                         </div>
                     </div>
 

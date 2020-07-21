@@ -1,8 +1,5 @@
-.background {
+.dashboard-background {
   color: black;
   background-color: white;
+  height: 100%;
 }
-
-/* @media screen and (max-width: 525px) {
-
-} */

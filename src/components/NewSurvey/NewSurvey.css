@@ -2,6 +2,7 @@
   width: auto;
   color: black;
   padding-top: 5vh;
+  padding-bottom: 5vh;
   background-color: #f0f0f0;
   /* max-width: 10vw; */
 }
@@ -37,6 +38,26 @@ th {
   position: fixed;
   z-index: 9999;
 }
+.errorMessage1 {
+  display: blocked;
+  /* animation: FadeAnimation 1s ease-in 4s forwards; */
+}
+
+@keyframes FadeAnimation {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.errorMessage2 {
+  display: none;
+}
 
 .radio-row {
   padding-top: 2vh;
@@ -49,6 +70,10 @@ th {
 
 .page-break-text {
   text-align: center;
+}
+
+.error {
+  border: 1px solid red;
 }
 
 /* .test {

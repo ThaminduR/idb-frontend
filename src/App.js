@@ -12,7 +12,6 @@ import 'font-awesome/css/font-awesome.min.css';
 import Dashboard from './components/Dashboard/Dashboard';
 import Login from './components/Login/Login';
 import NewSurvey from './components/NewSurvey/NewSurvey'
-import Search from './components/Search/Search'
 import ViewData from './components/ViewData/ViewData'
 import { API_BASE_URL } from './constants/constants';
 
@@ -36,8 +35,8 @@ function App() {
           <Router>
             <Switch>
               <LoggedoutRoute path='/login' component={Login} />
+              <PrivateRoute path='/dashboard' component={Dashboard} />
               <PrivateRoute path='/newsurvey' component={NewSurvey} />
-              <PrivateRoute path='/searchdata' component={Search} />
               <PrivateRoute path='/viewdata' component={ViewData} />
               <PrivateRoute path='/' component={Dashboard} />
             </Switch>

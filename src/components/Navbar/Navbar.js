@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './Navbar.css';
 
 function NavigationBar(props) {
@@ -41,10 +41,7 @@ function NavigationBar(props) {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav ml-auto mr-2">
                     <li className="nav-item active ml-2 mt-2 mr-2">
-                        <a href="/">Dashboard</a>
-                    </li>
-                    <li className="nav-item active ml-2 mt-2 mr-2">
-                        <a href="/searchdata">Search</a>
+                        <a href="/dashboard">Dashboard</a>
                     </li>
                     <li className="nav-item active ml-2 mt-2 mr-2">
                         <a href="/newsurvey">Add Data</a>
