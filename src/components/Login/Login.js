@@ -32,7 +32,7 @@ function Login(props) {
 
     const sendDetailsToServer = () => {
         if (state.username.length && state.password.length) {
-            
+
             const payload = {
                 "username": state.username,
                 "password": state.password,
@@ -78,8 +78,8 @@ function Login(props) {
             <div className='login-overlay'>
                 <div className='container '>
                     <div className=' container login-column'>
-                        <div className='card login-card'>
-                            <div className='col-12'>
+                        <div className='card login-card col'>
+                            <div className='col-md'>
                                 <p className='welcome-txt'>Admin Login</p>
                                 <form>
                                     <div className="form-group text-center">
@@ -104,19 +104,20 @@ function Login(props) {
                                         Login
                                 </button>
                                 </form>
+                            </div>
+                            <div className='col-md'>
                                 <div className="alert alert-success mt-2" style={{ display: state.successMessage ? 'block' : 'none' }} role="alert">
                                     {state.successMessage}
                                 </div>
                                 <div className="alert alert-danger mt-2" style={{ display: state.errorMessage ? 'block' : 'none' }} role="alert">
                                     {state.errorMessage}
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <Footer></Footer>
+            <Footer className='login-footer'></Footer>
         </div>
     )
 }

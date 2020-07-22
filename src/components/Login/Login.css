@@ -1,17 +1,20 @@
 .bg-img {
   background-color: rgb(255, 255, 255);
   background-size: auto;
+  width: 100%;
 }
+
 .login-overlay {
   background-color: rgba(0, 0, 0, 0);
   height: 94vh;
-  width: 100vw;
+  /* width: 100vw; */
 }
 .login-card {
+  height: 45vh;
   font-family: "Karla", sans-serif;
   background-color: rgb(5, 79, 139);
   padding: 5vh 5vh 5vh 5vh;
-  box-shadow: -3px 14px 29px -8px rgba(0,0,0,0.75);
+  box-shadow: -3px 14px 29px -8px rgba(0, 0, 0, 0.75);
 }
 
 .login-column {
@@ -47,4 +50,13 @@
   font-family: "bioRhyme", serif;
   font-size: 2em;
   color: rgb(255, 255, 255) !important;
+}
+
+.alert {
+  position: fixed;
+}
+
+.login-footer {
+  position: fixed;
+  bottom: 0;
 }
