@@ -1,0 +1,62 @@
+.bg-img {
+  background-color: rgb(255, 255, 255);
+  background-size: auto;
+  width: 100%;
+}
+
+.login-overlay {
+  background-color: rgba(0, 0, 0, 0);
+  height: 94vh;
+  /* width: 100vw; */
+}
+.login-card {
+  height: 45vh;
+  font-family: "Karla", sans-serif;
+  background-color: rgb(5, 79, 139);
+  padding: 5vh 5vh 5vh 5vh;
+  box-shadow: -3px 14px 29px -8px rgba(0, 0, 0, 0.75);
+}
+
+.login-column {
+  padding-top: 30vh;
+  padding-bottom: 10vh;
+  color: White;
+  width: auto;
+}
+
+.form-group {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+@media screen and (min-width: 760px) {
+  .login-column {
+    width: 50%;
+  }
+}
+
+@media screen and (max-height: 615px) {
+  .login-column {
+    padding-top: 15vh;
+  }
+}
+@media screen and (max-height: 480px) {
+  .login-column {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+  }
+}
+.welcome-txt {
+  font-family: "bioRhyme", serif;
+  font-size: 2em;
+  color: rgb(255, 255, 255) !important;
+}
+
+.alert {
+  position: fixed;
+}
+
+.login-footer {
+  position: fixed;
+  bottom: 0;
+}

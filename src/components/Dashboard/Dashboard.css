@@ -1,0 +1,30 @@
+.dashboard-background {
+  color: black;
+  background-color: #f3f3f3;
+}
+
+.card-row {
+  padding-top: 10vh;
+}
+
+.dashboard-card {
+  color: white;
+  height: 30vh;
+  width: 20vw;
+  font-family: "Karla", sans-serif;
+  background-color: rgb(5, 79, 139);
+  box-shadow: -3px 14px 29px -8px rgba(0, 0, 0, 0.75);
+}
+
+.dash-card-content {
+  margin: 3vh 5vh 3vh 5vh;
+}
+
+.card-heading {
+  font-size: 3vh;
+  text-transform: uppercase;
+}
+
+.card-value {
+  font-size: 7vh;
+}
