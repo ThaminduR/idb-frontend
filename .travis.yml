@@ -1,10 +1,15 @@
 language: node_js
 
+os: linux
+
+dist: bionic
+
 node_js:
   - "stable"
 
 cache:
   directories:
   - node_modules
+
 script:
-  -npm run buildwin
+  -npm run build
