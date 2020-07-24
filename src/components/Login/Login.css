@@ -52,9 +52,9 @@
   color: rgb(255, 255, 255) !important;
 }
 
-.alert {
+/* .alert {
   position: fixed;
-}
+} */
 
 .login-footer {
   position: fixed;
