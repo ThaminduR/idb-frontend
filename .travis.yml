@@ -11,29 +11,31 @@ cache:
   directories:
   - node_modules
 
-deploy:
-- provider: s3
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
-  local_dir: dpl_cd_upload
-  skip_cleanup: true
-  on: &2
-    repo: ThaminduR/idb-frontend
-  bucket: idb-bucket
-  region: ap-southeast-1
-- provider: codedeploy
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
-  bucket: idb-bucket
-  key: build.zip
-  bundle_type: zip
-  application: CodeDeployIDB
-  deployment_group: CodeDeployIDB-Group
-  region: ap-southeast-1
-  on: *2
+# deploy:
+# - provider: s3
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: $AWS_SECRET_KEY
+#   local_dir: dpl_cd_upload
+#   skip_cleanup: true
+#   on: &2
+#     repo: ThaminduR/idb-frontend
+#   bucket: idb-bucket
+#   region: ap-southeast-1
+# - provider: codedeploy
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: $AWS_SECRET_KEY
+#   bucket: idb-bucket
+#   key: build.zip
+#   bundle_type: zip
+#   application: CodeDeployIDB
+#   deployment_group: CodeDeployIDB-Group
+#   region: ap-southeast-1
+#   on: *2
 
 script:
   - npm run build
-  - zip -r build *
+  - ls 
+  - zip -r build build
   - mkdir -p dpl_cd_upload
-  - mv build.zip dpl_cd_upload/build.zip
+
+  # - mv build.zip dpl_cd_upload/build.zip
