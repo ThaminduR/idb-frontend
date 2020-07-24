@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer'
 
 function Dashboard(props) {
 
-    const [state, setState] = useState({
+    const [state] = useState({
         total_records: 480,
         total_districts: 10,
         total_provinces: 5,
