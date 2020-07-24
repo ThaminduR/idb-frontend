@@ -1,0 +1,41 @@
+language: node_js
+
+os: linux
+
+dist: bionic
+
+node_js:
+  - "stable"
+
+cache:
+  directories:
+  - node_modules
+
+deploy:
+- provider: s3
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  local_dir: dpl_cd_upload
+  skip_cleanup: true
+  on: &2
+    repo: ThaminduR/idb-frontend
+  bucket: idb-bucket
+  region: ap-southeast-1
+- provider: codedeploy
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  bucket: idb-bucket
+  key: buildf.zip
+  bundle_type: zip
+  application: CodeDeployIDB
+  deployment_group: CodeDeployIDB-Group
+  region: ap-southeast-1
+  on: *2
+
+script:
+  - npm run build
+  - mv appspec.yml build/appspec.yml
+  - cd build
+  - zip -r buildf *
+  - mkdir -p dpl_cd_upload
+  - mv buildf.zip dpl_cd_upload/buildf.zip

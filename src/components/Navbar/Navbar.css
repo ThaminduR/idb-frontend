@@ -1,0 +1,34 @@
+.navbar {
+  color: white;
+  background-color: rgb(5, 79, 139);
+  font-family: "Karla", sans-serif;
+  box-shadow: -3px 14px 14px -8px rgba(0,0,0,0.75);
+}
+
+.nav-item > a {
+  font-size: 1em;
+  text-decoration: none;
+  color: white !important;
+}
+
+.user-info {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  background-color: rgba(92, 92, 92, 0.336);
+}
+
+.img-rounded {
+  width: 4vh;
+  height: 4vh;
+  border-radius: 1em;
+}
+
+.user-status {
+  font-size: 0.8em;
+}
+
+.user-status i {
+  font-size: 0.8em;
+  margin-right: 10px;
+  color: #49df49;
+}
