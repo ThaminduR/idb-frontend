@@ -25,6 +25,7 @@ function Login(props) {
     }
 
     const handleSubmitClick = (e) => {
+        console.log('Button Click')
         e.preventDefault();
         sendDetailsToServer()
 
@@ -78,8 +79,8 @@ function Login(props) {
             <div className='login-overlay'>
                 <div className='container '>
                     <div className=' container login-column'>
-                        <div className='card login-card col'>
-                            <div className='col-md'>
+                        <div className='card login-card'>
+                            <div className='col-12'>
                                 <p className='welcome-txt'>Admin Login</p>
                                 <form>
                                     <div className="form-group text-center">
@@ -100,12 +101,8 @@ function Login(props) {
                                             onChange={handleChange}
                                         />
                                     </div>
-                                    <button type="submit" className="btn btn-outline-light" onClick={handleSubmitClick}>
-                                        Login
-                                </button>
+                                    <button className='btn btn-outline-light' type='submit' onClick={handleSubmitClick}>Login</button>
                                 </form>
-                            </div>
-                            <div className='col-md'>
                                 <div className="alert alert-success mt-2" style={{ display: state.successMessage ? 'block' : 'none' }} role="alert">
                                     {state.successMessage}
                                 </div>
