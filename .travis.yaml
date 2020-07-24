@@ -4,5 +4,7 @@ cache:
   directories:
   - node_modules
 
+sudo: required
+
 script:
   -npm run build
