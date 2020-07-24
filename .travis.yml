@@ -25,7 +25,7 @@ deploy:
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
   bucket: idb-bucket
-  key: build.zip
+  key: buildf.zip
   bundle_type: zip
   application: CodeDeployIDB
   deployment_group: CodeDeployIDB-Group
@@ -36,6 +36,6 @@ script:
   - npm run build
   - mv appspec.yml build/appspec.yml
   - cd build
-  - zip -r build *
+  - zip -r buildf *
   - mkdir -p dpl_cd_upload
-  - mv build.zip dpl_cd_upload/build.zip
+  - mv buildf.zip dpl_cd_upload/buildf.zip
