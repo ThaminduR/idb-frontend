@@ -35,6 +35,7 @@ deploy:
 script:
   - npm run build
   - mv appspec.yml build/appspec.yml
-  - zip -r build build
+  - cd build
+  - zip -r build *
   - mkdir -p dpl_cd_upload
   - mv build.zip dpl_cd_upload/build.zip
