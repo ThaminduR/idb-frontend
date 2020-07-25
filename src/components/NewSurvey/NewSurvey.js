@@ -945,18 +945,18 @@ function NewSurvey(props) {
                             <tr>
                                 <td>Year 1</td>
                                 <td><div onChange={(e) => handleRowRadioChange(e, 'business_progression', 'year1_dir')} >
-                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="increase" name='dir1' value={true} /><label className='form-check-label'>Increase</label></div>
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="increase" name='dir1' value={"Increase"} /><label className='form-check-label'>Increase</label></div>
                                     <br />
-                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="decrease" name='dir1' value={false} /><label className='form-check-label'>Decrease</label></div>
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="decrease" name='dir1' value={"Decrease"} /><label className='form-check-label'>Decrease</label></div>
                                 </div></td>
                                 <td><input type="text" className="form-control" id="year1" value={state.business_progression.year1} onChange={(e) => handleRowChange(e, 'business_progression')} /></td>
                             </tr>
                             <tr>
                                 <td>Year 2</td>
                                 <td><div onChange={(e) => handleRowRadioChange(e, 'business_progression', 'year2_dir')} >
-                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="increase" name='dir2' value={true} /><label className='form-check-label'>Increase</label></div>
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="increase" name='dir2' value={"Increase"} /><label className='form-check-label'>Increase</label></div>
                                     <br />
-                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="decrease" name='dir2' value={false} /><label className='form-check-label'>Decrease</label></div>
+                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="decrease" name='dir2' value={"Decrease"} /><label className='form-check-label'>Decrease</label></div>
                                 </div></td>
                                 <td><input type="text" className="form-control" id="year2" value={state.business_progression.year2} onChange={(e) => handleRowChange(e, 'business_progression')} /></td>
                             </tr>
