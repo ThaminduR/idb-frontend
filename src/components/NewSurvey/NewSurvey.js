@@ -212,7 +212,7 @@ function NewSurvey(props) {
                 'raw_mat_value': state.raw_mat_value, 'semi_goods_value': state.semi_goods_value, 'goods_value': state.goods_value, 'total_working_capital': state.total_working_capital,
                 'site_type': state.site_type, //owned or rented
                 'furnace_capacity': state.furnace_capacity, //array
-                'furnances': state.furnances, //array
+                'furnaces': state.furnances, //array
                 'machinery': state.machinery, //array
                 'metal_processing': state.metal_processing, //array
                 'raw_materials': state.raw_materials, //array
