@@ -25,7 +25,6 @@ function Login(props) {
     }
 
     const handleSubmitClick = (e) => {
-        console.log('Button Click')
         e.preventDefault();
         sendDetailsToServer()
 

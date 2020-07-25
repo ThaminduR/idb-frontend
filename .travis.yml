@@ -19,23 +19,23 @@ deploy:
   skip_cleanup: true
   on: &2
     repo: ThaminduR/idb-frontend
-  bucket: idb-bucket
-  region: ap-southeast-1
+  bucket: idb-code-bucket
+  region: ap-south-1
 - provider: codedeploy
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
-  bucket: idb-bucket
-  key: buildf.zip
+  bucket: idb-code-bucket
+  key: build-frontend.zip
   bundle_type: zip
-  application: CodeDeployIDB
-  deployment_group: CodeDeployIDB-Group
-  region: ap-southeast-1
+  application: CodeDeploy-Frontend
+  deployment_group: CodeDeploy-Frontend-Group
+  region: ap-south-1
   on: *2
 
 script:
   - npm run build
   - mv appspec.yml build/appspec.yml
   - cd build
-  - zip -r buildf *
+  - zip -r build-frontend *
   - mkdir -p dpl_cd_upload
-  - mv buildf.zip dpl_cd_upload/buildf.zip
+  - mv build-frontend.zip dpl_cd_upload/build-frontend.zip
