@@ -47,8 +47,8 @@ function NewSurvey(props) {
         raw_mat_value: '', semi_goods_value: '', goods_value: '', total_working_capital: '',
         //---- neglect this ----  owned_site: false, rented_site: false,  
         site_type: '', //owned or rented
-        furnace_capacity: [], tfurnance_capacity: { metal: '', melting: '', heating: '' },
-        furnances: [], tfurnance: { name: '', fuel: '' },
+        furnace_capacity: [], tfurnace_capacity: { metal: '', melting: '', heating: '' },
+        furnaces: [], tfurnace: { name: '', fuel: '' },
         machinery: [], tmachinery: { type: '', capacity: '', value: '' },
         metal_processing: [], tmetal_processing: { metal: '', melting: '', heating: '', temp: '' },
         raw_materials: [], raw_material: { metal: '', origin: '', state: '', amount: '' },
@@ -188,7 +188,6 @@ function NewSurvey(props) {
             yoi: state.yoi.length !== 4
         }
     }
-
     const submitForm = (e) => {
         e.preventDefault();
         state.errors = validate();
@@ -219,7 +218,7 @@ function NewSurvey(props) {
                 'raw_mat_value': state.raw_mat_value, 'semi_goods_value': state.semi_goods_value, 'goods_value': state.goods_value, 'total_working_capital': state.total_working_capital,
                 'site_type': state.site_type, //owned or rented
                 'furnace_capacity': state.furnace_capacity, //array
-                'furnaces': state.furnances, //array
+                'furnaces': state.furnaces, //array
                 'machinery': state.machinery, //array
                 'metal_processing': state.metal_processing, //array
                 'raw_materials': state.raw_materials, //array
@@ -592,7 +591,7 @@ function NewSurvey(props) {
                     <div className='main-con'><label className='main-text'>B. Operational and Technical Details of Business</label></div>
                     <hr className='page-break' />
 
-                    <label className='topic-text'>1. What Metals Does the Industry Use and What is the Total Capacity (Kg) of the Furnance?</label>
+                    <label className='topic-text'>1. What Metals Does the Industry Use and What is the Total Capacity (Kg) of the furnace?</label>
 
                     <table className='table mt-4 table-bordered'>
                         <thead className='thead-light'>
@@ -613,7 +612,7 @@ function NewSurvey(props) {
                                     </tr>)
                             })}
                             <tr>
-                                <td><select className="form-control" id='metal' defaultValue={state.tfurnance_capacity.metal} onChange={(e) => handleRowChange(e, 'tfurnance_capacity')} >
+                                <td><select className="form-control" id='metal' defaultValue={state.tfurnace_capacity.metal} onChange={(e) => handleRowChange(e, 'tfurnace_capacity')} >
                                     <option value=''>Select Metal</option>
                                     <option value='Stainless Steel'>Stainless Steel</option>
                                     <option value='Magnesium'>Magnesium</option>
@@ -628,50 +627,50 @@ function NewSurvey(props) {
                                     <option value='Manganese Steel'>Manganese Steel</option>
                                     <option value='Other'>Other</option>
                                 </select></td>
-                                {/* <td><input type="text" className="form-control" id="metal" value={state.tfurnance_capacity.metal} onChange={(e) => handleRowChange(e, 'tfurnance_capacity')} /></td> */}
-                                <td><input type="text" className="form-control" id="melting" value={state.tfurnance_capacity.melting} onChange={(e) => handleRowChange(e, 'tfurnance_capacity')} /></td>
-                                <td><input type="text" className="form-control" id="heating" value={state.tfurnance_capacity.heating} onChange={(e) => handleRowChange(e, 'tfurnance_capacity')} /></td>
-                                <td><button className='btn btn-outline-dark' onClick={(e) => handleRowSubmit(e, state.tfurnance_capacity, state.furnace_capacity)}>Add</button></td>
+                                {/* <td><input type="text" className="form-control" id="metal" value={state.tfurnace_capacity.metal} onChange={(e) => handleRowChange(e, 'tfurnace_capacity')} /></td> */}
+                                <td><input type="text" className="form-control" id="melting" value={state.tfurnace_capacity.melting} onChange={(e) => handleRowChange(e, 'tfurnace_capacity')} /></td>
+                                <td><input type="text" className="form-control" id="heating" value={state.tfurnace_capacity.heating} onChange={(e) => handleRowChange(e, 'tfurnace_capacity')} /></td>
+                                <td><button className='btn btn-outline-dark' onClick={(e) => handleRowSubmit(e, state.tfurnace_capacity, state.furnace_capacity)}>Add</button></td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <label className='topic-text'>2. Type of Furnances and Fuel Being Used</label>
+                    <label className='topic-text'>2. Type of furnaces and Fuel Being Used</label>
 
                     <table className='table mt-4 table-bordered'>
                         <thead className='thead-light'>
                             <tr>
-                                <th>Furnance</th>
+                                <th>furnace</th>
                                 <th>Fuel</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {state.furnances.map((item, key) => {
+                            {state.furnaces.map((item, key) => {
                                 return (
                                     <tr key={key}>
                                         <td>{item.name}</td>
                                         <td>{item.fuel}</td>
-                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.furnances)} ><span aria-hidden="true">&times;</span></button></td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.furnaces)} ><span aria-hidden="true">&times;</span></button></td>
                                     </tr>)
                             })}
                             <tr>
-                                <td><select className="form-control" id='name' defaultValue={state.tfurnance.name} onChange={(e) => handleRowChange(e, 'tfurnance')} >
-                                    <option value=''>Select Furnance</option>
-                                    <option value='Cupola Furnance'>Cupola Furnance</option>
-                                    <option value='Pit Furnance'>Pit Furnance</option>
-                                    <option value='Induction Furnance'>Induction Furnance</option>
-                                    <option value='Tilt Furnance'>Tilt Furnance</option>
+                                <td><select className="form-control" id='name' defaultValue={state.tfurnace.name} onChange={(e) => handleRowChange(e, 'tfurnace')} >
+                                    <option value=''>Select furnace</option>
+                                    <option value='Cupola furnace'>Cupola furnace</option>
+                                    <option value='Pit furnace'>Pit furnace</option>
+                                    <option value='Induction furnace'>Induction furnace</option>
+                                    <option value='Tilt furnace'>Tilt furnace</option>
                                     <option value='Other'>Other</option>
                                 </select></td>
-                                <td><select className="form-control" id='fuel' defaultValue={state.tfurnance.fuel} onChange={(e) => handleRowChange(e, 'tfurnance')} >
+                                <td><select className="form-control" id='fuel' defaultValue={state.tfurnace.fuel} onChange={(e) => handleRowChange(e, 'tfurnace')} >
                                     <option value=''>Select Fuel</option>
-                                    <option value='Furnance Oil'>Furnance Oil</option>
+                                    <option value='furnace Oil'>furnace Oil</option>
                                     <option value='Coal'>Coal</option>
                                     <option value='LP Gas'>LP Gas</option>
                                     <option value='Electricity'>Electricity</option>
                                     <option value='Other'>Other</option>
                                 </select></td>
-                                <td><button className='btn btn-outline-dark' onClick={(e) => handleRowSubmit(e, state.tfurnance, state.furnances)}>Add</button></td>
+                                <td><button className='btn btn-outline-dark' onClick={(e) => handleRowSubmit(e, state.tfurnace, state.furnaces)}>Add</button></td>
                             </tr>
                         </tbody>
                     </table>
