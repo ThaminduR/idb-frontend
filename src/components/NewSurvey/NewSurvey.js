@@ -240,7 +240,9 @@ function NewSurvey(props) {
                             'successMessage': 'Submit successful.',
                             'errorMessage': ''
                         }))
-                        window.location.reload()
+                        // setTimeout(()=>{
+
+                        // },2000)
                     } else if (response.data.code === 401) {
                         setAuthTokens(response.data)
                         history.replace('/error')
