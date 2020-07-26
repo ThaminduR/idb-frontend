@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 import Footer from '../Footer/Footer'
 
 function Login(props) {
+    document.title = 'Admin Login'
 
     const history = useHistory()
 

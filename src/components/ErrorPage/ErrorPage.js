@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom'
 
 function ErrorPage(props) {
 
+    document.title = 'Error'
+
     const { authTokens, setAuthTokens } = useAuth();
     const history = useHistory()
 

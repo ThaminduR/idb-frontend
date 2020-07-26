@@ -6,6 +6,8 @@ import { useAuth } from '../../services/AuthenticationService'
 
 function NewSurvey(props) {
 
+    document.title = 'Add New Data'
+
     const history = useHistory()
 
     const { setAuthTokens } = useAuth()
