@@ -4,6 +4,8 @@ import SLMap from '../SLMap/SLMap'
 
 function Dashboard(props) {
 
+    document.title = "IDB Dashboard"
+
     const [state] = useState({
         total_records: 480,
         total_districts: 10,

@@ -4,6 +4,8 @@ import './Page404.css'
 
 function Page404(props) {
 
+    document.title = '404'
+
     const history = useHistory()
 
     const redirectToSite = (e) => {
