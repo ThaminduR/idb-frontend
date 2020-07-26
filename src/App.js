@@ -11,6 +11,7 @@ import { AuthContext } from './services/AuthenticationService';
 import LoggedoutRoute from './components/Routes/LoggedoutRoute';
 import 'font-awesome/css/font-awesome.min.css';
 import Dashboard from './components/Dashboard/Dashboard';
+import AllData from './components/AllData/AllData'
 import Login from './components/Login/Login';
 import NewSurvey from './components/NewSurvey/NewSurvey'
 import ViewData from './components/ViewData/ViewData'
@@ -38,7 +39,7 @@ function App() {
           <Router>
             <Switch>
               <LoggedoutRoute path='/login' component={Login} />
-              <PrivateRoute exact path='/dashboard' component={Dashboard} />
+              <PrivateRoute exact path='/dashboard' component={AllData} />
               <PrivateRoute exact path='/newsurvey' component={NewSurvey} />
               <PrivateRoute exact path='/viewdata' component={ViewData} />
               <Route exact path='/error' component={ErrorPage} />
