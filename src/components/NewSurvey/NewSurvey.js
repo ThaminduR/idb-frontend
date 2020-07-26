@@ -177,6 +177,7 @@ function NewSurvey(props) {
         setState(prevState => ({
             ...prevState,
             errorMessage: '',
+            successMessage: ''
         }))
     }
 
@@ -237,12 +238,14 @@ function NewSurvey(props) {
                     if (response.data.code === 200) {
                         setState(prevState => ({
                             ...prevState,
-                            'successMessage': 'Submit successful.',
+                            'successMessage': response.data.message,
                             'errorMessage': ''
                         }))
-                        // setTimeout(()=>{
-
-                        // },2000)
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 2500)
+                        console.log(response.data.message)
+                        return
                     } else if (response.data.code === 401) {
                         setAuthTokens(response.data)
                         history.replace('/error')
@@ -253,6 +256,7 @@ function NewSurvey(props) {
                             'errorMessage': response.data.message,
                             'successMessage': ''
                         }))
+                        return
                     }
                 })
                 .catch(function (error) {
@@ -262,6 +266,7 @@ function NewSurvey(props) {
                         'successMessage': ''
                     }))
                     console.log(error);
+                    return
                 });
         }
         else {
@@ -277,7 +282,11 @@ function NewSurvey(props) {
         <div className='newsurvey-background'>
             <div className={"alert newsur-alert alert-danger" + ((state.errorMessage) ? ' errorMessage1' : ' errorMessage2')} role="alert">
                 {state.errorMessage}
-                <button type="button" className="close ml-1" aria-label="Close" onClick={(e) => closeError(e)} ><span aria-hidden="true">&times;</span></button>
+                <button type="button" className="close ml-1" aria-label="Close" id='errorMessage' onClick={(e) => closeError(e)} ><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div className={"alert newsur-alert alert-success" + ((state.successMessage) ? ' errorMessage1' : ' errorMessage2')} role="alert">
+                {state.successMessage}
+                <button type="button" className="close ml-1" aria-label="Close" id='successMessage' onClick={(e) => closeError(e)} ><span aria-hidden="true">&times;</span></button>
             </div>
             {/* <button className='test' onClick={test}>Test</button> */}
             <div className='container form-card'>

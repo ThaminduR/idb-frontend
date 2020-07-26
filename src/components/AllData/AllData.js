@@ -222,7 +222,7 @@ function AllData(props) {
 
                     <div>
                         <label className='mt-2 mb-2'>Industry Registration</label>
-                        <p>{(state.industry_reg != '') ? (state.industry_reg + "-" + state.industry_reg_no) : 'No'}</p>
+                        <p>{(state.industry_reg !== '') ? (state.industry_reg + "-" + state.industry_reg_no) : 'No'}</p>
                     </div>
 
                     <label className='topic-text'>9. Total Investment of the Business</label>
