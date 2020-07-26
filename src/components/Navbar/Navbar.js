@@ -13,12 +13,12 @@ function NavigationBar(props) {
         setAuthTokens('')
     }
 
-    const testBackend = (e) => {
-        e.preventDefault()
-        axios.get('/admin/test').then(function (response) {
-            setAuthTokens(response.data)
-        })
-    }
+    // const testBackend = (e) => {
+    //     e.preventDefault()
+    //     axios.get('/admin/test').then(function (response) {
+    //         setAuthTokens(response.data)
+    //     })
+    // }
 
     return (
         <nav className={"navbar navbar-expand-md navbar-dark"}>
@@ -47,9 +47,9 @@ function NavigationBar(props) {
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav ml-auto mr-2">
-                    <li className="nav-item active ml-2 mt-2 mr-2">
+                    {/* <li className="nav-item active ml-2 mt-2 mr-2">
                         <div className='btn btn-outline-light' onClick={testBackend}>Test Backend</div>
-                    </li>
+                    </li> */}
                     <li className="nav-item active ml-2 mt-2 mr-2">
                         <a href="/dashboard">Dashboard</a>
                     </li>
