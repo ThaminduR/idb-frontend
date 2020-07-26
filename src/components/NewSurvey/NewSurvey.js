@@ -28,8 +28,8 @@ function NewSurvey(props) {
         district: '',
         dsDivision: '',
         gnDivision: '',
-        latitude: '',
-        longitude: '',
+        latitude: 0,
+        longitude: 0,
         address: '',
         telenumber: '',
         email: '',
@@ -38,29 +38,29 @@ function NewSurvey(props) {
         proprietor: [], tpropr: { name: '', designation: '', tele: '', mobile: '', email: '' },
         turnover: '',
         employees: '', //macro / small / medium
-        yoe: '', //year of establishment
+        yoe: 0, //year of establishment
         business_type: '', reg_no: '', //busines type - sole proprietor /... 
         industry_reg: false, industry_reg_no: '', //industry_reg - whether company is register with the ministry
-        land_area: '', land_value: '',
-        building_area: '', building_value: '',
-        machine_value: '', utilities_value: '', total_capital_investment: '',
-        raw_mat_value: '', semi_goods_value: '', goods_value: '', total_working_capital: '',
+        land_area: 0, land_value: 0,
+        building_area: 0, building_value: 0,
+        machine_value: 0, utilities_value: 0, total_capital_investment: 0,
+        raw_mat_value: 0, semi_goods_value: 0, goods_value: 0, total_working_capital: 0,
         //---- neglect this ----  owned_site: false, rented_site: false,  
         site_type: '', //owned or rented
-        furnace_capacity: [], tfurnace_capacity: { metal: '', melting: '', heating: '' },
+        furnace_capacity: [], tfurnace_capacity: { metal: '', melting: 0, heating: 0 },
         furnaces: [], tfurnace: { name: '', fuel: '' },
-        machinery: [], tmachinery: { type: '', capacity: '', value: '' },
-        metal_processing: [], tmetal_processing: { metal: '', melting: '', heating: '', temp: '' },
-        raw_materials: [], raw_material: { metal: '', origin: '', state: '', amount: '' },
-        emp_details: [], temp_details: { type: '', local: '', foreign: '' },
-        products: [], product: { name: '', state: '', units: '', weight: '' },
-        markets: { local_retail: '', local_companies: '', export: '' },
-        other_markets: { name: '', percentage: '' },
-        annual_turnover: { y2016_2017: '', y2017_2018: '', y2018_2019: '' },
-        business_progression: { year1_dir: null, year1: '', year2_dir: null, year2: '' },
-        waste_generated: [], waste: { type: '', amount: '', disposal: '' },
+        machinery: [], tmachinery: { type: '', capacity: 0, value: 0 },
+        metal_processing: [], tmetal_processing: { metal: '', melting: 0, heating: 0, temp: 0 },
+        raw_materials: [], raw_material: { metal: '', origin: '', state: '', amount: 0 },
+        emp_details: [], temp_details: { type: '', local: 0, foreign: 0 },
+        products: [], product: { name: '', state: '', units: 0, weight: 0 },
+        markets: { local_retail: 0, local_companies: 0, export: 0 },
+        other_markets: { name: '', percentage: 0 },
+        annual_turnover: { y2016_2017: 0, y2017_2018: 0, y2018_2019: 0 },
+        business_progression: { year1_dir: null, year1: 0, year2_dir: null, year2: 0 },
+        waste_generated: [], waste: { type: '', amount: 0, disposal: '' },
         interviewer: '',
-        yoi: ''
+        yoi: 0
 
     })
 
