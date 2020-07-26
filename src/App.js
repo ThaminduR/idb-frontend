@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import {
+  Route,
   BrowserRouter as Router,
   Switch,
 } from 'react-router-dom';
@@ -14,18 +15,20 @@ import Login from './components/Login/Login';
 import NewSurvey from './components/NewSurvey/NewSurvey'
 import ViewData from './components/ViewData/ViewData'
 import { API_BASE_URL } from './constants/constants';
+import Page404 from './components/ErrorPage/Page404';
+import ErrorPage from './components/ErrorPage/ErrorPage';
 
 function App() {
 
   axios.defaults.withCredentials = true
   axios.defaults.baseURL = API_BASE_URL
 
-  const existingtokens = JSON.parse(localStorage.getItem("tokens"));
+  const existingtokens = JSON.parse(localStorage.getItem("token"));
   const [authTokens, setAuthTokens] = useState(existingtokens);
 
   const setTokens = (data) => {
-    localStorage.setItem("tokens", JSON.stringify(data));
-    setAuthTokens(data);
+    localStorage.setItem("token", JSON.stringify(data));
+    setAuthTokens(data)
   }
 
   return (
@@ -35,10 +38,12 @@ function App() {
           <Router>
             <Switch>
               <LoggedoutRoute path='/login' component={Login} />
-              <PrivateRoute path='/dashboard' component={Dashboard} />
-              <PrivateRoute path='/newsurvey' component={NewSurvey} />
-              <PrivateRoute path='/viewdata' component={ViewData} />
-              <PrivateRoute path='/' component={Dashboard} />
+              <PrivateRoute exact path='/dashboard' component={Dashboard} />
+              <PrivateRoute exact path='/newsurvey' component={NewSurvey} />
+              <PrivateRoute exact path='/viewdata' component={ViewData} />
+              <Route exact path='/error' component={ErrorPage} />
+              <PrivateRoute exact path='/' component={Dashboard} />
+              <Route component={Page404}></Route>
             </Switch>
           </Router>
         </AuthContext.Provider>

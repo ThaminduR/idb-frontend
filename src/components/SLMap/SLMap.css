@@ -1,16 +1,16 @@
-path {
+.mapPath {
   fill: rgb(5, 79, 139);
 }
 
-path:hover {
+.mapPath:hover {
   fill: rgba(5, 79, 139, 0.596);
 }
 
 .map-div {
-  padding-top: 5vh;
+  padding-top: 10vh;
   padding-bottom: 5vh;
-  margin: 5vh 20vh 5vh 20vh;
-  height: 65vh;
+  margin: 0vh 10vh 5vh 10vh;
+  height: 32.8vh;
   color: white !important;
   border: 4px solid rgb(5, 79, 139);
 }

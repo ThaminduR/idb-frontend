@@ -2,14 +2,17 @@ import React, { useState } from 'react'
 import './Login.css'
 import axios from 'axios'
 import { useAuth } from '../../services/AuthenticationService'
-import { Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import Footer from '../Footer/Footer'
 
 function Login(props) {
 
+    const history = useHistory()
+
     const [state, setState] = useState({
         username: "",
         password: "",
+        rememberMe: false,
         successMessage: null,
         errorMessage: null
     })
@@ -24,8 +27,17 @@ function Login(props) {
         }))
     }
 
+    const handleCheckboxChange = (e) => {
+        const { id } = e.target
+        const value = state[id]
+        setState(prevState => ({
+            ...prevState,
+            [id]: !value
+        }))
+    }
+
+
     const handleSubmitClick = (e) => {
-        console.log('Button Click')
         e.preventDefault();
         sendDetailsToServer()
 
@@ -37,6 +49,7 @@ function Login(props) {
             const payload = {
                 "username": state.username,
                 "password": state.password,
+                "rememberMe": state.rememberMe
             }
             axios.post('/login', payload)
                 .then(function (response) {
@@ -47,12 +60,12 @@ function Login(props) {
                             'errorMessage': ''
                         }))
                         setAuthTokens(response.data);
-                        return <Redirect to='/' />
+                        history.replace('/')
 
                     } else {
                         setState(prevState => ({
                             ...prevState,
-                            'errorMessage': response.data.failure,
+                            'errorMessage': response.data.message,
                             'successMessage': ''
                         }))
                     }
@@ -101,15 +114,19 @@ function Login(props) {
                                             onChange={handleChange}
                                         />
                                     </div>
+                                    <label>Remember Me </label>
+                                    <div className="form-check form-check-inline ml-2"><input className="form-check-input" type="checkbox" checked={state.rememberMe} id="rememberMe" onChange={handleCheckboxChange} /></div>
+                                    <br />
                                     <button className='btn btn-outline-light' type='submit' onClick={handleSubmitClick}>Login</button>
                                 </form>
-                                <div className="alert alert-success mt-2" style={{ display: state.successMessage ? 'block' : 'none' }} role="alert">
+                                <div className="alert login-alert alert-success mt-2" style={{ display: state.successMessage ? 'block' : 'none' }} role="alert">
                                     {state.successMessage}
                                 </div>
-                                <div className="alert alert-danger mt-2" style={{ display: state.errorMessage ? 'block' : 'none' }} role="alert">
+                                <div className="alert login-alert alert-danger mt-2" style={{ display: state.errorMessage ? 'block' : 'none' }} role="alert">
                                     {state.errorMessage}
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
