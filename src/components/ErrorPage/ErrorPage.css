@@ -1,0 +1,24 @@
+.background-error {
+  background-color: rgba(0, 0, 0, 0);
+  color: rgb(5, 79, 139);
+  font-family: "Karla", sans-serif;
+  height: 94vh;
+  max-width: 90vw;
+}
+
+.error-con {
+  margin-top: 40vh;
+  margin-bottom: 10vh;
+}
+
+.img-error {
+  margin-top: 20vh;
+}
+
+.text-error-h {
+  font-size: 5em;
+}
+
+.text-error-p {
+  font-size: 2em;
+}

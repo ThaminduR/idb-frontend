@@ -1,16 +1,23 @@
 import React from 'react'
 import axios from 'axios'
-import { withRouter } from 'react-router-dom';
+import { useAuth } from '../../services/AuthenticationService'
 import './Navbar.css';
 
 function NavigationBar(props) {
 
+    const { setAuthTokens } = useAuth();
+
     const logout = (e) => {
         e.preventDefault()
         axios.get('/logout')
-        localStorage.clear()
-        window.location.reload(); //Temporary solution as the line below doesn't redirect the page to login
-        // return <Redirect to='/login' />
+        setAuthTokens('')
+    }
+
+    const testBackend = (e) => {
+        e.preventDefault()
+        axios.get('/admin/test').then(function (response) {
+            setAuthTokens(response.data)
+        })
     }
 
     return (
@@ -41,6 +48,9 @@ function NavigationBar(props) {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav ml-auto mr-2">
                     <li className="nav-item active ml-2 mt-2 mr-2">
+                        <div className='btn btn-outline-light' onClick={testBackend}>Test Backend</div>
+                    </li>
+                    <li className="nav-item active ml-2 mt-2 mr-2">
                         <a href="/dashboard">Dashboard</a>
                     </li>
                     <li className="nav-item active ml-2 mt-2 mr-2">
@@ -58,4 +68,4 @@ function NavigationBar(props) {
     )
 }
 
-export default withRouter(NavigationBar)
+export default NavigationBar

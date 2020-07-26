@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import './NewSurvey.css'
 import axios from 'axios'
-import Footer from '../Footer/Footer'
-// import { Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { useAuth } from '../../services/AuthenticationService'
+
 function NewSurvey(props) {
+
+    const history = useHistory()
+
+    const { setAuthTokens } = useAuth()
 
     const [state, setState] = useState({
         //t infront of variable names indicate temporary varaibles
@@ -234,17 +239,25 @@ function NewSurvey(props) {
                             'successMessage': 'Submit successful.',
                             'errorMessage': ''
                         }))
-                        // window.location.reload()
-                        // return <Redirect to='/newsurvey' />
-                    } else {
+                        window.location.reload()
+                    } else if (response.data.code === 401) {
+                        setAuthTokens(response.data)
+                        history.replace('/error')
+                    }
+                    else {
                         setState(prevState => ({
                             ...prevState,
-                            'errorMessage': response.data.failure,
+                            'errorMessage': response.data.message,
                             'successMessage': ''
                         }))
                     }
                 })
                 .catch(function (error) {
+                    setState(prevState => ({
+                        ...prevState,
+                        'errorMessage': error,
+                        'successMessage': ''
+                    }))
                     console.log(error);
                 });
         }
@@ -259,7 +272,7 @@ function NewSurvey(props) {
 
     return (
         <div className='newsurvey-background'>
-            <div className={"alert alert-danger" + (state.errorMessage ? ' errorMessage1' : ' errorMessage2')} role="alert">
+            <div className={"alert newsur-alert alert-danger" + (state.errorMessage ? ' errorMessage1' : ' errorMessage2')} role="alert">
                 {state.errorMessage}
                 <button type="button" className="close ml-1" aria-label="Close" onClick={(e) => closeError(e)} ><span aria-hidden="true">&times;</span></button>
             </div>
@@ -893,44 +906,6 @@ function NewSurvey(props) {
                         </div>
                     </div>
 
-                    <label className='topic-text'>1. What Type of Products Being Produced?</label>
-
-                    <table className='table mt-4 table-bordered'>
-                        <thead className='thead-light'>
-                            <tr>
-                                <th>Name</th>
-                                <th>State <br /> (Finished/Intermediate/Raw Materials)</th>
-                                <th>Units</th>
-                                <th>Weight (Kg)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {state.products.map((item, key) => {
-                                return (
-                                    <tr key={key}>
-                                        <td>{item.name}</td>
-                                        <td>{item.state}</td>
-                                        <td>{item.units}</td>
-                                        <td>{item.weight}</td>
-                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.products)} ><span aria-hidden="true">&times;</span></button></td>
-                                    </tr>)
-                            })}
-                            <tr>
-                                <td><input type="text" className="form-control" id="name" value={state.product.name} onChange={(e) => handleRowChange(e, 'product')} /></td>
-                                <td><div onChange={(e) => handleRowRadioChange(e, 'product', 'state')} >
-                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="finished" name='state' value='finished' /><label className='form-check-label'>Finished</label></div>
-                                    <br />
-                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="intermediate" name='state' value='intermediate' /><label className='form-check-label'>Intermdiate</label></div>
-                                    <br />
-                                    <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="raw_material" name='state' value='raw_material' /><label className='form-check-label'>Raw Material</label></div>
-                                </div></td>
-                                <td><input type="text" className="form-control" id="units" value={state.product.units} onChange={(e) => handleRowChange(e, 'product')} /></td>
-                                <td><input type="text" className="form-control" id="weight" value={state.product.weight} onChange={(e) => handleRowChange(e, 'product')} /></td>
-                                <td><button className='btn btn-outline-dark' onClick={(e) => handleRowSubmit(e, state.product, state.products)}>Add</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
                     <label className='topic-text'>4. Business Progression During Last Two Years</label>
 
                     <table className='table mt-4 table-bordered'>
@@ -1012,11 +987,8 @@ function NewSurvey(props) {
                         <div className='btn btn-outline-dark' onClick={submitForm}>Submit</div>
                     </div>
                     <hr className='page-break' />
-
-
                 </form>
             </div>
-            <Footer></Footer>
         </div>
     )
 }

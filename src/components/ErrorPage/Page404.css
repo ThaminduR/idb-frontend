@@ -1,0 +1,30 @@
+.background-404 {
+  background-color: rgba(0, 0, 0, 0);
+  color: rgb(5, 79, 139);
+  font-family: "Karla", sans-serif;
+  height: 94vh;
+  max-width: 90vw;
+}
+
+.error-404 {
+  margin-top: 40vh;
+  margin-bottom: 10vh;
+}
+
+.img-404 {
+  margin-top: 20vh;
+}
+
+.text-404-h {
+  font-size: 5em;
+}
+
+.text-404-p {
+  font-size: 2em;
+}
+
+.btn-404 {
+  color: white;
+  background-color: rgb(5, 79, 139);
+}
+

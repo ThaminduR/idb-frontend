@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './Dashboard.css'
 import SLMap from '../SLMap/SLMap'
-import Footer from '../Footer/Footer'
 
 function Dashboard(props) {
 
@@ -39,7 +38,7 @@ function Dashboard(props) {
     })
 
     return (
-        <div className='dashboard-background'>
+        <div className='dashboard-background h-100'>
             <div className='row card-row justify-content-around w-100'>
                 <div className='dashboard-card'>
                     <div className='dash-card-content'>
@@ -64,7 +63,6 @@ function Dashboard(props) {
                 </div>
             </div>
             <SLMap district_company={state.district_company}></SLMap>
-            <Footer></Footer>
         </div>
     )
 }
