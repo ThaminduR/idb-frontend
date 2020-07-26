@@ -258,7 +258,7 @@ function NewSurvey(props) {
                 .catch(function (error) {
                     setState(prevState => ({
                         ...prevState,
-                        'errorMessage': error,
+                        'errorMessage': 'Error Occured',
                         'successMessage': ''
                     }))
                     console.log(error);
@@ -275,7 +275,7 @@ function NewSurvey(props) {
 
     return (
         <div className='newsurvey-background'>
-            <div className={"alert newsur-alert alert-danger" + (state.errorMessage ? ' errorMessage1' : ' errorMessage2')} role="alert">
+            <div className={"alert newsur-alert alert-danger" + ((state.errorMessage) ? ' errorMessage1' : ' errorMessage2')} role="alert">
                 {state.errorMessage}
                 <button type="button" className="close ml-1" aria-label="Close" onClick={(e) => closeError(e)} ><span aria-hidden="true">&times;</span></button>
             </div>
