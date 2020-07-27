@@ -1,6 +1,6 @@
 import React from 'react'
 import './Footer.css';
-import { DEV_NAME } from '../../constants/constants';
+// import { DEV_NAME } from '../../constants/constants';
 
 function Footer(props) {
     return (
