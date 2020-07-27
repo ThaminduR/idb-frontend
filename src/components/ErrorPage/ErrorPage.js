@@ -40,7 +40,7 @@ function ErrorPage(props) {
 
     const redirectToSite = (e) => {
         e.preventDefault()
-        history.replace('/')
+        history.replace('/login')
     }
 
     return (
