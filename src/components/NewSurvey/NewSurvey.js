@@ -1013,7 +1013,7 @@ function NewSurvey(props) {
 
                         <div className="form-group col-md">
                             <label className='topic-text'>Year of the Interview</label>
-                            <input type="text" className={"form-control" + (state.errors.yoi ? " error" : "")} id="yoi" value={state.yoi} onChange={handleChange} />
+                            <input type="text" className={"form-control" + (state.errors.yoi ? " error" : "")} id="yoi" placeholder='4 Digit Number' value={state.yoi} onChange={handleChange} />
                         </div>
                     </div>
 
