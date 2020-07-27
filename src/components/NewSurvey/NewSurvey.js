@@ -45,15 +45,14 @@ function NewSurvey(props) {
         building_area: '', building_value: '',
         machine_value: '', utilities_value: '', total_capital_investment: '',
         raw_mat_value: '', semi_goods_value: '', goods_value: '', total_working_capital: '',
-        //---- neglect this ----  owned_site: false, rented_site: false,  
-        site_type: '', //owned or rented
+        owned_site: false, rented_site: false,
         furnace_capacity: [], tfurnace_capacity: { metal: '', melting: '', heating: '' },
         furnaces: [], tfurnace: { name: '', fuel: '' },
         machinery: [], tmachinery: { type: '', capacity: '', value: '' },
         metal_processing: [], tmetal_processing: { metal: '', melting: '', heating: '', temp: '' },
         raw_materials: [], raw_material: { metal: '', origin: '', state: '', amount: '' },
         emp_details: [], temp_details: { type: '', local: '', foreign: '' },
-        products: [], product: { name: '', state: '', units: '', weight: '' },
+        products: [], product: { metal: '', type: '', state: '', units: '', weight: '' },
         markets: { local_retail: '', local_companies: '', export: '' },
         other_markets: { name: '', percentage: '' },
         annual_turnover: { y2016_2017: '', y2017_2018: '', y2018_2019: '' },
@@ -114,11 +113,6 @@ function NewSurvey(props) {
             ...prevState,
             stateChange: '',
         }))
-
-        for (var key in t_arr) {
-            t_arr[key] = ''
-        }
-
     }
 
     const handleRowDelete = (e, key, arr) => {
@@ -217,7 +211,8 @@ function NewSurvey(props) {
                 'building_area': state.building_area, 'building_value': state.building_value,
                 'machine_value': state.machine_value, 'utilities_value': state.utilities_value, 'total_capital_investment': state.total_capital_investment,
                 'raw_mat_value': state.raw_mat_value, 'semi_goods_value': state.semi_goods_value, 'goods_value': state.goods_value, 'total_working_capital': state.total_working_capital,
-                'site_type': state.site_type, //owned or rented
+                'owned_site': state.owned_site,
+                'rented_site': state.rented_site,
                 'furnace_capacity': state.furnace_capacity, //array
                 'furnaces': state.furnaces, //array
                 'machinery': state.machinery, //array
@@ -575,28 +570,28 @@ function NewSurvey(props) {
                     </table>
 
                     <label>9.3 Ownership of the Business</label>
-                    <div onChange={(e) => handleRadioChange(e, 'site_type')}>
-                        <table className='table mt-4 table-bordered'>
-                            <thead className='thead-light'>
-                                <tr>
-                                    <th>Factory Premises</th>
-                                    <th>Present Site</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Owned by Industrialist</td>
-                                    {/* <td><div className="form-check form-check-inline"><input className="form-check-input" type="checkbox" checked={state.owned_site} id="owned_site" onChange={handleCheckboxChange} /></div></td> */}
-                                    <td><div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="owned_site" name='site_type' value='owned' /></div></td>
-                                </tr>
-                                <tr>
-                                    <td>Rented/ Leased Premises</td>
-                                    {/* <td><div className="form-check form-check-inline"><input className="form-check-input" type="checkbox" checked={state.rented_site} id="rented_site" onChange={handleCheckboxChange} /></div></td> */}
-                                    <td><div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="rented_site" name='site_type' value='rented' /></div></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    {/* <div onChange={(e) => handleRadioChange(e, 'site_type')}> */}
+                    <table className='table mt-4 table-bordered'>
+                        <thead className='thead-light'>
+                            <tr>
+                                <th>Factory Premises</th>
+                                <th>Present Site</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Owned by Industrialist</td>
+                                <td><div className="form-check form-check-inline"><input className="form-check-input" type="checkbox" checked={state.owned_site} id="owned_site" onChange={handleCheckboxChange} /></div></td>
+                                {/* <td><div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="owned_site" name='site_type' value='owned' /></div></td> */}
+                            </tr>
+                            <tr>
+                                <td>Rented/ Leased Premises</td>
+                                <td><div className="form-check form-check-inline"><input className="form-check-input" type="checkbox" checked={state.rented_site} id="rented_site" onChange={handleCheckboxChange} /></div></td>
+                                {/* <td><div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="rented_site" name='site_type' value='rented' /></div></td> */}
+                            </tr>
+                        </tbody>
+                    </table>
+                    {/* </div> */}
 
                     <hr className='page-break' />
                     <div className='main-con'><label className='main-text'>B. Operational and Technical Details of Business</label></div>
@@ -847,7 +842,8 @@ function NewSurvey(props) {
                     <table className='table mt-4 table-bordered'>
                         <thead className='thead-light'>
                             <tr>
-                                <th>Name</th>
+                                <th>Metal</th>
+                                <th>Product</th>
                                 <th>State <br /> (Finished/Intermediate/Raw Materials)</th>
                                 <th>Units</th>
                                 <th>Weight (Kg)</th>
@@ -857,7 +853,8 @@ function NewSurvey(props) {
                             {state.products.map((item, key) => {
                                 return (
                                     <tr key={key}>
-                                        <td>{item.name}</td>
+                                        <td>{item.metal}</td>
+                                        <td>{item.type}</td>
                                         <td>{item.state}</td>
                                         <td>{item.units}</td>
                                         <td>{item.weight}</td>
@@ -865,7 +862,32 @@ function NewSurvey(props) {
                                     </tr>)
                             })}
                             <tr>
-                                <td><input type="text" className="form-control" id="name" value={state.product.name} onChange={(e) => handleRowChange(e, 'product')} /></td>
+                                <td><select className="form-control" id='metal' defaultValue={state.product.metal} onChange={(e) => handleRowChange(e, 'product')} >
+                                    <option value=''>Select Metal</option>
+                                    <option value='Stainless Steel'>Stainless Steel</option>
+                                    <option value='Magnesium'>Magnesium</option>
+                                    <option value='Iron'>Iron</option>
+                                    <option value='Cast Iron'>Cast Iron</option>
+                                    <option value='Copper'>Copper</option>
+                                    <option value='Aluminum'>Aluminium</option>
+                                    <option value='Brass'>Brass</option>
+                                    <option value='Zinc'>Zinc</option>
+                                    <option value='LMS'>LMS</option>
+                                    <option value='High Carbon Steel'>High Carbon Steel</option>
+                                    <option value='Manganese Steel'>Manganese Steel</option>
+                                    <option value='Other'>Other</option>
+                                </select></td>
+                                <td><select className="form-control" id='type' defaultValue={state.product.type} onChange={(e) => handleRowChange(e, 'product')} >
+                                    <option value=''>Select Type</option>
+                                    <option value='Ornamentals'>Ornamentals</option>
+                                    <option value='Machinery and Automobile (Loading)'>Machinery and Automobile (Loading)</option>
+                                    <option value='Machinery and Automobile (No Loading)'>Machinery and Automobile (No Loading)</option>
+                                    <option value='Building Items'>Building Items</option>
+                                    <option value='Precision Items'>Precision Items</option>
+                                    <option value='Domestic Items'>Domestic Items</option>
+                                    <option value='Semi Finish Products'>Semi Finish Products</option>
+                                    <option value='Electric Cables'>Electric Cables</option>
+                                </select></td>
                                 <td><div onChange={(e) => handleRowRadioChange(e, 'product', 'state')} >
                                     <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="finished" name='state' value='finished' /><label className='form-check-label'>Finished</label></div>
                                     <br />
