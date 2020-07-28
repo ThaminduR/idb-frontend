@@ -425,7 +425,7 @@ function NewSurvey(props) {
                             </table>
 
                         </div>
-                        <div className='col-md mt-2 mb-2' onChange={(e) => handleRadioChange(e, 'employees')}>
+                        <div className='col-md mt-2 mb-2' onChange={(e) => handleRadioChange(e, 'local_employees')}>
                             <label>Number of Local Employees</label>
                             <table className='table table-striped table-bordered'>
                                 <tbody>
@@ -445,7 +445,7 @@ function NewSurvey(props) {
                             </table>
                         </div>
 
-                        <div className='col-md mt-2 mb-2' onChange={(e) => handleRadioChange(e, 'employees')}>
+                        <div className='col-md mt-2 mb-2' onChange={(e) => handleRadioChange(e, 'foreign_employees')}>
                             <label>Number of Foreign Employees</label>
                             <table className='table table-striped table-bordered'>
                                 <tbody>
