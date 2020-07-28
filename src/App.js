@@ -38,12 +38,12 @@ function App() {
         <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
           <Router>
             <Switch>
-              <LoggedoutRoute path='/login' component={Login} />
-              <PrivateRoute exact path='/dashboard' component={AllData} />
-              <PrivateRoute exact path='/newsurvey' component={NewSurvey} />
-              <PrivateRoute exact path='/viewdata' component={ViewData} />
-              <Route exact path='/error' component={ErrorPage} />
-              <PrivateRoute exact path='/' component={Dashboard} />
+              <LoggedoutRoute path='idb/login' component={Login} />
+              <PrivateRoute exact path='idb/dashboard' component={AllData} />
+              <PrivateRoute exact path='idb/newsurvey' component={NewSurvey} />
+              <PrivateRoute exact path='idb/viewdata' component={ViewData} />
+              <Route exact path='idb/error' component={ErrorPage} />
+              <PrivateRoute exact path='idb/' component={Dashboard} />
               <Route component={Page404}></Route>
             </Switch>
           </Router>
