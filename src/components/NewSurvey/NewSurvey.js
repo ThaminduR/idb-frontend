@@ -39,6 +39,7 @@ function NewSurvey(props) {
         turnover: '',
         local_employees: '', //macro / small / medium
         foreign_employees: '',
+        annual_turnover: { y2016_2017: '', y2017_2018: '', y2018_2019: '' },
         yoe: '', //year of establishment
         business_type: '', reg_no: '', reg_place: '', //busines type - sole proprietor /... 
         industry_reg: false, industry_reg_no: '', industry_reg_place: '', //industry_reg - whether company is register with the ministry
@@ -47,19 +48,17 @@ function NewSurvey(props) {
         machine_value: '', utilities_value: '', total_capital_investment: '',
         raw_mat_value: '', semi_goods_value: '', goods_value: '', total_working_capital: '',
         owned_site: false, rented_site: false,
-        furnace_capacity: [], tfurnace_capacity: { metal: '', melting: '', heating: '' },
-        furnaces: [], tfurnace: { name: '', fuel: '', capacity: '', batchespd: '' },
+        raw_materials: [], raw_material: { metal: '', origin: '', state: '', amount: '' },
+        furnaces: [], tfurnace: { name: '', fuel: '', capacity: '', batchespd: '' }, //-----------------------new
         under_heating: '',
         floor_area: '',
         machinery: [], tmachinery: { type: '', capacity: '', value: '' },
-        raw_materials: [], raw_material: { metal: '', origin: '', state: '', amount: '' },
-        products: [], product: { metal: '', type: '', state: '', units: '', weight: '' },
-        markets: { local_retail: '', local_companies: '', export: '' },
-        other_markets: { name: '', percentage: '' },
-        annual_turnover: { y2016_2017: '', y2017_2018: '', y2018_2019: '' },
-        business_progression: { year1_dir: null, year1: '', year2_dir: null, year2: '' },
+        products: [], product: { metal: '', type: '', state: '', units: '', weight: '' }, 
         energy: [], tenergy: { type: '', units: '', state: '' },
         waste_generated: [], waste: { type: '', amount: '', disposal: '' },
+        markets: { local_retail: '', local_companies: '', export: '' },
+        other_markets: { name: '', percentage: '' },
+        business_progression: { year1_dir: null, year1: '', year2_dir: null, year2: '' },
         interviewer: '',
         yoi: ''
 
