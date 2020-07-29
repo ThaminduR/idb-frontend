@@ -173,7 +173,7 @@ function FormView(props) {
         axios.post('/admin/deleteCompany', {
             'id': state.id,
             'name': state.companyName,
-            'telenumber': state.telephone,
+            'telenumber': state.telephone ? state.telephone : "",
             'address': state.address
         })
             .then(function (res) {
