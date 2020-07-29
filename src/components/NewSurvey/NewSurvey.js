@@ -515,7 +515,7 @@ function NewSurvey(props) {
                             </tbody>
                         </table>
                     </div>
-                    <table>
+                    <table className='mb-4'>
                         <tbody>
                             <tr>
                                 <td>Registration No.</td>

@@ -18,7 +18,7 @@ function AllData(props) {
         hasReq: false,
         requestPending: true,
         companyData: [],
-        yoi: 2021,
+        yoi: 2020,
         dataEmpty: false,
     })
 

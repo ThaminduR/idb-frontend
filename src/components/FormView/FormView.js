@@ -90,7 +90,7 @@ function FormView(props) {
                         foreign_employees: res.data.surveyData.company_category[0].foreign_employee_category,
                         annual_turnover: res.data.surveyData.annual_turnover[0],
                         yoe: res.data.surveyData.company[0].year_established, //year of establishment
-                        business_type: res.data.surveyData.ownership_registration[0].type, reg_no: res.data.surveyData.ownership_registration[0].reg_no, reg_place: res.data.surveyData.ownership_registration[0].reg_place, //busines type - sole proprietor /... 
+                        business_type: res.data.surveyData.ownership_registration[0].business_type, reg_no: res.data.surveyData.ownership_registration[0].reg_no, reg_place: res.data.surveyData.ownership_registration[0].reg_place, //busines type - sole proprietor /... 
                         industry_reg: res.data.surveyData.ownership_registration[0].industry_reg, industry_reg_no: res.data.surveyData.ownership_registration[0].industry_reg_no, industry_reg_place: res.data.surveyData.ownership_registration[0].industry_reg_place, //industry_reg - whether company is register with the ministry
                         land_area: res.data.surveyData.land_capital[0].land_area, land_value: res.data.surveyData.land_capital[0].land_value,
                         building_area: res.data.surveyData.building_capital[0].building_area, building_value: res.data.surveyData.building_capital[0].building_value,
