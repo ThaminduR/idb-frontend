@@ -282,11 +282,11 @@ function NewSurvey(props) {
         <div className='newsurvey-background'>
             <div className={"alert newsur-alert alert-danger" + ((state.errorMessage) ? ' errorMessage1' : ' errorMessage2')} role="alert">
                 {state.errorMessage}
-                <button type="button" className="close ml-1" aria-label="Close" id='errorMessage' onClick={(e) => closeError(e)} ><span aria-hidden="true">&times;</span></button>
+                <button type="button" className="close ml-1" aria-label="Close" id='errorMessage' onClick={(e) => closeError(e)} ><i className="fa fa-times" aria-hidden="true"></i></button>
             </div>
             <div className={"alert newsur-alert alert-success" + ((state.successMessage) ? ' errorMessage1' : ' errorMessage2')} role="alert">
                 {state.successMessage}
-                <button type="button" className="close ml-1" aria-label="Close" id='successMessage' onClick={(e) => closeError(e)} ><span aria-hidden="true">&times;</span></button>
+                <button type="button" className="close ml-1" aria-label="Close" id='successMessage' onClick={(e) => closeError(e)} ><i className="fa fa-times" aria-hidden="true"></i></button>
             </div>
             {/* <button className='test' onClick={test}>Test</button> */}
             <div className='container form-card'>
@@ -385,7 +385,7 @@ function NewSurvey(props) {
                                         <td>{item.mobile}</td>
                                         <td>{item.email}</td>
 
-                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.proprietor)} ><span aria-hidden="true">&times;</span></button></td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.proprietor)} ><i className="fa fa-times" aria-hidden="true"></i></button></td>
                                     </tr>)
                             })}
                             <tr>
@@ -667,7 +667,7 @@ function NewSurvey(props) {
                                         <td>{item.origin}</td>
                                         <td>{item.state}</td>
                                         <td>{item.amount}</td>
-                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.raw_materials)} ><span aria-hidden="true">&times;</span></button></td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.raw_materials)} ><i className="fa fa-times" aria-hidden="true"></i></button></td>
                                     </tr>)
                             })}
                             <tr>
@@ -722,7 +722,7 @@ function NewSurvey(props) {
                                         <td>{item.capacity}</td>
                                         <td>{item.batchespd}</td>
                                         <td>{item.fuel}</td>
-                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.furnaces)} ><span aria-hidden="true">&times;</span></button></td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.furnaces)} ><i className="fa fa-times" aria-hidden="true"></i></button></td>
                                     </tr>)
                             })}
                             <tr>
@@ -778,7 +778,7 @@ function NewSurvey(props) {
                                         <td>{item.type}</td>
                                         <td>{item.capacity}</td>
                                         <td>{item.value}</td>
-                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.machinery)} ><span aria-hidden="true">&times;</span></button></td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.machinery)} ><i className="fa fa-times" aria-hidden="true"></i></button></td>
                                     </tr>)
                             })}
                             <tr>
@@ -813,7 +813,7 @@ function NewSurvey(props) {
                                         <td>{item.state}</td>
                                         <td>{item.units}</td>
                                         <td>{item.weight}</td>
-                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.products)} ><span aria-hidden="true">&times;</span></button></td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.products)} ><i className="fa fa-times" aria-hidden="true"></i></button></td>
                                     </tr>)
                             })}
                             <tr>
@@ -874,7 +874,7 @@ function NewSurvey(props) {
                                         <td>{item.type}</td>
                                         <td>{item.units}</td>
                                         <td>{item.state}</td>
-                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.energy)} ><span aria-hidden="true">&times;</span></button></td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.energy)} ><i className="fa fa-times" aria-hidden="true"></i></button></td>
                                     </tr>)
                             })}
                             <tr>
@@ -915,7 +915,7 @@ function NewSurvey(props) {
                                         <td>{item.type}</td>
                                         <td>{item.amount}</td>
                                         <td>{item.disposal}</td>
-                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.waste_generated)} ><span aria-hidden="true">&times;</span></button></td>
+                                        <td><button type="button" className="close" aria-label="Close" onClick={(e) => handleRowDelete(e, key, state.waste_generated)} ><i className="fa fa-times" aria-hidden="true"></i></button></td>
                                     </tr>)
                             })}
                             <tr>

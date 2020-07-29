@@ -51,13 +51,16 @@ function NavigationBar(props) {
                         <div className='btn btn-outline-light' onClick={testBackend}>Test Backend</div>
                     </li> */}
                     <li className="nav-item active ml-2 mt-2 mr-2">
-                        <a href="/dashboard">Dashboard</a>
+                        <a href="/Dashboard">Dashboard</a>
                     </li>
                     <li className="nav-item active ml-2 mt-2 mr-2">
-                        <a href="/newsurvey">Add Data</a>
+                        <a href="/AllRecords">All Records</a>
                     </li>
                     <li className="nav-item active ml-2 mt-2 mr-2">
-                        <a href="/viewdata">View Data</a>
+                        <a href="/NewSurvey">Add Data</a>
+                    </li>
+                    <li className="nav-item active ml-2 mt-2 mr-2">
+                        <a href="/DataAnalysis">Data Analysis</a>
                     </li>
                     <li className="nav-item active ml-2 mr-2">
                         <button type="button" className="btn btn-outline-light" onClick={logout}>Logout</button>
