@@ -53,7 +53,7 @@ function NewSurvey(props) {
         under_heating: '',
         floor_area: '',
         machinery: [], tmachinery: { type: '', capacity: '', value: '' },
-        products: [], product: { metal: '', type: '', state: '', units: '', weight: '' }, 
+        products: [], product: { metal: '', type: '', state: '', units: '', weight: '' },
         energy: [], tenergy: { type: '', units: '', state: '' },
         waste_generated: [], waste: { type: '', amount: '', disposal: '' },
         markets: { local_retail: '', local_companies: '', export: '' },
@@ -512,17 +512,21 @@ function NewSurvey(props) {
                                     <td>Cooperative</td>
                                     <td><div className="form-check"><input className="form-check-input" type="radio" id="coop_business" name='business_type' value="Cooperative" /></div></td>
                                 </tr>
-                                <tr>
-                                    <td>Registration No.</td>
-                                    <td><input type="text" className="form-control" id="reg_no" value={state.reg_no} onChange={handleChange} /></td>
-                                </tr>
-                                <tr>
-                                    <td>Place of Registration</td>
-                                    <td><input type="text" className="form-control" id="reg_place" value={state.reg_place} onChange={handleChange} /></td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Registration No.</td>
+                                <td><input type="text" className="form-control" id="reg_no" value={state.reg_no} onChange={handleChange} /></td>
+                            </tr>
+                            <tr>
+                                <td>Place of Registration</td>
+                                <td><input type="text" className="form-control" id="reg_place" value={state.reg_place} onChange={handleChange} /></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                     <label className='mt-2 mb-2'>Registration Under Ministry</label>
                     <table className="table table-striped table-bordered">
