@@ -69,10 +69,8 @@ function FormView(props) {
         })
             .then(function (res) {
                 if (res.data.code === 200) {
-                    console.log(res.data.surveyData.company[0].name)
                     setState(prevState => ({
                         ...prevState,
-                        successMessage: 'Data Retireved',
                         requestPending: false,
                         companyName: res.data.surveyData.company[0].name,
                         province: res.data.surveyData.location[0].province,
@@ -113,7 +111,6 @@ function FormView(props) {
                         interviewer: res.data.surveyData.interviewer[0].name,
                         yoi: res.data.surveyData.company[0].surveyed_year
                     }))
-                    console.log("CN:", state.companyName)
                 } else if (res.code === 401) {
                     setAuthTokens(res.data)
                     history.replace('/error')
@@ -140,7 +137,6 @@ function FormView(props) {
         if (state.dataVerify) return
 
         const { data } = props.location
-        console.log("ID :", data)
 
         if (data) {
             setState(prevState => ({
@@ -182,6 +178,9 @@ function FormView(props) {
                         ...prevState,
                         successMessage: "Record Deleted Succesfully"
                     }))
+                    setTimeout(() => {
+                        history.push('/AllRecords')
+                    }, 1500)
                 } else if (res.data.code === 401) {
                     setAuthTokens(res.data)
                     history.replace('/error')
@@ -221,6 +220,10 @@ function FormView(props) {
                 <div className={"alert form-alert alert-danger" + ((state.errorMessage) ? ' errorMessage1' : ' errorMessage2')} role="alert">
                     {state.errorMessage}
                     <button type="button" className="close ml-1" aria-label="Close" id='errorMessage' onClick={(e) => closeError(e)} ><i className="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+                <div className={"alert form-alert alert-success" + ((state.successMessage) ? ' errorMessage1' : ' errorMessage2')} role="alert">
+                    {state.successMessage}
+                    <button type="button" className="close ml-1" aria-label="Close" id='successMessage' onClick={(e) => closeError(e)} ><i className="fa fa-times" aria-hidden="true"></i></button>
                 </div>
                 {
                     state.requestPending
@@ -453,11 +456,11 @@ function FormView(props) {
                                     <tbody>
                                         <tr>
                                             <td>Owned by Industrialist</td>
-                                            <td> <p>{state.owned_site}</p></td>
+                                            <td> <p>{state.owned_site ? "Yes" : "No"}</p></td>
                                         </tr>
                                         <tr>
                                             <td>Rented/ Leased Premises</td>
-                                            <td> <p>{state.rented_site}</p></td>
+                                            <td> <p>{state.rented_site ? "Yes" : "No"}</p></td>
                                         </tr>
                                     </tbody>
                                 </table>
