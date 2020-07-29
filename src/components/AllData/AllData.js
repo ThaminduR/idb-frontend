@@ -107,7 +107,6 @@ function AllData(props) {
                                         <th>Telephone</th>
                                         <th>Year of Establishment</th>
                                         <th>View Record</th>
-                                        <th>Delete Record</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -120,7 +119,6 @@ function AllData(props) {
                                                 <td>{item.telephone ? item.telephone : "-"}</td>
                                                 <td>{item.year_established ? item.year_established : "-"}</td>
                                                 <td><button className='close' aria-label="Close" ><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, key)} aria-hidden="true"></i></button></td>
-                                                <td><button className="close" aria-label="Close" ><i className="fa fa-times" aria-hidden="true"></i></button></td>
                                             </tr>)
                                     })}
                                 </tbody>

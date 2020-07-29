@@ -170,7 +170,7 @@ function FormView(props) {
     })
 
     const deleteRecord = () => {
-        axios.post('/admin/deleteSurvey', {
+        axios.post('/admin/deleteCompany', {
             'id': state.id,
             'name': state.companyName,
             'telenumber': state.telephone,
@@ -250,45 +250,45 @@ function FormView(props) {
                                     </div>
                                     <div className="form-group col-md">
                                         <label className='sm-lbl'>DS Division</label>
-                                        <p>{state.dsDivision}</p>
+                                        <p>{state.dsDivision ? state.dsDivision : "N/A"}</p>
                                     </div>
                                     <div className="form-group col-md">
                                         <label className='sm-lbl'>GN Division</label>
-                                        <p>{state.gnDivision}</p>
+                                        <p>{state.gnDivision ? state.gnDivision : "N/A"}</p>
                                     </div>
                                     <div className="form-group col-md">
                                         <label className='sm-lbl'>Latitude</label>
-                                        <p>{state.latitude}</p>
+                                        <p>{state.latitude ? state.latitude : "N/A"}</p>
                                     </div>
                                     <div className="form-group col-md">
                                         <label className='sm-lbl'>Longitude</label>
-                                        <p>{state.longitude}</p>
+                                        <p>{state.longitude ? state.longitude : "N/A"}</p>
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label className='topic-text'>3. Address</label>
-                                    <p>{state.address}</p>
+                                    <p>{state.address ? state.address : "N/A"}</p>
                                 </div>
 
                                 <label className='topic-text'>4. Contact Details</label>
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
                                         <label className='sm-lbl'>Tele</label>
-                                        <p>{state.telenumber}</p>
+                                        <p>{state.telenumber ? state.address : "N/A"}</p>
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label className='sm-lbl'>Email</label>
-                                        <p>{state.email}</p>
+                                        <p>{state.email ? state.address : "N/A"}</p>
                                     </div>
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
                                         <label className='sm-lbl'>Fax</label>
-                                        <p>{state.fax}</p>
+                                        <p>{state.fax ? state.address : "N/A"}</p>
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label className='sm-lbl'>Website</label>
-                                        <p>{state.website}</p>
+                                        <p>{state.website ? state.address : "N/A"}</p>
                                     </div>
                                 </div>
 
@@ -324,16 +324,16 @@ function FormView(props) {
                                     <div className='col'>
                                         <label className='sm-lbl'>Annual Turnover in last 1-2 years</label>
                                         <br />
-                                        <p>{state.turnover}</p></div>
+                                        <p>{state.turnover ? state.turnover : "N/A"}</p></div>
                                     <div className='col'>
                                         <label className='sm-lbl'>Number of Local Employees</label>
                                         <br />
-                                        <p>{state.local_employees}</p>
+                                        <p>{state.local_employees ? state.local_employees : "N/A"}</p>
                                     </div>
                                     <div className='col'>
                                         <label className='sm-lbl'>Number of Foreign Employees</label>
                                         <br />
-                                        <p>{state.foreign_employees}</p>
+                                        <p>{state.foreign_employees ? state.foreign_employees : "N/A"}</p>
                                     </div>
                                 </div>
 
@@ -342,25 +342,26 @@ function FormView(props) {
                                 <div className="form-row">
                                     <div className="form-group col-md">
                                         <label className='sm-lbl'>2016/2017 (Rs. Mn)</label>
-                                        <p>{state.annual_turnover.y2016_2017}</p>
+                                        <p>{state.annual_turnover.y2016_2017 ? state.annual_turnover.y2016_2017 : "N/A"}</p>
                                     </div>
                                     <div className="form-group col-md">
                                         <label className='sm-lbl'>2017/2018 (Rs. Mn)</label>
-                                        <p>{state.annual_turnover.y2017_2018}</p>
+                                        <p>{state.annual_turnover.y2017_2018 ? state.annual_turnover.y2017_2018 : "N/A"}</p>
                                     </div>
                                     <div className="form-group col-md">
                                         <label className='sm-lbl'>2018/2019 (Rs. Mn)</label>
-                                        <p>{state.annual_turnover.y2018_2019}</p>                                        </div>
+                                        <p>{state.annual_turnover.y2018_2019 ? state.annual_turnover.y2018_2019 : "N/A"}</p>
+                                    </div>
                                 </div>
 
                                 <div className="form-group">
                                     <label className='topic-text'>7. Year of Establishment</label>
-                                    <p>{state.yoe}</p>                                    </div>
+                                    <p>{state.yoe ? state.yoe : "N/A"}</p>                                    </div>
 
                                 <label className='topic-text'>8. Ownership and Registration of the Business</label>
                                 <br />
                                 <label className='mt-2 mb-2 sm-lbl'>Type of Business Registration</label>
-                                <p>{state.business_type} - {state.reg_no} - {state.reg_place}</p>
+                                <p>{state.business_type ? state.business_type : "N/A"} - {state.reg_no ? state.reg_no : "N/A"} - {state.reg_place ? state.reg_place : "N/A"}</p>
 
                                 <label className='mt-2 mb-2 sm-lbl'>Registration Under Ministry</label>
                                 <p>{state.industry_reg ? ("Yes - " + state.industry_reg_no + " - " + state.industry_reg_place) : "No"}</p>
@@ -680,7 +681,7 @@ function FormView(props) {
                                 <div className='form-row'>
                                     <div className="form-group col-md">
                                         <label className='topic-text'>Name of the Interviewer</label>
-                                        <p>{state.interviewer}</p>
+                                        <p>{state.interviewer ? state.interviewer : "N/A"}</p>
                                     </div>
 
                                     <div className="form-group col-md">
@@ -691,7 +692,7 @@ function FormView(props) {
                                 <hr className='page-break mt-4 mb-4' />
                                 <hr className='page-break mt-4 mb-4' />
                                 <div className="container">
-                                    <button className="btn btn-outline-danger" onClick={() => deleteRecord()}>Delete This</button>
+                                    <button className="btn btn-outline-danger" onClick={deleteRecord}>Delete This</button>
                                 </div>
                                 <hr className='page-break mt-4 mb-4' />
                                 <hr className='page-break mt-4 mb-4' />
