@@ -6,7 +6,7 @@ import { useAuth } from '../../services/AuthenticationService'
 
 function FormView(props) {
 
-    document.title = 'Add New Data'
+    document.title = 'All Records'
 
     const history = useHistory()
 
@@ -97,7 +97,7 @@ function FormView(props) {
                         land_area: res.data.surveyData.land_capital[0].land_area, land_value: res.data.surveyData.land_capital[0].land_value,
                         building_area: res.data.surveyData.building_capital[0].building_area, building_value: res.data.surveyData.building_capital[0].building_value,
                         machine_value: res.data.surveyData.capital_investment[0].plant_machinery, utilities_value: res.data.surveyData.capital_investment[0].utilities, total_capital_investment: res.data.surveyData.capital_investment[0].total,
-                        raw_mat_value: res.data.surveyData.working_capital[0].raw_material, semi_goods_value: res.data.surveyData.working_capital[0].semi_finished, goods_value: res.data.surveyData.working_capital[0].finished, total_working_capital: state.raw_mat_value + state.semi_goods_value + state.goods_value,
+                        raw_mat_value: res.data.surveyData.working_capital[0].raw_material, semi_goods_value: res.data.surveyData.working_capital[0].semi_finished, goods_value: res.data.surveyData.working_capital[0].finished,
                         owned_site: res.data.surveyData.property_ownership[0].owned, rented_site: res.data.surveyData.property_ownership[0].rented,
                         raw_materials: res.data.surveyData.raw_materials,
                         furnaces: res.data.surveyData.furnace,
@@ -437,7 +437,7 @@ function FormView(props) {
                                         </tr>
                                         <tr>
                                             <td ><p className='bold'>Total</p></td>
-                                            <td> <p>{state.total_working_capital}</p></td>
+                                            <td> <p>{state.raw_mat_value + state.semi_goods_value + state.goods_value}</p></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -663,12 +663,12 @@ function FormView(props) {
                                     <tbody>
                                         <tr>
                                             <td>Year 1</td>
-                                            <td><p>{state.business_progression.year1_dir ? ((state.business_progression.year1_dir === true) ? "Increase" : "Decrease") : "N/A"}</p></td>
+                                            <td><p>{state.business_progression.year1_dir ? state.business_progression.year1_dir : "N/A"}</p></td>
                                             <td><p>{state.business_progression.year1}</p></td>
                                         </tr>
                                         <tr>
                                             <td>Year 2</td>
-                                            <td><p>{state.business_progression.year2_dir ? ((state.business_progression.year2_dir === true) ? "Increase" : "Decrease") : "N/A"}</p></td>
+                                            <td><p>{state.business_progression.year2_dir ? state.business_progression.year2_dir : "N/A"}</p></td>
                                             <td><p>{state.business_progression.year2}</p></td>
                                         </tr>
                                     </tbody>
