@@ -15,9 +15,9 @@ function PrivateRoute({ component: Component, ...rest }) {
                     ?
                     (<div className='background w-100' ><Navbar></Navbar><Component {...props} /><Footer></Footer></div>)
                     : (authTokens.code === 401)
-                        ? (<Redirect to='/error' />)
-                        : (<Redirect to='/login' />)
-                : (<Redirect to='/login' />)
+                        ? (<Redirect to='/Error' />)
+                        : (<Redirect to='/Login' />)
+                : (<Redirect to='/Login' />)
         } exact />
     )
 }

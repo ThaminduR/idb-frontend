@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
-import './App.css';
+import React, { useState } from 'react'
+import './App.css'
+import 'font-awesome/css/font-awesome.min.css'
 import {
   Route,
   BrowserRouter as Router,
   Switch,
-} from 'react-router-dom';
+} from 'react-router-dom'
 import axios from 'axios'
-import PrivateRoute from './components/Routes/PrivateRoute';
-import { AuthContext } from './services/AuthenticationService';
-import LoggedoutRoute from './components/Routes/LoggedoutRoute';
-import 'font-awesome/css/font-awesome.min.css';
-import Dashboard from './components/Dashboard/Dashboard';
+import { AuthContext } from './services/AuthenticationService'
+
+import PrivateRoute from './components/Routes/PrivateRoute'
+import LoggedoutRoute from './components/Routes/LoggedoutRoute'
+import Dashboard from './components/Dashboard/Dashboard'
 import AllData from './components/AllData/AllData'
-import Login from './components/Login/Login';
+import Login from './components/Login/Login'
 import NewSurvey from './components/NewSurvey/NewSurvey'
 import ViewData from './components/ViewData/ViewData'
-import { API_BASE_URL } from './constants/constants';
-import Page404 from './components/ErrorPage/Page404';
-import ErrorPage from './components/ErrorPage/ErrorPage';
+import Page404 from './components/ErrorPage/Page404'
+import ErrorPage from './components/ErrorPage/ErrorPage'
+import FormView from './components/FormView/FormView'
+
+import { API_BASE_URL } from './constants/constants'
+
+
 
 function App() {
 
@@ -38,12 +43,14 @@ function App() {
         <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
           <Router>
             <Switch>
-              <LoggedoutRoute path='/login' component={Login} />
-              <PrivateRoute exact path='/dashboard' component={AllData} />
-              <PrivateRoute exact path='/newsurvey' component={NewSurvey} />
-              <PrivateRoute exact path='/viewdata' component={ViewData} />
-              <Route exact path='/error' component={ErrorPage} />
-              <PrivateRoute exact path='/' component={Dashboard} />
+              <LoggedoutRoute path='/Login' component={Login} />
+              <PrivateRoute exact path='/Dashboard' component={Dashboard} />
+              <PrivateRoute exact path='/AllRecords' component={AllData} />
+              <PrivateRoute exact path='/NewSurvey' component={NewSurvey} />
+              <PrivateRoute exact path='/DataAnalysis' component={ViewData} />
+              <PrivateRoute exact path='/ViewRecord' component={FormView} />
+              <Route exact path='/Error' component={ErrorPage} />
+              <PrivateRoute exact path='/' component={AllData} />
               <Route component={Page404}></Route>
             </Switch>
           </Router>

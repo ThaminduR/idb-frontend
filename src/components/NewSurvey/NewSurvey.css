@@ -38,6 +38,11 @@ th {
   position: fixed;
   z-index: 9999;
 }
+
+.fa-times {
+  color: red;
+}
+
 .errorMessage1 {
   display: blocked;
   /* animation: FadeAnimation 1s ease-in 4s forwards; */
