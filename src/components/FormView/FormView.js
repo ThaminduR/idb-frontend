@@ -230,7 +230,7 @@ function FormView(props) {
                         </div>
                         :
                         <div>
-                            <div className='container form-card'>
+                            <div className='container form-card form-view'>
                                 <hr className='page-break' />
                                 <div className='main-con'><label className='main-text'>A. Basic Industry Data</label></div>
                                 <hr className='page-break' />
@@ -310,7 +310,7 @@ function FormView(props) {
                                                 <tr key={key}>
                                                     <td>{item.name}</td>
                                                     <td>{item.designation}</td>
-                                                    <td>{item.tele}</td>
+                                                    <td>{item.telephone}</td>
                                                     <td>{item.mobile}</td>
                                                     <td>{item.email}</td>
                                                 </tr>)
@@ -485,7 +485,7 @@ function FormView(props) {
                                                     <td>{item.metal}</td>
                                                     <td>{item.origin}</td>
                                                     <td>{item.state}</td>
-                                                    <td>{item.amount}</td>
+                                                    <td>{item.metal_usage}</td>
                                                 </tr>)
                                         })}
                                     </tbody>
@@ -507,9 +507,9 @@ function FormView(props) {
                                         {state.furnaces.map((item, key) => {
                                             return (
                                                 <tr key={key}>
-                                                    <td>{item.name}</td>
+                                                    <td>{item.furnace_type}</td>
                                                     <td>{item.capacity}</td>
-                                                    <td>{item.batchespd}</td>
+                                                    <td>{item.batches}</td>
                                                     <td>{item.fuel}</td>
                                                 </tr>)
                                         })}
@@ -542,7 +542,7 @@ function FormView(props) {
                                         {state.machinery.map((item, key) => {
                                             return (
                                                 <tr key={key}>
-                                                    <td>{item.type}</td>
+                                                    <td>{item.machine_type}</td>
                                                     <td>{item.capacity}</td>
                                                     <td>{item.value}</td>
                                                 </tr>)
@@ -568,7 +568,7 @@ function FormView(props) {
                                             return (
                                                 <tr key={key}>
                                                     <td>{item.metal}</td>
-                                                    <td>{item.type}</td>
+                                                    <td>{item.product}</td>
                                                     <td>{item.state}</td>
                                                     <td>{item.units}</td>
                                                     <td>{item.weight}</td>
@@ -616,9 +616,9 @@ function FormView(props) {
                                         {state.waste_generated.map((item, key) => {
                                             return (
                                                 <tr key={key}>
-                                                    <td>{item.type}</td>
-                                                    <td>{item.amount}</td>
-                                                    <td>{item.disposal}</td>
+                                                    <td>{item.type_waste}</td>
+                                                    <td>{item.amount_waste}</td>
+                                                    <td>{item.dispose_method}</td>
                                                 </tr>)
                                         })}
                                     </tbody>

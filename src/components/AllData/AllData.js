@@ -118,7 +118,7 @@ function AllData(props) {
                                                 <td>{item.address ? item.address : "-"}</td>
                                                 <td>{item.telephone ? item.telephone : "-"}</td>
                                                 <td>{item.year_established ? item.year_established : "-"}</td>
-                                                <td><button className='close' aria-label="Close" ><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, key)} aria-hidden="true"></i></button></td>
+                                                <td><button className='close' aria-label="Close" ><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, item.id)} aria-hidden="true"></i></button></td>
                                             </tr>)
                                     })}
                                 </tbody>
