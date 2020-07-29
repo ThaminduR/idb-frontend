@@ -186,6 +186,7 @@ function NewSurvey(props) {
     }
     const submitForm = (e) => {
         e.preventDefault();
+        console.log(state.business_type)
         state.errors = validate();
         const isValid = !Object.keys(state.errors).some(x => state.errors[x]);
         if (isValid) {
