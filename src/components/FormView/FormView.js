@@ -56,7 +56,7 @@ function FormView(props) {
         energy: [],
         markets: { local_retail: '', local_companies: '', export: '' },
         other_markets: { name: '', percentage: '' },
-        annual_turnover: { y2016_2017: '', y2017_2018: '', y2018_2019: '' },
+        annual_turnover: [],
         business_progression: { year1_dir: '', year1: '', year2_dir: '', year2: '' },
         waste_generated: [],
         interviewer: '',
@@ -88,6 +88,7 @@ function FormView(props) {
                         turnover: res.data.surveyData.company_category[0].turnover_category,
                         local_employees: res.data.surveyData.company_category[0].local_employee_category, //macro / small / medium
                         foreign_employees: res.data.surveyData.company_category[0].foreign_employee_category,
+                        annual_turnover: res.data.surveyData.annual_turnover,
                         annual_turnover1: res.data.surveyData.annual_turnover[0],
                         annual_turnover2: res.data.surveyData.annual_turnover[1],
                         annual_turnover3: res.data.surveyData.annual_turnover[2],
@@ -113,6 +114,7 @@ function FormView(props) {
                         interviewer: res.data.surveyData.interviewer[0].name,
                         yoi: res.data.surveyData.company[0].surveyed_year
                     }))
+                    console.log(state.annual_turnover)
                 } else if (res.code === 401) {
                     setAuthTokens(res.data)
                     history.replace('/error')
@@ -344,19 +346,15 @@ function FormView(props) {
 
                                 <label className='topic-text mb-2 mt-2'>Annual Turnover of the Industry</label>
 
-                                <div className="form-row">
-                                    <div className="form-group col-md">
-                                        <label className='sm-lbl'>{state.annual_turnover1.year_range + " (Rs. Mn)"}</label>
-                                        <p>{state.annual_turnover1.value}</p>
-                                    </div>
-                                    <div className="form-group col-md">
-                                        <label className='sm-lbl'>{state.annual_turnover2.year_range + " (Rs. Mn)"}</label>
-                                        <p>{state.annual_turnover2.value}</p>
-                                    </div>
-                                    <div className="form-group col-md">
-                                        <label className='sm-lbl'>{state.annual_turnover3.year_range + " (Rs. Mn)"}</label>
-                                        <p>{state.annual_turnover3.value}</p>
-                                    </div>
+                                <div className="row">
+                                    {state.annual_turnover.map((item, key) => {
+                                        return (
+                                            <div key={key} className='col'>
+                                                <label className='sm-lbl' >{item.year_range}</label>
+                                                <br />
+                                                <p>{item.value}</p>
+                                            </div>)
+                                    })}
                                 </div>
 
                                 <div className="form-group">
