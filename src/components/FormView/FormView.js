@@ -277,21 +277,21 @@ function FormView(props) {
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
                                         <label className='sm-lbl'>Tele</label>
-                                        <p>{state.telenumber ? state.address : "N/A"}</p>
+                                        <p>{state.telenumber ? state.telenumber : "N/A"}</p>
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label className='sm-lbl'>Email</label>
-                                        <p>{state.email ? state.address : "N/A"}</p>
+                                        <p>{state.email ? state.email : "N/A"}</p>
                                     </div>
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
                                         <label className='sm-lbl'>Fax</label>
-                                        <p>{state.fax ? state.address : "N/A"}</p>
+                                        <p>{state.fax ? state.fax : "N/A"}</p>
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label className='sm-lbl'>Website</label>
-                                        <p>{state.website ? state.address : "N/A"}</p>
+                                        <p>{state.website ? state.website : "N/A"}</p>
                                     </div>
                                 </div>
 
