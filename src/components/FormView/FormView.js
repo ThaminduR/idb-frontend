@@ -344,16 +344,16 @@ function FormView(props) {
 
                                 <div className="form-row">
                                     <div className="form-group col-md">
-                                        <label className='sm-lbl'>2016/2017 (Rs. Mn)</label>
-                                        <p>{state.annual_turnover.y2016_2017}</p>
+                                        <label className='sm-lbl'>{state.annual_turnover1.year_range + " (Rs. Mn)"}</label>
+                                        <p>{state.annual_turnover1.value}</p>
                                     </div>
                                     <div className="form-group col-md">
-                                        <label className='sm-lbl'>2017/2018 (Rs. Mn)</label>
-                                        <p>{state.annual_turnover.y2017_2018}</p>
+                                        <label className='sm-lbl'>{state.annual_turnover2.year_range + " (Rs. Mn)"}</label>
+                                        <p>{state.annual_turnover2.value}</p>
                                     </div>
                                     <div className="form-group col-md">
-                                        <label className='sm-lbl'>2018/2019 (Rs. Mn)</label>
-                                        <p>{state.annual_turnover.y2018_2019}</p>
+                                        <label className='sm-lbl'>{state.annual_turnover3.year_range + " (Rs. Mn)"}</label>
+                                        <p>{state.annual_turnover3.value}</p>
                                     </div>
                                 </div>
 
