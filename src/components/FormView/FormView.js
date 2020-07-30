@@ -88,7 +88,9 @@ function FormView(props) {
                         turnover: res.data.surveyData.company_category[0].turnover_category,
                         local_employees: res.data.surveyData.company_category[0].local_employee_category, //macro / small / medium
                         foreign_employees: res.data.surveyData.company_category[0].foreign_employee_category,
-                        annual_turnover: res.data.surveyData.annual_turnover[0],
+                        annual_turnover1: res.data.surveyData.annual_turnover[0],
+                        annual_turnover2: res.data.surveyData.annual_turnover[1],
+                        annual_turnover3: res.data.surveyData.annual_turnover[2],
                         yoe: res.data.surveyData.company[0].year_established, //year of establishment
                         business_type: res.data.surveyData.ownership_registration[0].business_type, reg_no: res.data.surveyData.ownership_registration[0].reg_no, reg_place: res.data.surveyData.ownership_registration[0].reg_place, //busines type - sole proprietor /... 
                         industry_reg: res.data.surveyData.ownership_registration[0].industry_reg, industry_reg_no: res.data.surveyData.ownership_registration[0].industry_reg_no, industry_reg_place: res.data.surveyData.ownership_registration[0].industry_reg_place, //industry_reg - whether company is register with the ministry
@@ -344,16 +346,16 @@ function FormView(props) {
 
                                 <div className="form-row">
                                     <div className="form-group col-md">
-                                        <label className='sm-lbl'>2016/2017 (Rs. Mn)</label>
-                                        <p>{state.annual_turnover.y2016_2017}</p>
+                                        <label className='sm-lbl'>{state.annual_turnover1.year_range + " (Rs. Mn)"}</label>
+                                        <p>{state.annual_turnover1.value}</p>
                                     </div>
                                     <div className="form-group col-md">
-                                        <label className='sm-lbl'>2017/2018 (Rs. Mn)</label>
-                                        <p>{state.annual_turnover.y2017_2018}</p>
+                                        <label className='sm-lbl'>{state.annual_turnover2.year_range + " (Rs. Mn)"}</label>
+                                        <p>{state.annual_turnover2.value}</p>
                                     </div>
                                     <div className="form-group col-md">
-                                        <label className='sm-lbl'>2018/2019 (Rs. Mn)</label>
-                                        <p>{state.annual_turnover.y2018_2019}</p>
+                                        <label className='sm-lbl'>{state.annual_turnover3.year_range + " (Rs. Mn)"}</label>
+                                        <p>{state.annual_turnover3.value}</p>
                                     </div>
                                 </div>
 
