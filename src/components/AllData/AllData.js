@@ -6,7 +6,7 @@ import { useAuth } from '../../services/AuthenticationService'
 
 function AllData(props) {
 
-    document.title = 'Add New Data'
+    document.title = 'All Records'
 
     const history = useHistory()
 
@@ -35,7 +35,7 @@ function AllData(props) {
                         successMessage: 'Data Retireved',
                         requestPending: false
                     }))
-                } else if (res.code === 401) {
+                } else if (res.data.code === 401) {
                     setAuthTokens(res.data)
                     history.replace('/error')
                 } else {
@@ -101,6 +101,7 @@ function AllData(props) {
                             <table className='table table-div table-bordered table-striped'>
                                 <thead className='thead-light'>
                                     <tr>
+                                        <th>No</th>
                                         <th>Name</th>
                                         <th>District</th>
                                         <th>Address</th>
@@ -113,6 +114,7 @@ function AllData(props) {
                                     {state.companyData.map((item, key) => {
                                         return (
                                             <tr key={key}>
+                                                <td>{item.id}</td>
                                                 <td>{item.name}</td>
                                                 <td>{item.district}</td>
                                                 <td>{item.address ? item.address : "-"}</td>

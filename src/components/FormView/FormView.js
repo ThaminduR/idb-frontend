@@ -115,7 +115,7 @@ function FormView(props) {
                         yoi: res.data.surveyData.company[0].surveyed_year
                     }))
                     console.log(state.annual_turnover)
-                } else if (res.code === 401) {
+                } else if (res.data.code === 401) {
                     setAuthTokens(res.data)
                     history.replace('/error')
                 } else {

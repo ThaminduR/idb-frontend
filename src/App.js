@@ -21,6 +21,7 @@ import ErrorPage from './components/ErrorPage/ErrorPage'
 import FormView from './components/FormView/FormView'
 
 import { API_BASE_URL } from './constants/constants'
+import DeletedRecords from './components/DeletedRecords/DeletedRecords'
 
 
 
@@ -46,6 +47,7 @@ function App() {
               <LoggedoutRoute path='/Login' component={Login} />
               <PrivateRoute exact path='/Dashboard' component={Dashboard} />
               <PrivateRoute exact path='/AllRecords' component={AllData} />
+              <PrivateRoute exact path='/DeletedRecords' component={DeletedRecords} />
               <PrivateRoute exact path='/NewSurvey' component={NewSurvey} />
               <PrivateRoute exact path='/DataAnalysis' component={ViewData} />
               <PrivateRoute exact path='/ViewRecord' component={FormView} />
