@@ -38,10 +38,10 @@ function ErrorPage(props) {
         }, 1000)
     }
 
-    const redirectToSite = (e) => {
-        e.preventDefault()
-        history.replace('/login')
-    }
+    // const redirectToSite = (e) => {
+    //     e.preventDefault()
+    //     history.replace('/login')
+    // }
 
     return (
         <div className='background-error'>
@@ -50,7 +50,6 @@ function ErrorPage(props) {
                     <p className='text-error-h'>:(</p>
                     <p className='text-error-p'>{(authTokens.code === 401) ? "It Seems that You're Unauthorized. Please Login Again" : authTokens.message}</p>
                     <p>{(timeLeft) ? ("You'll redirected in " + timeLeft) : "Redirecting..."}</p>
-                    <div className='btn btn-404' onClick={redirectToSite}>Back to Site</div>
                 </div>
             </div>
         </div>

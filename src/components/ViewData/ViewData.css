@@ -1,5 +1,30 @@
 .background {
-  width: 100vw;
+  width: 100%;
   color: black;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(235, 235, 235);
+  height: 100vh;
+}
+
+.filter-con {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.filter-col {
+  background-color: white;
+  color: black;
+  /* width: 15vw; */
+  margin-top: auto;
+  -webkit-box-shadow: 4px 0px 22px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 0px 22px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 0px 22px -8px rgba(0, 0, 0, 0.75);
+}
+
+.filter-alert {
+  top: 10vh;
+}
+
+.filter-result-div {
+  /* width: 85vw; */
+  background-color: white;
 }

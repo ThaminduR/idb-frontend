@@ -24,7 +24,7 @@ function NavigationBar(props) {
         <nav className={"navbar navbar-expand-md navbar-dark"}>
             <div className='row'>
                 <div className='col-6'>
-                    <img className="img-responsive img-rounded" src={require("../../assets/user.jpg")}
+                    <img className="img-responsive img-rounded" src={require("../../assets/user2.png")}
                         alt="User" />
                 </div>
                 <div className='col-6'>
@@ -50,9 +50,9 @@ function NavigationBar(props) {
                     {/* <li className="nav-item active ml-2 mt-2 mr-2">
                         <div className='btn btn-outline-light' onClick={testBackend}>Test Backend</div>
                     </li> */}
-                    <li className="nav-item active ml-2 mt-2 mr-2">
+                    {/* <li className="nav-item active ml-2 mt-2 mr-2">
                         <a href="/Dashboard">Dashboard</a>
-                    </li>
+                    </li> */}
                     <li className="nav-item active ml-2 mt-2 mr-2">
                         <a href="/AllRecords">All Records</a>
                     </li>
@@ -61,6 +61,9 @@ function NavigationBar(props) {
                     </li>
                     <li className="nav-item active ml-2 mt-2 mr-2">
                         <a href="/DataAnalysis">Data Analysis</a>
+                    </li>
+                    <li className="nav-item active ml-2 mt-2 mr-2">
+                        <a href="/DeletedRecords">Deleted Records</a>
                     </li>
                     <li className="nav-item active ml-2 mr-2">
                         <button type="button" className="btn btn-outline-light" onClick={logout}>Logout</button>
