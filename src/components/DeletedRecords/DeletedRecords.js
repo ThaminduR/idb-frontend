@@ -24,7 +24,7 @@ function DeletedRecords(props) {
 
 
     const getData = () => [
-        axios.post('/admin/deletedSurveys')
+        axios.get('/admin/deletedSurveys')
             .then(function (res) {
                 if (res.data.code === 200) {
                     if (res.data.deletedcompany.length) {
