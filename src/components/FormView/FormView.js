@@ -16,6 +16,7 @@ function FormView(props) {
         statechange: '',
         successMessage: null,
         errorMessage: null,
+        infoMessage: false,
         //API State
         hasReq: false,
         requestPending: false,
@@ -173,7 +174,7 @@ function FormView(props) {
         axios.post('/admin/deleteCompany', {
             'id': state.id,
             'name': state.companyName,
-            'telenumber': state.telephone ? state.telephone : "",
+            'telenumber': state.telenumber ? state.telenumber : "",
             'address': state.address
         })
             .then(function (res) {
@@ -209,12 +210,28 @@ function FormView(props) {
             })
     }
 
+    const deleteInfo = (e) => {
+        e.preventDefault()
+        setState(prevState => ({
+            ...prevState,
+            infoMessage: true
+        }))
+    }
+
     const closeError = (e) => {
         e.preventDefault()
         setState(prevState => ({
             ...prevState,
             errorMessage: '',
             successMessage: ''
+        }))
+    }
+
+    const closeDel = (e) => {
+        e.preventDefault()
+        setState(prevState => ({
+            ...prevState,
+            infoMessage: false
         }))
     }
 
@@ -693,11 +710,21 @@ function FormView(props) {
                                     </div>
                                 </div>
                                 <hr className='page-break mt-4 mb-4' />
-                                <hr className='page-break mt-4 mb-4' />
-                                <div className="container">
-                                    <button className="btn btn-outline-danger" onClick={deleteRecord}>Delete This</button>
+                                <div className='row'>
+                                    <div className='col-3'>
+                                        <div className="container">
+                                            <button className="btn btn-outline-danger" onClick={deleteInfo}>Delete This</button>
+                                        </div>
+                                    </div>
+                                    <div className='col-5'>
+                                        <div className={"delete-alert" + ((state.infoMessage) ? ' errorMessage1' : ' errorMessage2')}>
+                                            Confirm Deletion
+                                        <button type="button" className="btn btn-outline-danger ml-1" onClick={(e) => deleteRecord(e)} >Confirm</button>
+                                            <button type="button" className="btn btn-outline-danger ml-1" onClick={(e) => closeDel(e)} >Cancel</button>
+                                        </div>
+                                    </div>
+                                    <div className='col-4'></div>
                                 </div>
-                                <hr className='page-break mt-4 mb-4' />
                                 <hr className='page-break mt-4 mb-4' />
                             </div>
 
