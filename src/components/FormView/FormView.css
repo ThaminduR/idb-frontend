@@ -87,3 +87,8 @@
 .alldata-background label {
     font-weight: 600;
 }
+
+.delete-alert {
+  font-size: 1.5em;
+  color: red;
+}

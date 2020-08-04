@@ -27,9 +27,15 @@ function DeletedRecords(props) {
         axios.post('/admin/deletedSurveys')
             .then(function (res) {
                 if (res.data.code === 200) {
+                    if (res.data.deletedcompany.length) {
+                        setState(prevState => ({
+                            ...prevState,
+                            deletedData: res.data.deletedcompany,
+                            isDataEmpty: false
+                        }))
+                    }
                     setState(prevState => ({
                         ...prevState,
-                        companyData: res.data.deletedData,
                         successMessage: 'Data Retireved',
                         requestPending: false
                     }))
@@ -97,8 +103,7 @@ function DeletedRecords(props) {
                                             <th>District</th>
                                             <th>Address</th>
                                             <th>Telephone</th>
-                                            <th>Year of Establishment</th>
-                                            <th>Interviewed Year</th>
+                                            <th>Surveyed Year</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -109,8 +114,7 @@ function DeletedRecords(props) {
                                                     <td>{item.district}</td>
                                                     <td>{item.address ? item.address : "N/A"}</td>
                                                     <td>{item.telephone ? item.telephone : "N/A"}</td>
-                                                    <td>{item.year_established ? item.year_established : "N/A"}</td>
-                                                    <td>{item.yoi}</td>
+                                                    <td>{item.surveyed_year}</td>
                                                 </tr>)
                                         })}
                                     </tbody>
