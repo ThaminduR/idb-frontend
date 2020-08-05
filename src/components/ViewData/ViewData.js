@@ -57,7 +57,7 @@ function ViewData(props) {
             ...prevState,
             requestPending: true
         })),
-        axios.post('/admin/furnaceCapacity ', {
+        axios.post('/admin/getFurnanceData ', {
             'furnace': state.furnace,
             'capacity': state.capacity,
             'range': state.range
@@ -66,10 +66,11 @@ function ViewData(props) {
                 if (res.data.code === 200) {
                     setState(prevState => ({
                         ...prevState,
-                        disVal: res.data.disVal,
+                        disVal: res.data.companydistrictlist,
                         successMessage: 'Data Retireved',
                         requestPending: false,
                         hasReq: true,
+                        dataEmpty: false
                     }))
                 } else if (res.data.code === 401) {
                     setAuthTokens(res.data)
