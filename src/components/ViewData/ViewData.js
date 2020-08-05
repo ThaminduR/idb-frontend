@@ -154,7 +154,7 @@ function ViewData(props) {
                             {state.requestPending
                                 ?
                                 <div className={"alert filter-alert alert-info"} role="alert" >Loading... </div>
-                                : !state.dataEmpty
+                                : state.dataEmpty
                                     ?
                                     <div>
                                     </div>
