@@ -17,10 +17,9 @@ function ViewData(props) {
         furnace: '',
         capacity: 0,
         range: '',
-        disVal: { "Cupola Furnace": { "Colombo": 23 } },
+        disVal: { "Colombo": [{}, {}], "Galle": [] },
         hasReq: false,
         requestPending: false,
-        companies: [],
         dataEmpty: true,
     })
 
@@ -67,7 +66,7 @@ function ViewData(props) {
                 if (res.data.code === 200) {
                     setState(prevState => ({
                         ...prevState,
-                        companyData: res.data.companyData,
+                        disVal: res.data.disVal,
                         successMessage: 'Data Retireved',
                         requestPending: false,
                         hasReq: true,
@@ -155,7 +154,7 @@ function ViewData(props) {
                             {state.requestPending
                                 ?
                                 <div className={"alert filter-alert alert-info"} role="alert" >Loading... </div>
-                                : state.dataEmpty
+                                : !state.dataEmpty
                                     ?
                                     <div>
                                     </div>
@@ -179,7 +178,7 @@ function ViewData(props) {
                                                                     {item.value}
                                                                 </td>
                                                                 <td>
-                                                                    {state.disVal[state.furnace] ? state.disVal[state.furnace][item.value] : "N/A"}
+                                                                    {state.disVal[item.value] ? state.disVal[item.value].length : "N/A"}
                                                                 </td>
                                                             </tr>
                                                         )
