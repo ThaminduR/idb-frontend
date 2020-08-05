@@ -1,6 +1,9 @@
+.viewdata-background {
+  background-color: rgb(235, 235, 235);
+}
 .filter-col {
-  background-color: rgb(5, 79, 139);
-  color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-size: 1em;
   -webkit-box-shadow: 4px 0px 22px -8px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 4px 0px 22px -8px rgba(0, 0, 0, 0.75);
@@ -14,6 +17,7 @@
 }
 
 .no-rec-text-analyze {
+  background-color: rgb(235, 235, 235);
   margin-top: 10vh;
   font-size: 2em;
   font-family: "Karla", sans-serif;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useAuth } from '../../services/AuthenticationService'
 import axios from 'axios'
@@ -15,10 +15,11 @@ function ViewData(props) {
     const [state, setState] = useState({
         district: '',
         furnace: '',
-        disVal: { "Cupola Furnace": { "Colombo": 23 } },
+        capacity: 0,
+        range: '',
+        disVal: { "Colombo": [{}, {}], "Galle": [] },
         hasReq: false,
         requestPending: false,
-        companies: [],
         dataEmpty: true,
     })
 
@@ -35,27 +36,41 @@ function ViewData(props) {
 
     const handleChange = (e) => {
         const { id, value } = e.target
-        console.log("ID:", id, "Value:", value)
 
         setState(prevState => ({
             ...prevState,
             [id]: value
         }))
-        console.log(state.furnace)
+    }
 
+    const handleCheckChange = (e, id) => {
+        const { value } = e.target
+
+        setState(prevState => ({
+            ...prevState,
+            [id]: value
+        }))
     }
 
     const getData = () => [
-        axios.post('/admin/viewSurveys', {
-            'yoi': state.yoi
+        setState(prevState => ({
+            ...prevState,
+            requestPending: true
+        })),
+        axios.post('/admin/getFurnanceData ', {
+            'furnace': state.furnace,
+            'capacity': state.capacity,
+            'range': state.range
         })
             .then(function (res) {
                 if (res.data.code === 200) {
                     setState(prevState => ({
                         ...prevState,
-                        companyData: res.data.companyData,
+                        disVal: res.data.companydistrictlist,
                         successMessage: 'Data Retireved',
-                        requestPending: false
+                        requestPending: false,
+                        hasReq: true,
+                        dataEmpty: false
                     }))
                 } else if (res.data.code === 401) {
                     setAuthTokens(res.data)
@@ -78,19 +93,19 @@ function ViewData(props) {
     ]
 
     //eslint-disable-next-line
-    useEffect(() => {
-        if (state.hasReq || !state.requestPending) {
-            return
-        }
-        getData()
+    // useEffect(() => {
+    //     if (state.hasReq || !state.requestPending) {
+    //         return
+    //     }
+    //     getData()
 
-        setState(prevState => ({
-            ...prevState,
-            hasReq: true,
-            requestPending: true
-        }))
+    //     setState(prevState => ({
+    //         ...prevState,
+    //         hasReq: true,
+    //         requestPending: true
+    //     }))
 
-    })
+    // })
 
     // const closeError = (e) => {
     //     e.preventDefault()
@@ -107,9 +122,8 @@ function ViewData(props) {
                 <div className='col'>
                     <div className='option-col'>
                         <div className='filter-col' >
-                            <h2>Demo Only</h2>
                             <form className='row mt-3 justify-content-around' >
-                                <div className="col-3 form-group" >
+                                <div className="col-2 mt-2 form-group" >
                                     <label > Furnace </label>
                                     <select className="form-control" id='furnace' defaultValue={state.furnace} onChange={handleChange} >
                                         <option value=''>Select Furnace</option>
@@ -119,15 +133,19 @@ function ViewData(props) {
                                         <option value='Tilt Furnace'>Tilt Furnace</option>
                                     </select>
                                 </div>
-                                <div className="col-3 form-group" >
+                                <div className="col-2 mt-2 form-group" >
                                     <label > Select Range </label>
-                                    <div className='col justify-content-start'>
-                                        <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="greater" name='range' value='Greater' /><label className='form-check-label'>Greater Than or Equal</label></div>
-                                        <div className="form-check form-check-inline"><input className="form-check-input" type="radio" id="less" name='range' value='Less' /><label className='form-check-label'>Less Than or Equal</label></div>
+                                    <div className='row mt-2 justify-content-center' onChange={(e) => handleCheckChange(e, 'range')}>
+                                        <div className="form-check form-check-inline range-div"><input className="form-check-input" type="radio" id="greater" name='range' value='Greater' /><label className='form-check-label'>Greater Than</label></div>
+                                        <div className="form-check form-check-inline range-div "><input className="form-check-input" type="radio" id="less" name='range' value='Less' /><label className='form-check-label'>Less Than</label></div>
                                     </div>
                                 </div>
-                                <div className="col-3 form-group" >
+                                <div className="col-2 mt-2 form-group" >
                                     <label > Capacity </label>
+                                    <input type="text" className="form-control" id='capacity' value={state.capacity} onChange={handleChange} placeholder='Numeric Value' />
+                                </div>
+                                <div className="col-2 mt-4 ml-2 form-group" >
+                                    <div className='btn btn-outline-dark' onClick={getData}>Search</div>
                                 </div>
                             </form>
                         </div>
@@ -137,10 +155,9 @@ function ViewData(props) {
                             {state.requestPending
                                 ?
                                 <div className={"alert filter-alert alert-info"} role="alert" >Loading... </div>
-                                : !state.dataEmpty
+                                : state.dataEmpty
                                     ?
                                     <div>
-                                        <p className='no-rec-text-analyze'> No data to Show</p>
                                     </div>
                                     :
                                     <div>
@@ -162,7 +179,7 @@ function ViewData(props) {
                                                                     {item.value}
                                                                 </td>
                                                                 <td>
-                                                                    {state.disVal[state.furnace] ? state.disVal[state.furnace][item.value] : "N/A"}
+                                                                    {state.disVal[item.value] ? state.disVal[item.value].length : "N/A"}
                                                                 </td>
                                                             </tr>
                                                         )
