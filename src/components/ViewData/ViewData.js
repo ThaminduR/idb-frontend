@@ -92,30 +92,6 @@ function ViewData(props) {
             })
     ]
 
-    //eslint-disable-next-line
-    // useEffect(() => {
-    //     if (state.hasReq || !state.requestPending) {
-    //         return
-    //     }
-    //     getData()
-
-    //     setState(prevState => ({
-    //         ...prevState,
-    //         hasReq: true,
-    //         requestPending: true
-    //     }))
-
-    // })
-
-    // const closeError = (e) => {
-    //     e.preventDefault()
-    //     setState(prevState => ({
-    //         ...prevState,
-    //         errorMessage: '',
-    //         successMessage: ''
-    //     }))
-    // }
-
     return (
         <div className='viewdata-background' >
             <div className='container-fluid'>
