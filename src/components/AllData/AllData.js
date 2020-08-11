@@ -18,6 +18,8 @@ function AllData(props) {
         hasReq: false,
         requestPending: true,
         companyData: [],
+        products: [],
+        raw_materials: [],
         yoi: 2020,
         dataEmpty: false,
     })
@@ -32,6 +34,8 @@ function AllData(props) {
                     setState(prevState => ({
                         ...prevState,
                         companyData: res.data.companyData,
+                        products: res.data.products,
+                        raw_materials: res.data.raw_materials,
                         successMessage: 'Data Retireved',
                         requestPending: false
                     }))
@@ -86,13 +90,6 @@ function AllData(props) {
         })
     }
 
-    const viewRawMat = (e, id, name) => {
-        history.push({
-            pathname: '/viewRawMat',
-            data: [name, id],
-        })
-    }
-
     return (
         <div className='alldata-background'>
             <div className='container-flex'>
@@ -115,11 +112,25 @@ function AllData(props) {
                                         <th>Telephone</th>
                                         <th>Turnover Category</th>
                                         <th>Business Type</th>
-                                        <th>Local Employee</th>
-                                        <th>Foreign Employee</th>
+                                        <th>
+                                            <tr>
+                                                <th>Metal</th>
+                                                <th>Product</th>
+                                                <th>Weights</th>
+                                            </tr>
+                                        </th>
+                                        <th>
+                                            <tr>
+                                                <th>Metal</th>
+                                                <th>Origin</th>
+                                                <th>State</th>
+                                                <th>Usage</th>
+                                            </tr>
+                                        </th>
                                         <th>Local Market</th>
                                         <th>Foreign Market</th>
-                                        <th>Raw Material Data</th>
+                                        <th>Local Employee</th>
+                                        <th>Foreign Employee</th>
                                         <th>Complete Record</th>
                                     </tr>
                                 </thead>
@@ -134,11 +145,35 @@ function AllData(props) {
                                                 <td>{item.telephone ? item.telephone : "-"}</td>
                                                 <td>{item.turnover_category ? item.turnover_category : "-"}</td>
                                                 <td>{item.business_type ? item.business_type : "-"}</td>
-                                                <td>{item.local_employee_category ? item.local_employee_category : "-"}</td>
-                                                <td>{item.foreign_employee_category ? item.foreign_employee_category : "-"}</td>
+                                                <td>{state.products.map((p_item, p_key) => {
+                                                    if (item.id === p_item.id) {
+                                                        return (
+                                                            <tr key={p_key}>
+                                                                <td>{p_item.metal ? p_item.metal : "-"}</td>
+                                                                <td>{p_item.product ? p_item.product : '-'}</td>
+                                                                <td>{p_item.weight ? p_item.weight : '-'}</td>
+                                                            </tr>)
+                                                    } else {
+                                                        return null
+                                                    }
+                                                })}</td>
+                                                <td>{state.raw_materials.map((r_item, r_key) => {
+                                                    if (item.id === r_item.id) {
+                                                        return (
+                                                            <tr key={r_key}>
+                                                                <td>{r_item.metal ? r_item.metal : '-'}</td>
+                                                                <td>{r_item.origin ? r_item.origin : '-'}</td>
+                                                                <td>{r_item.state ? r_item.state : "-"}</td>
+                                                                <td>{r_item.metal_usage ? r_item.metal_usage : '-'}</td>
+                                                            </tr>)
+                                                    } else {
+                                                        return null
+                                                    }
+                                                })}</td>
                                                 <td>{item.local_retails + item.local_companies}</td>
                                                 <td>{item.foreigh_market ? item.foreigh_market : "-"}</td>
-                                                <td><button className='close'><i className="fa fa-life-ring" onClick={(e) => viewRawMat(e, item.id, item.name)} aria-hidden="true"></i></button></td>
+                                                <td>{item.local_employee_category ? item.local_employee_category : "-"}</td>
+                                                <td>{item.foreign_employee_category ? item.foreign_employee_category : "-"}</td>
                                                 <td><button className='close'><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, item.id)} aria-hidden="true"></i></button></td>
                                             </tr>)
                                     })}
