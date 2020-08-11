@@ -19,6 +19,7 @@ import ViewData from './components/ViewData/ViewData'
 import Page404 from './components/ErrorPage/Page404'
 import ErrorPage from './components/ErrorPage/ErrorPage'
 import FormView from './components/FormView/FormView'
+import Rawmaterial from './components/AllData/Rawmaterial'
 
 import { API_BASE_URL } from './constants/constants'
 import DeletedRecords from './components/DeletedRecords/DeletedRecords'
@@ -51,6 +52,7 @@ function App() {
               <PrivateRoute exact path='/NewSurvey' component={NewSurvey} />
               <PrivateRoute exact path='/DataAnalysis' component={ViewData} />
               <PrivateRoute exact path='/ViewRecord' component={FormView} />
+              <PrivateRoute exact path='/ViewRawMat' component={Rawmaterial} />
               <Route exact path='/Error' component={ErrorPage} />
               <PrivateRoute exact path='/' component={AllData} />
               <Route component={Page404}></Route>

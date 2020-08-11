@@ -1,0 +1,33 @@
+.filter-col {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  font-size: 1em;
+  -webkit-box-shadow: 4px 0px 22px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 0px 22px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 0px 22px -8px rgba(0, 0, 0, 0.75);
+}
+
+.filter-result-div {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  margin-bottom: 10vh;
+}
+
+.no-rec-text-analyze {
+  background-color: rgb(235, 235, 235);
+  margin-top: 10vh;
+  font-size: 2em;
+  font-family: "Karla", sans-serif;
+  color: rgb(5, 79, 139);
+}
+
+.furnace-name {
+  margin-top: 5vh;
+  font-size: 1.3em;
+  font-family: "Karla", sans-serif;
+  color: rgb(5, 79, 139);
+}
+
+.filter-alert {
+  top: 10vh;
+}

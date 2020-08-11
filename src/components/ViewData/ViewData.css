@@ -1,36 +1,64 @@
 .viewdata-background {
-  background-color: rgb(235, 235, 235);
-}
-.filter-col {
   background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  font-size: 1em;
-  -webkit-box-shadow: 4px 0px 22px -8px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 4px 0px 22px -8px rgba(0, 0, 0, 0.75);
-  box-shadow: 4px 0px 22px -8px rgba(0, 0, 0, 0.75);
 }
 
-.filter-result-div {
-  background-color: rgb(255, 255, 255);
-  color: black;
-  margin-bottom: 10vh;
-}
+/* .tab-selector{
+ background-color: rgb(5, 79, 139);
+ height: 100%;
+} */
 
-.no-rec-text-analyze {
-  background-color: rgb(235, 235, 235);
-  margin-top: 10vh;
-  font-size: 2em;
-  font-family: "Karla", sans-serif;
-  color: rgb(5, 79, 139);
-}
 
-.furnace-name {
-  margin-top: 5vh;
-  font-size: 1.3em;
-  font-family: "Karla", sans-serif;
-  color: rgb(5, 79, 139);
-}
+/* Sidebar css */
+.sidebar-wrapper {
+    color: rgb(192, 192, 192);
+    background-color: rgb(5, 79, 139);
+    width: 16.66%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top:0;
+    transition: 1s ease;
+  }
 
-.filter-alert {
-  top: 10vh;
+.sidebar-content {
+    margin-top: 28%;
+    margin-bottom: 25%;
 }
+  
+  .sidebar-content > ul > li {
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    background-color: rgb(5, 79, 139);
+  }
+  
+  .sidebar-content > ul > li > a {
+    color: rgb(221, 221, 221) !important;
+    display: block;
+    font-size: 1.02em;
+    height: 4vh;
+    padding-bottom: 1.5em;
+    padding-top: 1.5em;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  @media screen and (max-width: 1000px) {
+    .sidebar-wrapper {
+      width: 100px;
+    }
+    .sidebar-content > ul > li > a {
+      font-size: 0.7em;
+    }
+  }
+  
+  @media screen and (max-height: 660px) {
+    .sidebar-content > ul > li > a {
+      font-size: 1em;
+    }
+  }
+  
+  @media screen and (max-height: 480px) {
+    .sidebar-content > ul > li > a {
+      font-size: 0.7em;
+    }
+  }

@@ -49,7 +49,7 @@ function AllData(props) {
             }).catch(function (err) {
                 setState(prevState => ({
                     ...prevState,
-                    errorMessage: "Error",
+                    errorMessage: "Data Retrieval Error",
                     requestPending: false
                 }))
             })
@@ -86,9 +86,16 @@ function AllData(props) {
         })
     }
 
+    const viewRawMat = (e, id, name) => {
+        history.push({
+            pathname: '/viewRawMat',
+            data: [name, id],
+        })
+    }
+
     return (
         <div className='alldata-background'>
-            <div className='container'>
+            <div className='container-flex'>
                 {state.requestPending
                     ?
                     <div className={"alert viewsur-alert alert-info"} role="alert">
@@ -106,8 +113,14 @@ function AllData(props) {
                                         <th>District</th>
                                         <th>Address</th>
                                         <th>Telephone</th>
-                                        <th>Year of Establishment</th>
-                                        <th>View Record</th>
+                                        <th>Turnover Category</th>
+                                        <th>Business Type</th>
+                                        <th>Local Employee</th>
+                                        <th>Foreign Employee</th>
+                                        <th>Local Market</th>
+                                        <th>Foreign Market</th>
+                                        <th>Raw Material Data</th>
+                                        <th>Complete Record</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -119,8 +132,14 @@ function AllData(props) {
                                                 <td>{item.district}</td>
                                                 <td>{item.address ? item.address : "-"}</td>
                                                 <td>{item.telephone ? item.telephone : "-"}</td>
-                                                <td>{item.year_established ? item.year_established : "-"}</td>
-                                                <td><button className='close' aria-label="Close" ><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, item.id)} aria-hidden="true"></i></button></td>
+                                                <td>{item.turnover_category ? item.turnover_category : "-"}</td>
+                                                <td>{item.business_type ? item.business_type : "-"}</td>
+                                                <td>{item.local_employee_category ? item.local_employee_category : "-"}</td>
+                                                <td>{item.foreign_employee_category ? item.foreign_employee_category : "-"}</td>
+                                                <td>{item.local_retails + item.local_companies}</td>
+                                                <td>{item.foreigh_market ? item.foreigh_market : "-"}</td>
+                                                <td><button className='close'><i className="fa fa-life-ring" onClick={(e) => viewRawMat(e, item.id, item.name)} aria-hidden="true"></i></button></td>
+                                                <td><button className='close'><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, item.id)} aria-hidden="true"></i></button></td>
                                             </tr>)
                                     })}
                                 </tbody>

@@ -53,7 +53,7 @@ function DeletedRecords(props) {
             }).catch(function (err) {
                 setState(prevState => ({
                     ...prevState,
-                    errorMessage: "Error",
+                    errorMessage: "Data Retrieval Error",
                     requestPending: false
                 }))
             })
