@@ -113,6 +113,7 @@ function AllData(props) {
                                         <th>Turnover Category</th>
                                         <th>Business Type</th>
                                         <th>
+                                            Products
                                             <tr>
                                                 <th>Metal</th>
                                                 <th>Product</th>
@@ -120,6 +121,7 @@ function AllData(props) {
                                             </tr>
                                         </th>
                                         <th>
+                                            Raw Materials
                                             <tr>
                                                 <th>Metal</th>
                                                 <th>Origin</th>
