@@ -1,14 +1,16 @@
 .table-div {
-  width: 97vw;
+  width: 90vw;
   margin-top: 10vh;
   margin-bottom: 15vh;
-  margin-left: 1vw;
-  margin-right: 0vw;
   background-color: rgb(255, 255, 255);
   border: 2px solid rgba(223, 221, 221, 0.685);
   text-align: left;
   box-shadow: 0px 21px 39px -10px rgba(0, 0, 0, 0.75);
   font-family: "Karla", sans-serif;
+}
+
+.table-div > table {
+ width: 90vw;
 }
 
 .searchbar {

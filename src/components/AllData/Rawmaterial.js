@@ -6,7 +6,7 @@ import { useAuth } from '../../services/AuthenticationService'
 
 function Rawmaterial(props) {
 
-    document.title = 'Raw Material Data'
+    document.title = 'Brief Data'
 
     const history = useHistory()
 
@@ -25,10 +25,11 @@ function Rawmaterial(props) {
         //Form Data
         companyName: '',
         raw_materials: [],
+        products:[]
     })
 
     const getRecordData = () => {
-        axios.post('/admin/viewRawMat', {
+        axios.post('/admin/viewInBrief', {
             'id': state.id
         })
             .then(function (res) {
@@ -36,7 +37,8 @@ function Rawmaterial(props) {
                     setState(prevState => ({
                         ...prevState,
                         requestPending: false,
-                        raw_materials: res.data.raw_materials,
+                        raw_materials: res.data.dataInBrief[1],
+                        products: res.data.dataInBrief[0]
                     }))
                     console.log(state.annual_turnover)
                 } else if (res.data.code === 401) {
@@ -69,7 +71,8 @@ function Rawmaterial(props) {
         if (data) {
             setState(prevState => ({
                 ...prevState,
-                companyName: data,
+                companyName: data[0],
+                id: data[1],
                 dataVerify: true,
                 requestPending: true
             }))
@@ -122,11 +125,15 @@ function Rawmaterial(props) {
                         :
                         <div>
                             <div className='container form-card form-view'>
-                                
+
                                 <div className="form-group">
                                     <label className='topic-text'>Name</label>
                                     <p>{state.companyName}</p>
                                 </div>
+
+                                <label className='topic-text'>Raw Materials</label>
+
+
                                 <table className='table mt-4 table-bordered'>
                                     <thead className='thead-light'>
                                         <tr>
@@ -149,6 +156,27 @@ function Rawmaterial(props) {
                                         })}
                                     </tbody>
                                 </table>
+
+                                <label className='topic-text'>Products</label>
+
+                                <table className='table mt-4 table-bordered'>
+                                    <thead className='thead-light'>
+                                        <tr>
+                                            <th>Metal</th>
+                                            <th>Product</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {state.products.map((item, key) => {
+                                            return (
+                                                <tr key={key}>
+                                                    <td>{item.metal}</td>
+                                                    <td>{item.product}</td>
+                                                </tr>)
+                                        })}
+                                    </tbody>
+                                </table>
+
                             </div>
 
                         </div>
