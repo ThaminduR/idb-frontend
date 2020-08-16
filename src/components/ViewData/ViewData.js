@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import './ViewData.css'
-import FurnaceCapcity from './FurnaceCapacity';
+import FurnaceCapcity from './FurnaceCapacity'
+import MetalProduct from './MetalProduct'
+import WasteGeneration from './WasteGeneration'
 
 function ViewData(props) {
 
@@ -43,8 +45,8 @@ function ViewData(props) {
                         {
                             {
                                 'Furnace Capacity': <FurnaceCapcity></FurnaceCapcity>,
-                                'Production Data': 2,
-                                'Waste Generation': 3,
+                                'Production Data': <MetalProduct></MetalProduct>,
+                                'Waste Generation': <WasteGeneration></WasteGeneration>,
                                 'Raw Materials': 4,
                                 'Average Production': 5,
                                 'Expected Production': 6,

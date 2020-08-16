@@ -21,8 +21,16 @@
   color: rgb(5, 79, 139);
 }
 
-.furnace-name {
+.var-name {
   margin-top: 5vh;
+  font-size: 1.3em;
+  font-family: "Karla", sans-serif;
+  color: rgb(5, 79, 139);
+}
+
+.topic-text {
+  margin-top: 1vh;
+  padding-top: 1vh;
   font-size: 1.3em;
   font-family: "Karla", sans-serif;
   color: rgb(5, 79, 139);
