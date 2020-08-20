@@ -122,7 +122,7 @@ function MetalProduct(props) {
                                     </div>
                                     :
                                     <div>
-                                        <p className='var-name'>{state.loadedmetal ? state.loadedmetal : "Select a Metal to View Data"}</p>
+                                        <p className='var-name'>{state.loadedmetal ? state.loadedmetal + " - " + state.type : "Select a Metal to View Data"}</p>
                                         <table className='table table-striped table-bordered'>
                                             <thead>
                                                 <tr>
