@@ -12,6 +12,7 @@ function RawMaterial(props) {
 
     const [state, setState] = useState({
         metal: '',
+        loadedmetal:'',
         disVal: {},
         hasReq: false,
         requestPending: false,
@@ -40,6 +41,7 @@ function RawMaterial(props) {
                     setState(prevState => ({
                         ...prevState,
                         disVal: res.data.data,
+                        loadedmetal: state.metal,
                         successMessage: 'Data Retireved',
                         requestPending: false,
                         hasReq: true,
@@ -109,7 +111,7 @@ function RawMaterial(props) {
                                     </div>
                                     :
                                     <div>
-                                        <p className='var-name'>{state.metal ? state.metal : "Select a Metal to View Data"}</p>
+                                        <p className='var-name'>{state.loadedmetal ? state.loadedmetal : "Select a Metal to View Data"}</p>
                                         <table className='table table-striped table-bordered'>
                                             <thead>
                                                 <tr>

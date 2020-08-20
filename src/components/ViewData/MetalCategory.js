@@ -12,6 +12,7 @@ function MetalCategory(props) {
 
     const [state, setState] = useState({
         metal: '',
+        loadedmetal:'',
         disVal: {},
         hasReq: false,
         requestPending: false,
@@ -38,6 +39,7 @@ function MetalCategory(props) {
                     setState(prevState => ({
                         ...prevState,
                         disVal: res.data.data,
+                        loadedmetal: state.metal,
                         successMessage: 'Data Retireved',
                         requestPending: false,
                         hasReq: true,
@@ -100,7 +102,7 @@ function MetalCategory(props) {
                                     </div>
                                     :
                                     <div>
-                                        <p className='var-name'>{state.metal ? state.metal : "Select a Metal to View Data"}</p>
+                                        <p className='var-name'>{state.loadedmetal ? state.loadedmetal : "Select a Metal to View Data"}</p>
                                         <table className='table table-striped table-bordered'>
                                             <thead>
                                                 <tr>

@@ -12,6 +12,7 @@ function ExpectedProduction(props) {
 
     const [state, setState] = useState({
         product: '',
+        loadedproduct: '',
         disVal: {},
         hasReq: false,
         requestPending: false,
@@ -41,6 +42,7 @@ function ExpectedProduction(props) {
                     setState(prevState => ({
                         ...prevState,
                         disVal: res.data.data,
+                        loadedproduct: state.product,
                         successMessage: 'Data Retireved',
                         requestPending: false,
                         hasReq: true,
@@ -108,7 +110,7 @@ function ExpectedProduction(props) {
                                     </div>
                                     :
                                     <div>
-                                        <p className='var-name'>{state.product ? state.product : "Select a Product to View Data"}</p>
+                                        <p className='var-name'>{state.loadedproduct ? state.loadedproduct : "Select a Product to View Data"}</p>
                                         <table className='table table-striped table-bordered'>
                                             <thead>
                                                 <tr>

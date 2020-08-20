@@ -11,8 +11,9 @@ function MetalProduct(props) {
     const { setAuthTokens } = useAuth()
 
     const [state, setState] = useState({
-        district: '',
+        type: '',
         metal: '',
+        loadedmetal:'',
         disValFur: [],
         disValProd: [],
         hasReq: false,
@@ -43,6 +44,7 @@ function MetalProduct(props) {
                         ...prevState,
                         disValProd: res.data.products,
                         disValFur: res.data.furnaces,
+                        loadedmetal:state.metal,
                         successMessage: 'Data Retireved',
                         requestPending: false,
                         hasReq: true,
@@ -77,7 +79,7 @@ function MetalProduct(props) {
                         <div className='filter-col' >
                             <p className='topic-text'>Production Data</p>
                             <form className='row mt-3 justify-content-around' >
-                                <div className="col-6 mt-2 form-group" >
+                                <div className="col-4 mt-2 form-group" >
                                     <label > Metal  </label>
                                     <select className="form-control" id='metal' defaultValue={state.metal} onChange={handleChange} >
                                         <option value=''>Select Metal</option>
@@ -93,6 +95,14 @@ function MetalProduct(props) {
                                         <option value='High Carbon Steel'>High Carbon Steel</option>
                                         <option value='Manganese Steel'>Manganese Steel</option>
                                         <option value='Other'>Other</option>
+                                    </select>
+                                </div>
+                                <div className="col-2 mt-2 ml-2 form-group" >
+                                    <label > Product/ Furnace  </label>
+                                    <select className="form-control" id='type' defaultValue={state.type} onChange={handleChange} >
+                                        <option value=''>Select Type</option>
+                                        <option value='Product'>Product</option>
+                                        <option value='Furnace'>Furnace</option>
                                     </select>
                                 </div>
                                 <div className="col-2 mt-4 ml-2 form-group" >
@@ -112,17 +122,16 @@ function MetalProduct(props) {
                                     </div>
                                     :
                                     <div>
-                                        <p className='var-name'>{state.metal ? state.metal : "Select a Metal to View Data"}</p>
+                                        <p className='var-name'>{state.loadedmetal ? state.loadedmetal : "Select a Metal to View Data"}</p>
                                         <table className='table table-striped table-bordered'>
                                             <thead>
                                                 <tr>
                                                     <th>District</th>
-                                                    <th>Product Capacity</th>
-                                                    <th>Furnace Capacity</th>
+                                                    <th>Capacity</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {
+                                                {(state.type === 'Product') ?
                                                     state.disValProd.map((item, key) => {
                                                         return (
                                                             <tr key={key}>
@@ -130,14 +139,26 @@ function MetalProduct(props) {
                                                                     {item.district}
                                                                 </td>
                                                                 <td>
-                                                                    {item.total}  
-                                                                </td>
-                                                                <td>
-                                                                    {state.disValFur[key].total}
+                                                                    {item.total}
                                                                 </td>
                                                             </tr>
                                                         )
                                                     })
+                                                    : (state.type === 'Furnace') ?
+                                                    state.disValFur.map((item, key) => {
+                                                        return (
+                                                            <tr key={key}>
+                                                                <td>
+                                                                    {item.district}
+                                                                </td>
+                                                                <td>
+                                                                    {item.total}
+                                                                </td>
+                                                            </tr>
+                                                        )
+                                                    }) 
+                                                    :
+                                                    ""
                                                 }
                                             </tbody>
                                         </table>
