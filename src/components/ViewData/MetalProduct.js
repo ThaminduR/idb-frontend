@@ -13,6 +13,7 @@ function MetalProduct(props) {
     const [state, setState] = useState({
         type: '',
         metal: '',
+        loadedmetal:'',
         disValFur: [],
         disValProd: [],
         hasReq: false,
@@ -43,6 +44,7 @@ function MetalProduct(props) {
                         ...prevState,
                         disValProd: res.data.products,
                         disValFur: res.data.furnaces,
+                        loadedmetal:state.metal,
                         successMessage: 'Data Retireved',
                         requestPending: false,
                         hasReq: true,
@@ -120,7 +122,7 @@ function MetalProduct(props) {
                                     </div>
                                     :
                                     <div>
-                                        <p className='var-name'>{state.metal ? state.metal : "Select a Metal to View Data"}</p>
+                                        <p className='var-name'>{state.loadedmetal ? state.loadedmetal : "Select a Metal to View Data"}</p>
                                         <table className='table table-striped table-bordered'>
                                             <thead>
                                                 <tr>

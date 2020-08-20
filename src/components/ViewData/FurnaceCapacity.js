@@ -13,6 +13,7 @@ function FurnaceCapcity(props) {
     const [state, setState] = useState({
         district: '',
         furnace: '',
+        loadedfurnace:'',
         capacity: 0,
         range: '',
         disVal: { "Colombo": [{}, {}], "Galle": [] },
@@ -65,6 +66,7 @@ function FurnaceCapcity(props) {
                     setState(prevState => ({
                         ...prevState,
                         disVal: res.data.companydistrictlist,
+                        loadedfurnace: state.furnace,
                         successMessage: 'Data Retireved',
                         requestPending: false,
                         hasReq: true,
@@ -137,7 +139,7 @@ function FurnaceCapcity(props) {
                                     </div>
                                     :
                                     <div>
-                                        <p className='var-name'>{state.furnace ? state.furnace : "Select a Furnace to View Data"}</p>
+                                        <p className='var-name'>{state.loadedfurnace ? state.loadedfurnace : "Select a Furnace to View Data"}</p>
                                         <table className='table table-striped table-bordered'>
                                             <thead>
                                                 <tr>
