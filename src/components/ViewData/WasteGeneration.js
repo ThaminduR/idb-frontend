@@ -4,7 +4,7 @@ import { useAuth } from '../../services/AuthenticationService'
 import axios from 'axios'
 import './FurnaceCapcity.css'
 
-function FurnaceCapcity(props) {
+function WasteGeneration(props) {
 
     const history = useHistory()
 
@@ -12,10 +12,8 @@ function FurnaceCapcity(props) {
 
     const [state, setState] = useState({
         district: '',
-        furnace: '',
-        capacity: 0,
-        range: '',
-        disVal: { "Colombo": [{}, {}], "Galle": [] },
+        metal: '',
+        disVal: {},
         hasReq: false,
         requestPending: false,
         dataEmpty: true,
@@ -41,30 +39,19 @@ function FurnaceCapcity(props) {
         }))
     }
 
-    const handleCheckChange = (e, id) => {
-        const { value } = e.target
-
-        setState(prevState => ({
-            ...prevState,
-            [id]: value
-        }))
-    }
-
     const getData = () => [
         setState(prevState => ({
             ...prevState,
             requestPending: true
         })),
-        axios.post('/admin/getFurnanceData ', {
-            'furnace': state.furnace,
-            'capacity': state.capacity,
-            'range': state.range
+        axios.post('/admin/getWasteData ', {
+            'metal': state.metal
         })
             .then(function (res) {
                 if (res.data.code === 200) {
                     setState(prevState => ({
                         ...prevState,
-                        disVal: res.data.companydistrictlist,
+                        disVal: res.data.data,
                         successMessage: 'Data Retireved',
                         requestPending: false,
                         hasReq: true,
@@ -92,33 +79,22 @@ function FurnaceCapcity(props) {
     ]
 
     return (
-        <div className='viewdata-background'>
+        <div className='viewdata-background' >
             <div className='container-fluid'>
                 <div className='col'>
                     <div className='option-col'>
                         <div className='filter-col'>
-                            <p className='topic-text'>Furnace Capacity</p>
+                        <p className='topic-text'>Waste Generation</p>
                             <form className='row mt-3 justify-content-around' >
-                                <div className="col-2 mt-2 form-group" >
+                                <div className="col-6 mt-2 form-group" >
                                     <label > Furnace </label>
-                                    <select className="form-control" id='furnace' defaultValue={state.furnace} onChange={handleChange} >
-                                        <option value=''>Select Furnace</option>
-                                        <option value='Cupola Furnace'>Cupola Furnace</option>
-                                        <option value='Pit Furnace'>Pit Furnace</option>
-                                        <option value='Induction Furnace'>Induction Furnace</option>
-                                        <option value='Tilt Furnace'>Tilt Furnace</option>
+                                    <select className="form-control" id='metal' defaultValue={state.metal} onChange={handleChange} >
+                                        <option value=''>Select Metal</option>
+                                        <option value='Brass'>Brass</option>
+                                        <option value='Aluminum'>Aluminium</option>
+                                        <option value='Cast Iron'>Cast Iron</option>
+                                        <option value='Iron'>Iron</option>
                                     </select>
-                                </div>
-                                <div className="col-2 mt-2 form-group" >
-                                    <label > Select Range </label>
-                                    <div className='row mt-2 justify-content-center' onChange={(e) => handleCheckChange(e, 'range')}>
-                                        <div className="form-check form-check-inline range-div"><input className="form-check-input" type="radio" id="greater" name='range' value='Greater' /><label className='form-check-label'>Greater Than</label></div>
-                                        <div className="form-check form-check-inline range-div "><input className="form-check-input" type="radio" id="less" name='range' value='Less' /><label className='form-check-label'>Less Than</label></div>
-                                    </div>
-                                </div>
-                                <div className="col-2 mt-2 form-group" >
-                                    <label > Capacity </label>
-                                    <input type="text" className="form-control" id='capacity' value={state.capacity} onChange={handleChange} placeholder='Numeric Value' />
                                 </div>
                                 <div className="col-2 mt-4 ml-2 form-group" >
                                     <div className='btn btn-outline-dark' onClick={getData}>Search</div>
@@ -142,7 +118,8 @@ function FurnaceCapcity(props) {
                                             <thead>
                                                 <tr>
                                                     <th>District</th>
-                                                    <th>Value</th>
+                                                    <th>Metal Ashv (kg)</th>
+                                                    <th>Sludge (kg)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -155,7 +132,10 @@ function FurnaceCapcity(props) {
                                                                     {item.value}
                                                                 </td>
                                                                 <td>
-                                                                    {state.disVal[item.value] ? state.disVal[item.value].length : "N/A"}
+                                                                    {state.disVal[item.value] ? state.disVal[item.value] : "N/A"}
+                                                                </td>
+                                                                <td>
+                                                                    {state.disVal[item.value] ? state.disVal[item.value] : "N/A"}
                                                                 </td>
                                                             </tr>
                                                         )
@@ -174,4 +154,4 @@ function FurnaceCapcity(props) {
     )
 }
 
-export default FurnaceCapcity;
+export default WasteGeneration;
