@@ -54,13 +54,13 @@ function NavigationBar(props) {
                         <a href="/Dashboard">Dashboard</a>
                     </li> */}
                     <li className="nav-item active ml-2 mt-2 mr-2">
+                        <a href="/DataAnalysis">Data Analysis</a>
+                    </li>
+                    <li className="nav-item active ml-2 mt-2 mr-2">
                         <a href="/AllRecords">All Records</a>
                     </li>
                     <li className="nav-item active ml-2 mt-2 mr-2">
                         <a href="/NewSurvey">Add Data</a>
-                    </li>
-                    <li className="nav-item active ml-2 mt-2 mr-2">
-                        <a href="/DataAnalysis">Data Analysis</a>
                     </li>
                     <li className="nav-item active ml-2 mt-2 mr-2">
                         <a href="/DeletedRecords">Deleted Records</a>

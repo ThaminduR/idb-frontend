@@ -52,7 +52,7 @@ function App() {
               <PrivateRoute exact path='/ViewRecord' component={FormView} />
               <PrivateRoute exact path='/DataAnalysis' component={ViewData} />
               <Route exact path='/Error' component={ErrorPage} />
-              <PrivateRoute exact path='/' component={AllData} />
+              <PrivateRoute exact path='/' component={ViewData} />
               <Route component={Page404}></Route>
             </Switch>
           </Router>

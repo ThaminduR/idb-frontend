@@ -2,7 +2,12 @@ import React, { useState } from 'react'
 import './ViewData.css'
 import FurnaceCapcity from './FurnaceCapacity'
 import MetalProduct from './MetalProduct'
-import WasteGeneration from './WasteGeneration'
+import RawMaterial from './RawMaterial'
+import AvgProduction from './AvgProduction'
+import ExpectedProduction from './ExpectedProduction'
+import MetalCategory from './MetalCategory'
+import MachineryInvestment from './MachineryInvestment'
+import TotalInvestment from './TotalInvestment'
 
 function ViewData(props) {
 
@@ -30,7 +35,6 @@ function ViewData(props) {
                                 <ul className="list-group list-group-flush mb-4">
                                     <li className="list-group-item"><button className='btn btn-outline-light' value='Furnace Capacity' onClick={selectTab}>Furnace Capacity</button></li>
                                     <li className="list-group-item"><button className='btn btn-outline-light' value='Production Data' onClick={selectTab}>Production Data</button></li>
-                                    <li className="list-group-item"><button className='btn btn-outline-light' value='Waste Generation' onClick={selectTab}>Waste Generation</button></li>
                                     <li className="list-group-item"><button className='btn btn-outline-light' value='Raw Materials' onClick={selectTab}>Raw Materials</button></li>
                                     <li className="list-group-item"><button className='btn btn-outline-light' value='Average Production' onClick={selectTab}>Average Production</button></li>
                                     <li className="list-group-item"><button className='btn btn-outline-light' value='Expected Production' onClick={selectTab}>Expected Production</button></li>
@@ -46,13 +50,12 @@ function ViewData(props) {
                             {
                                 'Furnace Capacity': <FurnaceCapcity></FurnaceCapcity>,
                                 'Production Data': <MetalProduct></MetalProduct>,
-                                'Waste Generation': <WasteGeneration></WasteGeneration>,
-                                'Raw Materials': 4,
-                                'Average Production': 5,
-                                'Expected Production': 6,
-                                'Metal Categories': 7,
-                                'Machinery Investment': 8,
-                                'Total Investment': 9,
+                                'Raw Materials': <RawMaterial></RawMaterial>,
+                                'Average Production': <AvgProduction></AvgProduction>,
+                                'Expected Production': <ExpectedProduction></ExpectedProduction>,
+                                'Metal Categories': <MetalCategory></MetalCategory>,
+                                'Machinery Investment':<MachineryInvestment></MachineryInvestment>,
+                                'Total Investment': <TotalInvestment></TotalInvestment>,
                             }[state.selected]
 
                         }

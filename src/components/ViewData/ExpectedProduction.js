@@ -4,17 +4,15 @@ import { useAuth } from '../../services/AuthenticationService'
 import axios from 'axios'
 import './FurnaceCapcity.css'
 
-function MetalProduct(props) {
+function ExpectedProduction(props) {
 
     const history = useHistory()
 
     const { setAuthTokens } = useAuth()
 
     const [state, setState] = useState({
-        district: '',
-        metal: '',
-        disValFur: [],
-        disValProd: [],
+        product: '',
+        disVal: {},
         hasReq: false,
         requestPending: false,
         dataEmpty: true,
@@ -34,15 +32,15 @@ function MetalProduct(props) {
             ...prevState,
             requestPending: true
         })),
-        axios.post('/admin/getProductionData ', {
-            'metal': state.metal
+        axios.post('/admin/getAvgProductionData', {
+            'product': state.product,
+            'state': 'Expected'
         })
             .then(function (res) {
                 if (res.data.code === 200) {
                     setState(prevState => ({
                         ...prevState,
-                        disValProd: res.data.products,
-                        disValFur: res.data.furnaces,
+                        disVal: res.data.data,
                         successMessage: 'Data Retireved',
                         requestPending: false,
                         hasReq: true,
@@ -75,24 +73,22 @@ function MetalProduct(props) {
                 <div className='col'>
                     <div className='option-col'>
                         <div className='filter-col' >
-                            <p className='topic-text'>Production Data</p>
+                            <p className='topic-text'>Average Expected Production</p>
                             <form className='row mt-3 justify-content-around' >
                                 <div className="col-6 mt-2 form-group" >
-                                    <label > Metal  </label>
-                                    <select className="form-control" id='metal' defaultValue={state.metal} onChange={handleChange} >
-                                        <option value=''>Select Metal</option>
-                                        <option value='Stainless Steel'>Stainless Steel</option>
-                                        <option value='Magnesium'>Magnesium</option>
-                                        <option value='Iron'>Iron</option>
-                                        <option value='Cast Iron'>Cast Iron</option>
-                                        <option value='Copper'>Copper</option>
-                                        <option value='Aluminum'>Aluminium</option>
-                                        <option value='Brass'>Brass</option>
-                                        <option value='Zinc'>Zinc</option>
-                                        <option value='LMS'>LMS</option>
-                                        <option value='High Carbon Steel'>High Carbon Steel</option>
-                                        <option value='Manganese Steel'>Manganese Steel</option>
-                                        <option value='Other'>Other</option>
+                                    <label > Product  </label>
+                                    <select className="form-control" id='product' defaultValue={state.product} onChange={handleChange} >
+                                        <option value=''>Select Type</option>
+                                        <option value='Ornamentals'>Ornamentals</option>
+                                        <option value='Machinery and Automobile (Loading)'>Machinery and Automobile (Loading)</option>
+                                        <option value='Machinery and Automobile (No Loading)'>Machinery and Automobile (No Loading)</option>
+                                        <option value='Machinery Tools and Parts'>Machinery Tools and Parts</option>
+                                        <option value='Building Items'>Building Items</option>
+                                        <option value='Precision Items'>Precision Items</option>
+                                        <option value='Domestic Items'>Domestic Items</option>
+                                        <option value='Semi Finish Products'>Semi Finish Products</option>
+                                        <option value='Electric Cables'>Electric Cables</option>
+                                        <option value='Total'>Total</option>
                                     </select>
                                 </div>
                                 <div className="col-2 mt-4 ml-2 form-group" >
@@ -112,28 +108,24 @@ function MetalProduct(props) {
                                     </div>
                                     :
                                     <div>
-                                        <p className='var-name'>{state.metal ? state.metal : "Select a Metal to View Data"}</p>
+                                        <p className='var-name'>{state.product ? state.product : "Select a Product to View Data"}</p>
                                         <table className='table table-striped table-bordered'>
                                             <thead>
                                                 <tr>
                                                     <th>District</th>
-                                                    <th>Product Capacity</th>
-                                                    <th>Furnace Capacity</th>
+                                                    <th>Expected Production (Kg/Month)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {
-                                                    state.disValProd.map((item, key) => {
+                                                    state.disVal.map((item, key) => {
                                                         return (
                                                             <tr key={key}>
                                                                 <td>
                                                                     {item.district}
                                                                 </td>
                                                                 <td>
-                                                                    {item.total}  
-                                                                </td>
-                                                                <td>
-                                                                    {state.disValFur[key].total}
+                                                                    {item.total}
                                                                 </td>
                                                             </tr>
                                                         )
@@ -152,4 +144,4 @@ function MetalProduct(props) {
     )
 }
 
-export default MetalProduct;
+export default ExpectedProduction;

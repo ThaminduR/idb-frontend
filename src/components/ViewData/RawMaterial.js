@@ -4,17 +4,15 @@ import { useAuth } from '../../services/AuthenticationService'
 import axios from 'axios'
 import './FurnaceCapcity.css'
 
-function MetalProduct(props) {
+function RawMaterial(props) {
 
     const history = useHistory()
 
     const { setAuthTokens } = useAuth()
 
     const [state, setState] = useState({
-        district: '',
         metal: '',
-        disValFur: [],
-        disValProd: [],
+        disVal: {},
         hasReq: false,
         requestPending: false,
         dataEmpty: true,
@@ -34,15 +32,14 @@ function MetalProduct(props) {
             ...prevState,
             requestPending: true
         })),
-        axios.post('/admin/getProductionData ', {
+        axios.post('/admin/getRawMaterialData', {
             'metal': state.metal
         })
             .then(function (res) {
                 if (res.data.code === 200) {
                     setState(prevState => ({
                         ...prevState,
-                        disValProd: res.data.products,
-                        disValFur: res.data.furnaces,
+                        disVal: res.data.data,
                         successMessage: 'Data Retireved',
                         requestPending: false,
                         hasReq: true,
@@ -75,7 +72,7 @@ function MetalProduct(props) {
                 <div className='col'>
                     <div className='option-col'>
                         <div className='filter-col' >
-                            <p className='topic-text'>Production Data</p>
+                            <p className='topic-text'>Raw Material</p>
                             <form className='row mt-3 justify-content-around' >
                                 <div className="col-6 mt-2 form-group" >
                                     <label > Metal  </label>
@@ -117,23 +114,19 @@ function MetalProduct(props) {
                                             <thead>
                                                 <tr>
                                                     <th>District</th>
-                                                    <th>Product Capacity</th>
-                                                    <th>Furnace Capacity</th>
+                                                    <th>Usage (Kg)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {
-                                                    state.disValProd.map((item, key) => {
+                                                    state.disVal.map((item, key) => {
                                                         return (
                                                             <tr key={key}>
                                                                 <td>
                                                                     {item.district}
                                                                 </td>
                                                                 <td>
-                                                                    {item.total}  
-                                                                </td>
-                                                                <td>
-                                                                    {state.disValFur[key].total}
+                                                                    {item.total}
                                                                 </td>
                                                             </tr>
                                                         )
@@ -152,4 +145,4 @@ function MetalProduct(props) {
     )
 }
 
-export default MetalProduct;
+export default RawMaterial;

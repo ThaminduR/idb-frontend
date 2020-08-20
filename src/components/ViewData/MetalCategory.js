@@ -4,17 +4,15 @@ import { useAuth } from '../../services/AuthenticationService'
 import axios from 'axios'
 import './FurnaceCapcity.css'
 
-function MetalProduct(props) {
+function MetalCategory(props) {
 
     const history = useHistory()
 
     const { setAuthTokens } = useAuth()
 
     const [state, setState] = useState({
-        district: '',
         metal: '',
-        disValFur: [],
-        disValProd: [],
+        disVal: {},
         hasReq: false,
         requestPending: false,
         dataEmpty: true,
@@ -34,15 +32,12 @@ function MetalProduct(props) {
             ...prevState,
             requestPending: true
         })),
-        axios.post('/admin/getProductionData ', {
-            'metal': state.metal
-        })
+        axios.post('/admin/getMetalCategories')
             .then(function (res) {
                 if (res.data.code === 200) {
                     setState(prevState => ({
                         ...prevState,
-                        disValProd: res.data.products,
-                        disValFur: res.data.furnaces,
+                        disVal: res.data.data,
                         successMessage: 'Data Retireved',
                         requestPending: false,
                         hasReq: true,
@@ -75,23 +70,16 @@ function MetalProduct(props) {
                 <div className='col'>
                     <div className='option-col'>
                         <div className='filter-col' >
-                            <p className='topic-text'>Production Data</p>
+                            <p className='topic-text'>Metal Categories</p>
                             <form className='row mt-3 justify-content-around' >
                                 <div className="col-6 mt-2 form-group" >
                                     <label > Metal  </label>
                                     <select className="form-control" id='metal' defaultValue={state.metal} onChange={handleChange} >
                                         <option value=''>Select Metal</option>
-                                        <option value='Stainless Steel'>Stainless Steel</option>
-                                        <option value='Magnesium'>Magnesium</option>
-                                        <option value='Iron'>Iron</option>
-                                        <option value='Cast Iron'>Cast Iron</option>
-                                        <option value='Copper'>Copper</option>
-                                        <option value='Aluminum'>Aluminium</option>
                                         <option value='Brass'>Brass</option>
-                                        <option value='Zinc'>Zinc</option>
-                                        <option value='LMS'>LMS</option>
-                                        <option value='High Carbon Steel'>High Carbon Steel</option>
-                                        <option value='Manganese Steel'>Manganese Steel</option>
+                                        <option value='Aluminum'>Aluminium</option>
+                                        <option value='Cast Iron'>Cast Iron</option>
+                                        <option value='Iron'>Iron</option>
                                         <option value='Other'>Other</option>
                                     </select>
                                 </div>
@@ -117,27 +105,26 @@ function MetalProduct(props) {
                                             <thead>
                                                 <tr>
                                                     <th>District</th>
-                                                    <th>Product Capacity</th>
-                                                    <th>Furnace Capacity</th>
+                                                    <th>Value</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {
-                                                    state.disValProd.map((item, key) => {
+                                                    state.disVal[state.metal] ? 
+                                                    state.disVal[state.metal].map((item, key) => {
                                                         return (
                                                             <tr key={key}>
                                                                 <td>
                                                                     {item.district}
                                                                 </td>
                                                                 <td>
-                                                                    {item.total}  
-                                                                </td>
-                                                                <td>
-                                                                    {state.disValFur[key].total}
+                                                                    {item.total}
                                                                 </td>
                                                             </tr>
                                                         )
-                                                    })
+                                                    }) 
+                                                    :
+                                                    ""
                                                 }
                                             </tbody>
                                         </table>
@@ -152,4 +139,4 @@ function MetalProduct(props) {
     )
 }
 
-export default MetalProduct;
+export default MetalCategory;
