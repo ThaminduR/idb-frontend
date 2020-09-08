@@ -16,6 +16,7 @@ import AllData from './components/AllData/AllData'
 import Login from './components/Login/Login'
 import NewSurvey from './components/NewSurvey/NewSurvey'
 import ViewData from './components/ViewData/ViewData'
+import DataAnalysis from './components/DataAnalysis/DataAnalysis'
 import Page404 from './components/ErrorPage/Page404'
 import ErrorPage from './components/ErrorPage/ErrorPage'
 import FormView from './components/FormView/FormView'
@@ -52,7 +53,7 @@ function App() {
               <PrivateRoute exact path='/ViewRecord' component={FormView} />
               <PrivateRoute exact path='/DataAnalysis' component={ViewData} />
               <Route exact path='/Error' component={ErrorPage} />
-              <PrivateRoute exact path='/' component={ViewData} />
+              <PrivateRoute exact path='/' component={DataAnalysis} />
               <Route component={Page404}></Route>
             </Switch>
           </Router>
