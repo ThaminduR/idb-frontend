@@ -62,22 +62,8 @@ function DataAnalysis(props) {
         }))
     }
 
-    const openclose = () => {
-        if (state.isopen == 'close') {
-            setState(prevState => ({
-                ...prevState,
-                isopen: 'open'
-            }))
-        }
-        else {
-            setState(prevState => ({
-                ...prevState,
-                isopen: 'close'
-            }))
-        }
-    }
-
     const getData = () => [
+        console.log("Sent"),
         setState(prevState => ({
             ...prevState,
             requestPending: true
@@ -150,7 +136,7 @@ function DataAnalysis(props) {
                                 <div className="row mt-2 form-group" >
                                     <label > Scale </label>
                                     <select className="form-control" id='scale' defaultValue={state.scale} onChange={handleChange} >
-                                        <option value='*'>Select Scale</option>
+                                        <option value=''>Select Scale</option>
                                         <option value='Macro'>Macro</option>
                                         <option value='Small'>Small</option>
                                         <option value='Medium'>Medium</option>
@@ -160,7 +146,7 @@ function DataAnalysis(props) {
                                 <div className="row mt-2 form-group" >
                                     <label > Market </label>
                                     <select className="form-control" id='market' defaultValue={state.market} onChange={handleChange} >
-                                        <option value='*'>Select Market</option>
+                                        <option value=''>Select Market</option>
                                         <option value='Local'>Local</option>
                                         <option value='Export'>Export</option>
                                         <option value='Both'>Both</option>
@@ -203,7 +189,7 @@ function DataAnalysis(props) {
                                 <div className="row mt-2 form-group" >
                                     <label > Furnace </label>
                                     <select className="form-control" id='furnace' defaultValue={state.furnace} onChange={handleChange} >
-                                        <option value='*'>Select Furnace</option>
+                                        <option value=''>Select Furnace</option>
                                         <option value='Cupola Furnace'>Cupola Furnace</option>
                                         <option value='Pit Furnace'>Pit Furnace</option>
                                         <option value='Induction Furnace'>Induction Furnace</option>
