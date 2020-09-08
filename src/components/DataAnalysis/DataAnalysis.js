@@ -116,12 +116,12 @@ function DataAnalysis(props) {
             })
     ]
 
-    const viewARecord = (e, id) => {
-        history.push({
-            pathname: '/viewRecord',
-            data: id,
-        })
-    }
+    // const viewARecord = (e, id) => {
+    //     history.push({
+    //         pathname: '/viewRecord',
+    //         data: id,
+    //     })
+    // }
 
     return (
         <div className='dataanalysis-background' >
@@ -262,7 +262,7 @@ function DataAnalysis(props) {
                                     </div>
                                     :
                                     <div className='data-view-div'>
-                                        {(state.companyNames.length == 0)
+                                        {(state.companyNames.length === 0)
                                             ? <div></div>
                                             : <div className='count-text' role="alert" >{state.companyNames.length + ' Companies Found'}</div>}
                                         <table className='table table-bordered table-striped'>
@@ -274,7 +274,7 @@ function DataAnalysis(props) {
                                             </thead>
                                             <tbody>
                                                 {
-                                                    (state.companyNames.length == 0)
+                                                    (state.companyNames.length === 0)
                                                         ? <div className='loading-text' role="alert" >No Companies Found</div>
                                                         : state.companyNames.map((item, key) => {
 
