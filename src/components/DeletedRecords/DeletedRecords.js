@@ -84,8 +84,8 @@ function DeletedRecords(props) {
     }
 
     return (
-        <div className='alldata-background'>
-            <div className='container'>
+        <div className='delete-background'>
+            <div className='container-flex delete-div'>
                 {state.requestPending
                     ?
                     <div className={"alert viewsur-alert alert-info"} role="alert">

@@ -1,0 +1,87 @@
+.dataanalysis-background {
+  background-color: rgb(255, 255, 255);
+}
+
+.filter-col {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  font-size: 0.8em;
+  -webkit-box-shadow: 4px 0px 22px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 0px 22px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 0px 22px -8px rgba(0, 0, 0, 0.75);
+  overflow-y:scroll;
+  height: 90vh;
+  padding-left: 2vh;
+  padding-bottom: 5vh;
+}
+
+.filter-break {
+  border: 1px solid black;
+}
+
+/* .open {
+  height: 50vh;
+}
+
+.close {
+  height: 20vh;
+} */
+
+
+.filter-result-div {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  margin-bottom: 2vh;
+}
+
+.no-rec-text-analyze {
+  background-color: rgb(235, 235, 235);
+  margin-top: 10vh;
+  font-size: 2em;
+  font-family: "Karla", sans-serif;
+  color: rgb(5, 79, 139);
+}
+
+.var-name {
+  margin-top: 5vh;
+  font-size: 1.3em;
+  font-family: "Karla", sans-serif;
+  color: rgb(5, 79, 139);
+}
+
+.topic-text {
+  margin-top: 1vh;
+  padding-top: 1vh;
+  font-size: 1.3em;
+  font-family: "Karla", sans-serif;
+  color: rgb(5, 79, 139);
+}
+
+.filter-alert {
+  top: 10vh;
+}
+
+.loading-text {
+  font-size: 2em;
+  color: rgb(5, 79, 139);
+  padding-top: 10vh;
+}
+
+.count-text {
+  text-align: center;
+  font-size: 1.5em;
+  color: rgb(5, 79, 139);
+  padding-top: 1vh;
+  padding-bottom: 5vh;
+}
+
+.data-view-div {
+  margin-top: 5vh;
+  text-align: left;
+  overflow-y: scroll;
+  height: 80vh;
+}
+
+/* .companyname-div {
+  height: 80vh;
+} */

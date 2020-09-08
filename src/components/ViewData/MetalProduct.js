@@ -76,7 +76,7 @@ function MetalProduct(props) {
             <div className='container-fluid'>
                 <div className='col'>
                     <div className='option-col'>
-                        <div className='filter-col' >
+                        <div className='filter-row' >
                             <p className='topic-text'>Production Data</p>
                             <form className='row mt-3 justify-content-around' >
                                 <div className="col-4 mt-2 form-group" >
