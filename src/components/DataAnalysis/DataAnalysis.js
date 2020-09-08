@@ -175,8 +175,8 @@ function DataAnalysis(props) {
                                     <div className="col mt-2 form-group" >
                                         <label > Select Range </label>
                                         <div className='row mt-2 justify-content-around' onChange={(e) => handleCheckChange(e, 'metalrange')}>
-                                            <div className="form-check form-check-inline range-div"><input className="form-check-input" type="radio" id="greater" name='range' value='Greater' /><label className='form-check-label'>Greater</label></div>
-                                            <div className="form-check form-check-inline range-div "><input className="form-check-input" type="radio" id="less" name='range' value='Less' /><label className='form-check-label'>Less</label></div>
+                                            <div className="form-check form-check-inline range-div"><input className="form-check-input" type="radio" id="greater" name='metalrange' value='Greater' /><label className='form-check-label'>Greater</label></div>
+                                            <div className="form-check form-check-inline range-div "><input className="form-check-input" type="radio" id="less" name='metalrange' value='Less' /><label className='form-check-label'>Less</label></div>
                                         </div>
                                     </div>
                                     <div className="col mt-2 form-group" >
@@ -200,8 +200,8 @@ function DataAnalysis(props) {
                                     <div className="col mt-2 form-group" >
                                         <label > Select Range </label>
                                         <div className='row mt-2 justify-content-around' onChange={(e) => handleCheckChange(e, 'furnacerange')}>
-                                            <div className="form-check form-check-inline range-div"><input className="form-check-input" type="radio" id="greater" name='range' value='Greater' /><label className='form-check-label'>Greater</label></div>
-                                            <div className="form-check form-check-inline range-div "><input className="form-check-input" type="radio" id="less" name='range' value='Less' /><label className='form-check-label'>Less</label></div>
+                                            <div className="form-check form-check-inline range-div"><input className="form-check-input" type="radio" id="greater" name='furnacerange' value='Greater' /><label className='form-check-label'>Greater</label></div>
+                                            <div className="form-check form-check-inline range-div "><input className="form-check-input" type="radio" id="less" name='furnacerange' value='Less' /><label className='form-check-label'>Less</label></div>
                                         </div>
                                     </div>
                                     <div className="col mt-2 form-group" >
@@ -229,8 +229,8 @@ function DataAnalysis(props) {
                                     <div className="col mt-2 form-group" >
                                         <label > Select Range </label>
                                         <div className='row mt-2 justify-content-around' onChange={(e) => handleCheckChange(e, 'productrange')}>
-                                            <div className="form-check form-check-inline range-div"><input className="form-check-input" type="radio" id="greater" name='range' value='Greater' /><label className='form-check-label'>Greater</label></div>
-                                            <div className="form-check form-check-inline range-div "><input className="form-check-input" type="radio" id="less" name='range' value='Less' /><label className='form-check-label'>Less</label></div>
+                                            <div className="form-check form-check-inline range-div"><input className="form-check-input" type="radio" id="greater" name='productrange' value='Greater' /><label className='form-check-label'>Greater</label></div>
+                                            <div className="form-check form-check-inline range-div "><input className="form-check-input" type="radio" id="less" name='productrange' value='Less' /><label className='form-check-label'>Less</label></div>
                                         </div>
                                     </div>
                                     <div className="col mt-2 form-group" >
