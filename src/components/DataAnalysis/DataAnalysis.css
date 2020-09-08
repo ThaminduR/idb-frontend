@@ -67,6 +67,21 @@
   padding-top: 10vh;
 }
 
-.data-view-div {
-  overflow-y: scroll;
+.count-text {
+  text-align: center;
+  font-size: 1.5em;
+  color: rgb(5, 79, 139);
+  padding-top: 1vh;
+  padding-bottom: 5vh;
 }
+
+.data-view-div {
+  margin-top: 5vh;
+  text-align: left;
+  overflow-y: scroll;
+  height: 80vh;
+}
+
+/* .companyname-div {
+  height: 80vh;
+} */

@@ -27,7 +27,7 @@ function DataAnalysis(props) {
         product: '',
         productrange: '',
         productcapacity: 0,
-        disVal: { "Colombo": [{}, {}], "Galle": [] },
+        companyNames: [],
         hasReq: false,
         requestPending: false,
         dataEmpty: true,
@@ -89,8 +89,7 @@ function DataAnalysis(props) {
                 if (res.data.code === 200) {
                     setState(prevState => ({
                         ...prevState,
-                        disVal: res.data.companydistrictlist,
-                        loadedfurnace: state.furnace,
+                        companyNames: res.data.data,
                         successMessage: 'Data Retireved',
                         requestPending: false,
                         hasReq: true,
@@ -116,6 +115,13 @@ function DataAnalysis(props) {
                 console.log(err)
             })
     ]
+
+    const viewARecord = (e, id) => {
+        history.push({
+            pathname: '/viewRecord',
+            data: id,
+        })
+    }
 
     return (
         <div className='dataanalysis-background' >
@@ -246,7 +252,7 @@ function DataAnalysis(props) {
                         </div>
                     </div>
                     <div className='col-8'>
-                        <div className='container'>
+                        <div className='companyname-div'>
                             {state.requestPending
                                 ?
                                 <div className='loading-text' role="alert" >Loading... </div>
@@ -256,16 +262,31 @@ function DataAnalysis(props) {
                                     </div>
                                     :
                                     <div className='data-view-div'>
-                                        {
-                                            state.companyNames.map(function (item) {
-                                                return <div class="company-card">
-                                                    <div className="card-body">
-                                                        <h5 className="card-title">{item.value}</h5>
-                                                        <p className="card-text"></p>
-                                                    </div>
-                                                </div>
-                                            })
-                                        }
+                                        {(state.companyNames.length == 0)
+                                            ? <div></div>
+                                            : <div className='count-text' role="alert" >{state.companyNames.length + ' Companies Found'}</div>}
+                                        <table className='table table-bordered table-striped'>
+                                            <thead className='thead-light'>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>VIew Data</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    (state.companyNames.length == 0)
+                                                        ? <div className='loading-text' role="alert" >No Companies Found</div>
+                                                        : state.companyNames.map((item, key) => {
+
+                                                            return (
+                                                                <tr key={key}>
+                                                                    <td>{item.name}</td>
+                                                                    <td><button className='close'><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, item.id)} aria-hidden="true"></i></button></td>
+                                                                </tr>)
+                                                        })
+                                                }
+                                            </tbody>
+                                        </table>
                                     </div>
                             }
                         </div>

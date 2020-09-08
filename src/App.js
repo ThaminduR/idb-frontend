@@ -51,7 +51,8 @@ function App() {
               <PrivateRoute exact path='/DeletedRecords' component={DeletedRecords} />
               <PrivateRoute exact path='/NewSurvey' component={NewSurvey} />
               <PrivateRoute exact path='/ViewRecord' component={FormView} />
-              <PrivateRoute exact path='/DataAnalysis' component={ViewData} />
+              <PrivateRoute exact path='/DataAnalysis' component={DataAnalysis} />
+              <PrivateRoute exact path='/LegacyDataAnalysis' component={ViewData} />
               <Route exact path='/Error' component={ErrorPage} />
               <PrivateRoute exact path='/' component={DataAnalysis} />
               <Route component={Page404}></Route>

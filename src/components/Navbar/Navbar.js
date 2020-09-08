@@ -65,6 +65,9 @@ function NavigationBar(props) {
                     <li className="nav-item active ml-2 mt-2 mr-2">
                         <a href="/DeletedRecords">Deleted Records</a>
                     </li>
+                    <li className="nav-item active ml-2 mt-2 mr-2">
+                        <a href="/LegacyDataAnalysis">Legacy Analysis</a>
+                    </li>
                     <li className="nav-item active ml-2 mr-2">
                         <button type="button" className="btn btn-outline-light" onClick={logout}>Logout</button>
                     </li>
