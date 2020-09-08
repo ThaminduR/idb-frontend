@@ -59,7 +59,7 @@ function TotalInvestment(props) {
             <div className='container-fluid'>
                 <div className='col'>
                     <div className='option-col'>
-                        <div className='filter-col' >
+                        <div className='filter-row' >
                             <p className='topic-text'>Total Investment</p>
                             <form className='row mt-3 justify-content-around' >
                                 <div className="col-2 mt-4 ml-2 form-group" >

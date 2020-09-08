@@ -269,7 +269,7 @@ function DataAnalysis(props) {
                                             <thead className='thead-light'>
                                                 <tr>
                                                     <th>Name</th>
-                                                    <th>VIew Data</th>
+                                                    {/* <th>VIew Data</th> */}
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -281,7 +281,7 @@ function DataAnalysis(props) {
                                                             return (
                                                                 <tr key={key}>
                                                                     <td>{item.name}</td>
-                                                                    <td><button className='close'><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, item.id)} aria-hidden="true"></i></button></td>
+                                                                    {/* <td><button className='close'><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, item.id)} aria-hidden="true"></i></button></td> */}
                                                                 </tr>)
                                                         })
                                                 }
