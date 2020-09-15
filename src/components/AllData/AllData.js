@@ -102,85 +102,87 @@ function AllData(props) {
                     <div>
                         {!state.dataEmpty
                             ?
-                            <table className='table table-div table-bordered table-striped'>
-                                <thead className='thead-light'>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Name</th>
-                                        <th>District</th>
-                                        <th>Address</th>
-                                        <th>Telephone</th>
-                                        <th>Turnover Category</th>
-                                        <th>Business Type</th>
-                                        <th>
-                                            Products
+                            <div className='table-overflow'>
+                                <table className='table table-div table-bordered table-striped'>
+                                    <thead className='thead-light'>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Name</th>
+                                            <th>District</th>
+                                            <th>Address</th>
+                                            <th>Telephone</th>
+                                            <th>Turnover Category</th>
+                                            <th>Business Type</th>
+                                            <th>
+                                                Products
                                             <tr>
-                                                <th>Metal</th>
-                                                <th>Product</th>
-                                                <th>Weights</th>
-                                            </tr>
-                                        </th>
-                                        <th>
-                                            Raw Materials
+                                                    <th>Metal</th>
+                                                    <th>Product</th>
+                                                    <th>Weights</th>
+                                                </tr>
+                                            </th>
+                                            <th>
+                                                Raw Materials
                                             <tr>
-                                                <th>Metal</th>
-                                                <th>Origin</th>
-                                                <th>State</th>
-                                                <th>Usage</th>
-                                            </tr>
-                                        </th>
-                                        <th>Local Market</th>
-                                        <th>Foreign Market</th>
-                                        <th>Local Employee</th>
-                                        <th>Foreign Employee</th>
-                                        <th>Complete Record</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {state.companyData.map((item, key) => {
-                                        return (
-                                            <tr key={key}>
-                                                <td>{item.id}</td>
-                                                <td>{item.name}</td>
-                                                <td>{item.district}</td>
-                                                <td>{item.address ? item.address : "-"}</td>
-                                                <td>{item.telephone ? item.telephone : "-"}</td>
-                                                <td>{item.turnover_category ? item.turnover_category : "-"}</td>
-                                                <td>{item.business_type ? item.business_type : "-"}</td>
-                                                <td>{state.products.map((p_item, p_key) => {
-                                                    if (item.id === p_item.id) {
-                                                        return (
-                                                            <tr key={p_key}>
-                                                                <td>{p_item.metal ? p_item.metal : "-"}</td>
-                                                                <td>{p_item.product ? p_item.product : '-'}</td>
-                                                                <td>{p_item.weight ? p_item.weight : '-'}</td>
-                                                            </tr>)
-                                                    } else {
-                                                        return null
-                                                    }
-                                                })}</td>
-                                                <td>{state.raw_materials.map((r_item, r_key) => {
-                                                    if (item.id === r_item.id) {
-                                                        return (
-                                                            <tr key={r_key}>
-                                                                <td>{r_item.metal ? r_item.metal : '-'}</td>
-                                                                <td>{r_item.origin ? r_item.origin : '-'}</td>
-                                                                <td>{r_item.state ? r_item.state : "-"}</td>
-                                                                <td>{r_item.metal_usage ? r_item.metal_usage : '-'}</td>
-                                                            </tr>)
-                                                    } else {
-                                                        return null
-                                                    }
-                                                })}</td>
-                                                <td>{item.local_retails + item.local_companies}</td>
-                                                <td>{item.foreigh_market ? item.foreigh_market : "-"}</td>
-                                                <td>{item.local_employee_category ? item.local_employee_category : "-"}</td>
-                                                <td>{item.foreign_employee_category ? item.foreign_employee_category : "-"}</td>
-                                                <td><button className='close'><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, item.id)} aria-hidden="true"></i></button></td>
-                                            </tr>)
-                                    })}
-                                </tbody>
-                            </table>
+                                                    <th>Metal</th>
+                                                    <th>Origin</th>
+                                                    <th>State</th>
+                                                    <th>Usage</th>
+                                                </tr>
+                                            </th>
+                                            <th>Local Market</th>
+                                            <th>Foreign Market</th>
+                                            <th>Local Employee</th>
+                                            <th>Foreign Employee</th>
+                                            <th>Complete Record</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {state.companyData.map((item, key) => {
+                                            return (
+                                                <tr key={key}>
+                                                    <td>{item.id}</td>
+                                                    <td>{item.name}</td>
+                                                    <td>{item.district}</td>
+                                                    <td>{item.address ? item.address : "-"}</td>
+                                                    <td>{item.telephone ? item.telephone : "-"}</td>
+                                                    <td>{item.turnover_category ? item.turnover_category : "-"}</td>
+                                                    <td>{item.business_type ? item.business_type : "-"}</td>
+                                                    <td>{state.products.map((p_item, p_key) => {
+                                                        if (item.id === p_item.id) {
+                                                            return (
+                                                                <tr key={p_key}>
+                                                                    <td>{p_item.metal ? p_item.metal : "-"}</td>
+                                                                    <td>{p_item.product ? p_item.product : '-'}</td>
+                                                                    <td>{p_item.weight ? p_item.weight : '-'}</td>
+                                                                </tr>)
+                                                        } else {
+                                                            return null
+                                                        }
+                                                    })}</td>
+                                                    <td>{state.raw_materials.map((r_item, r_key) => {
+                                                        if (item.id === r_item.id) {
+                                                            return (
+                                                                <tr key={r_key}>
+                                                                    <td>{r_item.metal ? r_item.metal : '-'}</td>
+                                                                    <td>{r_item.origin ? r_item.origin : '-'}</td>
+                                                                    <td>{r_item.state ? r_item.state : "-"}</td>
+                                                                    <td>{r_item.metal_usage ? r_item.metal_usage : '-'}</td>
+                                                                </tr>)
+                                                        } else {
+                                                            return null
+                                                        }
+                                                    })}</td>
+                                                    <td>{item.local_retails + item.local_companies}</td>
+                                                    <td>{item.foreigh_market ? item.foreigh_market : "-"}</td>
+                                                    <td>{item.local_employee_category ? item.local_employee_category : "-"}</td>
+                                                    <td>{item.foreign_employee_category ? item.foreign_employee_category : "-"}</td>
+                                                    <td><button className='close'><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, item.id)} aria-hidden="true"></i></button></td>
+                                                </tr>)
+                                        })}
+                                    </tbody>
+                                </table>
+                            </div>
                             :
                             <div className="alert viewsur-alert alert-danger" role="alert">
                                 No data to Show
