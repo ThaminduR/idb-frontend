@@ -62,7 +62,8 @@
 }
 
 .loading-text {
-  font-size: 2em;
+  font-size: 1.5em;
+  text-align: center;
   color: rgb(5, 79, 139);
   padding-top: 10vh;
 }

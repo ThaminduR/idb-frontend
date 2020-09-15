@@ -186,7 +186,7 @@ function DataAnalysis(props) {
                                         </div>
                                     </div>
                                     <div className="col mt-2 form-group" >
-                                        <label > Capacity </label>
+                                        <label > Capacity (kg /month) </label>
                                         <input type="text" className="form-control" id='metalcapacity' value={state.metalcapacity} onChange={handleChange} placeholder='Numeric Value' />
                                     </div>
                                 </div>
@@ -211,7 +211,7 @@ function DataAnalysis(props) {
                                         </div>
                                     </div>
                                     <div className="col mt-2 form-group" >
-                                        <label > Capacity </label>
+                                        <label > Capacity (kg/ batch)</label>
                                         <input type="text" className="form-control" id='furnacecapacity' value={state.furnacecapacity} onChange={handleChange} placeholder='Numeric Value' />
                                     </div>
                                 </div>
@@ -240,7 +240,7 @@ function DataAnalysis(props) {
                                         </div>
                                     </div>
                                     <div className="col mt-2 form-group" >
-                                        <label > Capacity </label>
+                                        <label > Capacity (quantity/ month) </label>
                                         <input type="text" className="form-control" id='productcapacity' value={state.productcapacity} onChange={handleChange} placeholder='Numeric Value' />
                                     </div>
                                 </div>
@@ -265,28 +265,29 @@ function DataAnalysis(props) {
                                         {(state.companyNames.length === 0)
                                             ? <div></div>
                                             : <div className='count-text' role="alert" >{state.companyNames.length + ' Companies Found'}</div>}
-                                        <table className='table table-bordered table-striped'>
-                                            <thead className='thead-light'>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    {/* <th>VIew Data</th> */}
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {
-                                                    (state.companyNames.length === 0)
-                                                        ? <div className='loading-text' role="alert" >No Companies Found</div>
-                                                        : state.companyNames.map((item, key) => {
-
-                                                            return (
-                                                                <tr key={key}>
-                                                                    <td>{item.name}</td>
-                                                                    {/* <td><button className='close'><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, item.id)} aria-hidden="true"></i></button></td> */}
-                                                                </tr>)
-                                                        })
-                                                }
-                                            </tbody>
-                                        </table>
+                                        {
+                                            (state.companyNames.length === 0)
+                                                ? <div className='loading-text' role="alert" >No Companies Found</div>
+                                                : <table className='table table-bordered table-striped'>
+                                                    <thead className='thead-light'>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>VIew Data</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {
+                                                            state.companyNames.map((item, key) => {
+                                                                return (
+                                                                    <tr key={key}>
+                                                                        <td>{item.name}</td>
+                                                                        <td><button className='close'><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, item.id)} aria-hidden="true"></i></button></td>
+                                                                    </tr>)
+                                                            })
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                        }
                                     </div>
                             }
                         </div>
