@@ -116,12 +116,12 @@ function DataAnalysis(props) {
             })
     ]
 
-    // const viewARecord = (e, id) => {
-    //     history.push({
-    //         pathname: '/viewRecord',
-    //         data: id,
-    //     })
-    // }
+    const viewARecord = (e, id) => {
+        history.push({
+            pathname: '/viewRecord',
+            data: id,
+        })
+    }
 
     return (
         <div className='dataanalysis-background' >
