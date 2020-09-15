@@ -18,15 +18,15 @@ function DataAnalysis(props) {
         //Metal
         metal: '',
         metalrange: '',
-        metalcapacity: 0,
+        metalcapacity: '',
         //Furnace
         furnace: '',
         furnacerange: '',
-        furnacecapacity: 0,
+        furnacecapacity: '',
         //Product
         product: '',
         productrange: '',
-        productcapacity: 0,
+        productcapacity: '',
         companyNames: [],
         hasReq: false,
         requestPending: false,
@@ -183,11 +183,12 @@ function DataAnalysis(props) {
                                         <div className='row mt-2 justify-content-around' onChange={(e) => handleCheckChange(e, 'metalrange')}>
                                             <div className="form-check form-check-inline range-div"><input className="form-check-input" type="radio" id="greater" name='metalrange' value='Greater' /><label className='form-check-label'>Greater</label></div>
                                             <div className="form-check form-check-inline range-div "><input className="form-check-input" type="radio" id="less" name='metalrange' value='Less' /><label className='form-check-label'>Less</label></div>
+                                            <div className="form-check form-check-inline range-div "><input className="form-check-input" type="radio" id="none" name='metalrange' value='' /><label className='form-check-label'>None</label></div>
                                         </div>
                                     </div>
                                     <div className="col mt-2 form-group" >
                                         <label > Capacity (kg /month) </label>
-                                        <input type="text" className="form-control" id='metalcapacity' value={state.metalcapacity} onChange={handleChange} placeholder='Numeric Value' />
+                                        <input type="text" className="form-control" id='metalcapacity' disabled={state.metalrange === ''} value={state.metalcapacity} onChange={handleChange} placeholder='Numeric Value' />
                                     </div>
                                 </div>
                                 <hr className='filter-break' />
@@ -208,11 +209,12 @@ function DataAnalysis(props) {
                                         <div className='row mt-2 justify-content-around' onChange={(e) => handleCheckChange(e, 'furnacerange')}>
                                             <div className="form-check form-check-inline range-div"><input className="form-check-input" type="radio" id="greater" name='furnacerange' value='Greater' /><label className='form-check-label'>Greater</label></div>
                                             <div className="form-check form-check-inline range-div "><input className="form-check-input" type="radio" id="less" name='furnacerange' value='Less' /><label className='form-check-label'>Less</label></div>
+                                            <div className="form-check form-check-inline range-div "><input className="form-check-input" type="radio" id="none" name='furnacerange' value='' /><label className='form-check-label'>None</label></div>
                                         </div>
                                     </div>
                                     <div className="col mt-2 form-group" >
                                         <label > Capacity (kg/ batch)</label>
-                                        <input type="text" className="form-control" id='furnacecapacity' value={state.furnacecapacity} onChange={handleChange} placeholder='Numeric Value' />
+                                        <input type="text" className="form-control" id='furnacecapacity' disabled={state.furnacerange === ''} value={state.furnacecapacity} onChange={handleChange} placeholder='Numeric Value' />
                                     </div>
                                 </div>
                                 <hr className='filter-break' />
@@ -237,11 +239,12 @@ function DataAnalysis(props) {
                                         <div className='row mt-2 justify-content-around' onChange={(e) => handleCheckChange(e, 'productrange')}>
                                             <div className="form-check form-check-inline range-div"><input className="form-check-input" type="radio" id="greater" name='productrange' value='Greater' /><label className='form-check-label'>Greater</label></div>
                                             <div className="form-check form-check-inline range-div "><input className="form-check-input" type="radio" id="less" name='productrange' value='Less' /><label className='form-check-label'>Less</label></div>
+                                            <div className="form-check form-check-inline range-div "><input className="form-check-input" type="radio" id="none" name='productrange' value='' /><label className='form-check-label'>None</label></div>
                                         </div>
                                     </div>
                                     <div className="col mt-2 form-group" >
                                         <label > Capacity (quantity/ month) </label>
-                                        <input type="text" className="form-control" id='productcapacity' value={state.productcapacity} onChange={handleChange} placeholder='Numeric Value' />
+                                        <input type="text" className="form-control" id='productcapacity' disabled={state.productrange === ''} value={state.productcapacity} onChange={handleChange} placeholder='Numeric Value' />
                                     </div>
                                 </div>
                                 <hr className='filter-break' />
