@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './AllData.css'
 import axios from 'axios'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { useAuth } from '../../services/AuthenticationService'
 
 function AllData(props) {
