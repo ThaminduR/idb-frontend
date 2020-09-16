@@ -40,3 +40,10 @@
 .errorMessage2 {
   display: none;
 }
+
+.table-overflow{
+  overflow-x: scroll;
+  width: 100%;
+  overflow-y: scroll;
+  height: 85vh;
+}

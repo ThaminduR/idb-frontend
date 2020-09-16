@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { useAuth } from '../../services/AuthenticationService'
 import axios from 'axios'
 import './DataAnalysis.css'
@@ -32,7 +32,6 @@ function DataAnalysis(props) {
         requestPending: false,
         dataEmpty: true,
     })
-
 
     const districts = [{ value: '*' }, { value: 'Ampara' }, { value: 'Anuradhapura' }, { value: 'Badulla' },
     { value: 'Batticaloa' }, { value: 'Colombo' }, { value: 'Galle' },
@@ -117,10 +116,11 @@ function DataAnalysis(props) {
     ]
 
     const viewARecord = (e, id) => {
-        history.push({
-            pathname: '/viewRecord',
-            data: id,
-        })
+        localStorage.setItem('id', id);
+        // history.push({
+        //     pathname: '/viewRecord',
+        //     data: id,
+        // })
     }
 
     return (
@@ -284,7 +284,14 @@ function DataAnalysis(props) {
                                                                 return (
                                                                     <tr key={key}>
                                                                         <td>{item.name}</td>
-                                                                        <td><button className='close'><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, item.id)} aria-hidden="true"></i></button></td>
+                                                                        <td><Link
+                                                                            target='_blank'
+                                                                            to={{
+                                                                                pathname: "/viewRecord",
+                                                                            }}
+
+                                                                        ><i className="fa fa-file-text-o" aria-hidden="true" onClick={(e) => viewARecord(e, item.id)}></i></Link></td>
+                                                                        {/* <td><button className='close'><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, item.id)} aria-hidden="true"></i></button></td> */}
                                                                     </tr>)
                                                             })
                                                         }

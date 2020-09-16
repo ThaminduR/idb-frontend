@@ -141,17 +141,15 @@ function FormView(props) {
 
         if (state.dataVerify) return
 
-        const { data } = props.location
-
-        if (data) {
+        const id = localStorage.getItem('id')
+        console.log("LOL",id)
+        if (id) {
             setState(prevState => ({
                 ...prevState,
-                id: data,
+                id: id,
                 dataVerify: true,
                 requestPending: true
             }))
-        } else {
-            history.push('/AllRecords')
         }
     })
 
