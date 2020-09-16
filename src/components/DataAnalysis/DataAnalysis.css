@@ -86,9 +86,3 @@
 /* .companyname-div {
   height: 80vh;
 } */
-
-
-.table-overflow{
-  overflow-x: scroll;
-  width: 100%;
-}

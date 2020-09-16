@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './AllData.css'
 import axios from 'axios'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { useAuth } from '../../services/AuthenticationService'
 
 function AllData(props) {
@@ -84,10 +84,11 @@ function AllData(props) {
     }
 
     const viewARecord = (e, id) => {
-        history.push({
-            pathname: '/viewRecord',
-            data: id,
-        })
+        localStorage.setItem('id', id);
+        // history.push({
+        //     pathname: '/viewRecord',
+        //     data: id,
+        // })
     }
 
     return (
@@ -177,7 +178,15 @@ function AllData(props) {
                                                     <td>{item.foreigh_market ? item.foreigh_market : "-"}</td>
                                                     <td>{item.local_employee_category ? item.local_employee_category : "-"}</td>
                                                     <td>{item.foreign_employee_category ? item.foreign_employee_category : "-"}</td>
-                                                    <td><button className='close'><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, item.id)} aria-hidden="true"></i></button></td>
+                                                    <td><Link
+                                                        target='_blank'
+                                                        to={{
+                                                            pathname: "/viewRecord",
+                                                        }}
+
+                                                    ><i className="fa fa-file-text-o" aria-hidden="true" onClick={(e) => viewARecord(e, item.id)}></i></Link>
+                                                    </td>
+                                                    {/* <td><button className='close'><i className="fa fa-file-text-o" onClick={(e) => viewARecord(e, item.id)} aria-hidden="true"></i></button></td> */}
                                                 </tr>)
                                         })}
                                     </tbody>
